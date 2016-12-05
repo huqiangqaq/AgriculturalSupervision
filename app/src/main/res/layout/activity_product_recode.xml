@@ -24,6 +24,7 @@
         app:titleTextSize="6sp"/>
 
     <RelativeLayout
+        android:background="@drawable/selector_common_layout"
         android:id="@+id/rl_product_recode"
         android:layout_width="match_parent"
         android:layout_height="50dp">
@@ -54,6 +55,7 @@
         android:background="@color/line"/>
 
     <RelativeLayout
+        android:background="@drawable/selector_common_layout"
         android:id="@+id/rl_batch_code"
         android:layout_width="match_parent"
         android:layout_height="50dp">
@@ -83,6 +85,7 @@
         android:layout_height="1dp"
         android:background="@color/line"/>
     <RelativeLayout
+        android:background="@drawable/selector_common_layout"
         android:id="@+id/rl_security_code"
         android:layout_width="match_parent"
         android:layout_height="50dp">
