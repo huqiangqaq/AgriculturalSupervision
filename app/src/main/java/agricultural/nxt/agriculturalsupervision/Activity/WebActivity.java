@@ -152,27 +152,6 @@ public class WebActivity extends BaseActivity {
         }
     }
 
-    /**
-     * 初始化Topbar
-     *
-     * @param activity {@link android.app.Activity} 使用Topbar的Activity
-     */
-//    protected void initTopbar(Activity activity, String titlename) {
-//        iv_experter_back = (RelativeLayout) activity.findViewById(R.id.layout_left);
-//        tvTopBarText = (TextView) activity.findViewById(R.id.tv_title);
-//        tvTopBarText.setText(titlename);
-//        iv_experter_back.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (webView.canGoBack()){
-//                    webView.goBack();
-//                }else {
-//                    finish();
-//                }
-//
-//            }
-//        });
-//    }
 
     private Handler handler = new Handler() {
         @Override
