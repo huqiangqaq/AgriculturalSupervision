@@ -1,0 +1,105 @@
+<resources>
+    <string name="app_name">Zlibrary</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_base_title">BaseTitleActivity</string>
+    <string name="home_page">主页</string>
+    <string name="default_loading">Loading…</string>
+
+    <string-array name="area_list">
+        <item>鹰潭市</item>
+        <item>余江县</item>
+        <item>贵溪市</item>
+        <item>新余</item>
+        <item>分宜县</item>
+        <item>南昌市</item>
+        <item>新建县</item>
+        <item>安义县</item>
+        <item>进贤县</item>
+        <item>九江市</item>
+        <item>九江县</item>
+        <item>进贤县</item>
+        <item>永修县</item>
+        <item>德安县</item>
+        <item>瑞昌市</item>
+        <item>湖口县</item>
+        <item>武宁县</item>
+        <item>修水县</item>
+        <item>都昌县</item>
+        <item>彭泽县</item>
+        <item>星子县</item>
+        <item>上饶市</item>
+        <item>上饶县</item>
+        <item>鄱阳县</item>
+        <item>婺源县</item>
+        <item>德兴市</item>
+        <item>横峰县</item>
+        <item>弋阳县</item>
+        <item>铅山县</item>
+        <item>广丰县</item>
+        <item>玉山县</item>
+        <item>余干县</item>
+        <item>万年县</item>
+        <item>抚州市</item>
+        <item>东乡县</item>
+        <item>资溪县</item>
+        <item>崇仁县</item>
+        <item>乐安县</item>
+        <item>宜黄县</item>
+        <item>南丰县</item>
+        <item>黎川县</item>
+        <item>南城县</item>
+        <item>金溪县</item>
+        <item>广昌县</item>
+        <item>尔安县</item>
+        <item>靖安县</item>
+        <item>宜春市</item>
+        <item>奉新县</item>
+        <item>高安市</item>
+        <item>丰城市</item>
+        <item>樟树市</item>
+        <item>万载县</item>
+        <item>铜鼓县</item>
+        <item>宜丰县</item>
+        <item>上高县</item>
+        <item>吉安市</item>
+        <item>吉安县</item>
+        <item>新干县</item>
+        <item>峡江县</item>
+        <item>永丰县</item>
+        <item>吉水县</item>
+        <item>安福县</item>
+        <item>永新县</item>
+        <item>井冈山市</item>
+        <item>泰和县</item>
+        <item>遂川县</item>
+        <item>宁冈县</item>
+        <item>万安县</item>
+        <item>赣州市</item>
+        <item>赣县</item>
+        <item>崇义县</item>
+        <item>万安县</item>
+        <item>南康市</item>
+        <item>大余县</item>
+        <item>信丰县</item>
+        <item>龙南县</item>
+        <item>全南县</item>
+        <item>定南县</item>
+        <item>安远县</item>
+        <item>寻乌县</item>
+        <item>于都县</item>
+        <item>兴国县</item>
+        <item>瑞金市</item>
+        <item>会昌县</item>
+        <item>石城县</item>
+        <item>宁都县</item>
+        <item>景德镇市</item>
+        <item>乐平市</item>
+        <item>浮梁县</item>
+        <item>萍乡市</item>
+        <item>上栗县</item>
+        <item>芦溪县</item>
+        <item>莲花县</item>
+    </string-array>
+</resources>

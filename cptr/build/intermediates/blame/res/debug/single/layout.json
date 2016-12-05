@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "D:\\Android\\Android Projects\\AgriculturalSupervision\\cptr\\build\\intermediates\\res\\merged\\debug\\layout\\cube_ptr_classic_default_header.xml",
+        "source": "D:\\Android\\Android Projects\\AgriculturalSupervision\\cptr\\res\\layout\\cube_ptr_classic_default_header.xml"
+    },
+    {
+        "merged": "D:\\Android\\Android Projects\\AgriculturalSupervision\\cptr\\build\\intermediates\\res\\merged\\debug\\layout\\loadmore_default_footer.xml",
+        "source": "D:\\Android\\Android Projects\\AgriculturalSupervision\\cptr\\res\\layout\\loadmore_default_footer.xml"
+    },
+    {
+        "merged": "D:\\Android\\Android Projects\\AgriculturalSupervision\\cptr\\build\\intermediates\\res\\merged\\debug\\layout\\cube_ptr_simple_loading.xml",
+        "source": "D:\\Android\\Android Projects\\AgriculturalSupervision\\cptr\\res\\layout\\cube_ptr_simple_loading.xml"
+    }
+]

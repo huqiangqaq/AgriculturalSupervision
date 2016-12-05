@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="agricultural.nxt.agriculturalsupervision">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <meta-data
+        android:name="UMENG_CHANNEL"
+        android:value="${UMENG_CHANNEL_VALUE}" />
+
+    <application
+        android:name=".Application.MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".Activity.LoginActivity"
+            android:label="@string/app_name"
+            android:theme="@style/Splash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Zxing.activity.CaptureActivity" />
+        <activity android:name=".Activity.RegisterActivity" />
+        <activity android:name=".Activity.MainActivity" />
+        <activity android:name=".Activity.WebActivity" />
+        <activity android:name=".Activity.ProductRecodeActivity"></activity>
+    </application>
+
+</manifest>

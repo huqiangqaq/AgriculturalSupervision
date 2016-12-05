@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="LetToolBar">
+        <attr name="leftButtonIcon" format="reference"/>
+        <attr name="rightButtonIcon" format="reference"/>
+        <attr name="titleTextColor" format="color"/>
+        <attr name="titleTextSize" format="dimension"/>
+    </declare-styleable>
+</resources>
