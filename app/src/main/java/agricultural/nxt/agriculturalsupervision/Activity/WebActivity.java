@@ -7,10 +7,13 @@ import android.os.Message;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
+import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.AbsoluteLayout;
+import android.widget.ProgressBar;
 
 import com.nxt.zyl.util.CommonUtils;
 import com.nxt.zyl.util.ZToastUtils;
@@ -29,7 +32,6 @@ public class WebActivity extends BaseActivity {
     LetToolBar toolBar;
     @BindView(R.id.appbarlayout)
     AppBarLayout appBarLayout;
-    boolean isfirsarload = true;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,14 +94,41 @@ public class WebActivity extends BaseActivity {
         }else {
             webView.getSettings().setLoadsImagesAutomatically(false);
         }
+        /**
+         * 添加进度条
+         */
+        final ProgressBar progressbar = new ProgressBar(this, null, android.R.attr.progressBarStyleHorizontal);
+        progressbar.setLayoutParams(new AbsoluteLayout.LayoutParams(AbsoluteLayout.LayoutParams.MATCH_PARENT, 6, 0, 0));
+        webView.addView(progressbar);
         WebSettings mWebSettings = webView.getSettings();
         mWebSettings.setJavaScriptEnabled(true);
+        mWebSettings.setSupportZoom(true);
+        mWebSettings.setAllowFileAccess(true);
         mWebSettings.setBuiltInZoomControls(true);
         mWebSettings.setUseWideViewPort(true);
         mWebSettings.setLoadWithOverviewMode(true);
         mWebSettings.setBuiltInZoomControls(true);
+        mWebSettings.setLayoutAlgorithm(
+                WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        mWebSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
+        mWebSettings.setDomStorageEnabled(true);
         webView.setInitialScale(25);//
         webView.requestFocus();
+
+        webView.setWebChromeClient(new WebChromeClient() {
+
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                super.onProgressChanged(view, newProgress);
+                if (newProgress == 100) {
+                    progressbar.setVisibility(View.GONE);
+                } else {
+                    if (progressbar.getVisibility() == View.GONE)
+                        progressbar.setVisibility(View.VISIBLE);
+                    progressbar.setProgress(newProgress);
+                }
+            }
+        });
 
     }
 
@@ -117,12 +146,8 @@ public class WebActivity extends BaseActivity {
             //设置在webview中点击打开的新网页在当前页面显示，而不跳转到浏览器中
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-                if (isfirsarload){
-                    isfirsarload = false;
-                    return false;
-                }else {
-                    view.loadUrl(loadUrl);
-                }
+
+                view.loadUrl(loadUrl);
                 return true;
             }
 

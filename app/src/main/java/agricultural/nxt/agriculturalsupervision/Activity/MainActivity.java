@@ -99,12 +99,13 @@ public class MainActivity extends BaseActivity {
      */
     @OnClick(R.id.tv_product_recode) void recode(){
         ProductRecodeActivity.actionStart(this);
+
     }
     /**
      * 产品售出
      */
     @OnClick(R.id.tv_product_sold) void sold(){
-
+        startActivity(new Intent(this,Forget_PwdActivity.class));
     }
     /**
      * 往来客户

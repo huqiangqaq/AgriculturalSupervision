@@ -28,7 +28,7 @@ android {
         manifestPlaceholders = [UMENG_CHANNEL_VALUE: "umeng"]
     }
     lintOptions{
-        abortOnError false
+        abortOnError true
     }
     buildTypes {
         debug{

@@ -6,6 +6,9 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <meta-data
         android:name="UMENG_CHANNEL"
@@ -32,7 +35,8 @@
         <activity android:name=".Activity.RegisterActivity" />
         <activity android:name=".Activity.MainActivity" />
         <activity android:name=".Activity.WebActivity" />
-        <activity android:name=".Activity.ProductRecodeActivity"></activity>
+        <activity android:name=".Activity.ProductRecodeActivity" />
+        <activity android:name=".Activity.Forget_PwdActivity"></activity>
     </application>
 
 </manifest>

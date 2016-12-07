@@ -12,7 +12,7 @@ import agricultural.nxt.agriculturalsupervision.base.BaseActivity;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class ProductRecodeActivity extends BaseActivity {
+public class ProductRecodeActivity extends BaseActivity{
     @BindView(R.id.lettoolbar)
     LetToolBar toolBar;
     @BindView(R.id.rl_product_recode)
@@ -21,6 +21,7 @@ public class ProductRecodeActivity extends BaseActivity {
     RelativeLayout rl_batch_code;
     @BindView(R.id.rl_security_code)
     RelativeLayout rl_security_code;
+    private static final String cacheKey = "ProductRecodeActivity";
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,11 +37,11 @@ public class ProductRecodeActivity extends BaseActivity {
                 finish();
             }
         });
+
     }
 
     /**
      * 产品备案
-     * @return
      */
     @OnClick(R.id.rl_product_recode) void recode(){
 
@@ -48,7 +49,6 @@ public class ProductRecodeActivity extends BaseActivity {
 
     /**
      * 批次码打印
-     * @return
      */
     @OnClick(R.id.rl_batch_code) void batch(){
 
@@ -56,7 +56,6 @@ public class ProductRecodeActivity extends BaseActivity {
 
     /**
      * 防伪码打印
-     * @return
      */
     @OnClick(R.id.rl_security_code) void security(){
 
@@ -70,4 +69,6 @@ public class ProductRecodeActivity extends BaseActivity {
         Intent intent = new Intent(context,ProductRecodeActivity.class);
         context.startActivity(intent);
     }
+
+
 }

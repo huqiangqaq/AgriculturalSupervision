@@ -279,6 +279,7 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
         scanCropView.getLocationInWindow(location);
 
         int cropLeft = location[0];
+        int ss = getStatusBarHeight();
         int cropTop = location[1] - getStatusBarHeight();
 
         int cropWidth = scanCropView.getWidth();
@@ -297,7 +298,10 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
         int width = cropWidth * cameraWidth / containerWidth;
         /** 计算最终截取的矩形的高度 */
         int height = cropHeight * cameraHeight / containerHeight;
-
+        /**
+         * toolbar的高度
+         */
+//        int toolbarHeight = letToolBar.getBottom();
         /** 生成最终的截取的矩形 */
         mCropRect = new Rect(x, y, width + x, height + y);
     }

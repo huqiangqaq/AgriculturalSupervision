@@ -12,9 +12,11 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import agricultural.nxt.agriculturalsupervision.Constants;
 import okhttp3.Call;
 import okhttp3.Response;
 
@@ -34,14 +36,12 @@ public class OkhttpHelper {
     /**
      *
      * @param url
-     * @param cacheKey  // 设置当前请求的缓存key,建议每个不同功能的请求设置一个
      * @param callBack
      * @param tag   //多个请求时的标记
      */
-    public void Get(String url, String cacheKey, final MyCallBack callBack, final int tag){
+    public static void Get(String url, final GetCallBack callBack, final int tag){
         OkGo.get(url)
-                .tag(this)  // 请求的 tag, 主要用于取消对应的请求
-                .cacheKey(cacheKey)
+                .tag(tag)  // 请求的 tag, 主要用于取消对应的请求
                 .cacheMode(CacheMode.DEFAULT)
                 .execute(new StringCallback() {
                     @Override
@@ -67,9 +67,9 @@ public class OkhttpHelper {
      * @param callBack
      */
 
-    public void GetImage(String bitmapUrl, final MyCallBack callBack){
+    public static void GetImage(String bitmapUrl, final BitmapCallBack callBack,int tag){
         OkGo.get(bitmapUrl)
-                .tag(this)
+                .tag(tag)
                 .execute(new BitmapCallback() {
                     @Override
                     public void onSuccess(Bitmap bitmap, Call call, Response response) {
@@ -85,12 +85,17 @@ public class OkhttpHelper {
      * @param callBack
      * @param tag
      */
-    public void Download(String FileUrl, final MyCallBack callBack, final int tag){
+    public static void Download(String FileUrl, final FileCallBack callBack, final int tag){
         OkGo.get(FileUrl)
                 .execute(new FileCallback() {
                     @Override
                     public void onSuccess(File file, Call call, Response response) {
-                        callBack.onFielDownload(file,tag);
+//                        callBack.onFielDownload(file,tag);
+                        try {
+                            callBack.onSuccess(response.body().string(),tag);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     @Override
@@ -118,9 +123,9 @@ public class OkhttpHelper {
      * @param callBack
      * @param tag
      */
-    public void PostString(String url, String param, final MyCallBack callBack, final int tag){
+    public static void PostString(String url, String param, final PostCallBack callBack, final int tag){
         OkGo.post(url)
-                .tag(this)
+                .tag(tag)
                 .upString(param)
                 .execute(new StringCallback() {
                     @Override
@@ -147,7 +152,7 @@ public class OkhttpHelper {
      * @param callBack
      * @param tag
      */
-    public void PostJson(String url, JSONObject json, final MyCallBack callBack, final int tag){
+    public static void PostJson(String url, JSONObject json, final PostCallBack callBack, final int tag){
         OkGo.post(url)
                 .upJson(json.toString())
                 .execute(new StringCallback() {
@@ -172,9 +177,9 @@ public class OkhttpHelper {
      * @param tag
      */
 
-    public void Post(String url, Map<String,String> map, final MyCallBack callBack, final int tag){
+    public static void Post(String url, Map<String,String> map, final PostCallBack callBack, final int tag){
         OkGo.post(url)
-                .tag(this)
+                .tag(tag)
                 .params(map)
                 .execute(new StringCallback() {
                     @Override
@@ -200,9 +205,9 @@ public class OkhttpHelper {
      * @param tag
      */
 
-    public void PostFileSingle(String fileUrl, Map<String,String> params, String fileName, String filePath, final MyCallBack callBack, final int tag){
+    public static void PostFileSingle(String fileUrl, Map<String,String> params, String fileName, String filePath, final PostCallBack callBack, final int tag){
             OkGo.post(fileUrl)
-                    .tag(this)
+                    .tag(tag)
                     .params(params)
                     .params(fileName,new File(filePath))
                     .execute(new StringCallback() {
@@ -224,9 +229,9 @@ public class OkhttpHelper {
      * @param tag
      */
 
-    public void PostFiles(String fileUrl, Map<String,String> params, String key, List<File> files, final MyCallBack callBack, final int tag){
+    public static void PostFiles(String fileUrl, Map<String,String> params, String key, List<File> files, final PostCallBack callBack, final int tag){
         OkGo.post(fileUrl)
-                .tag(this)
+                .tag(tag)
                 .params(params)
                 .addFileParams(key,files)
                 .execute(new StringCallback() {
@@ -238,17 +243,64 @@ public class OkhttpHelper {
     }
 
 
-
-
-
-
-
-    interface MyCallBack{
+    public interface GetCallBack{
         void onSuccess(String response,int tag);
         void onFailed(String error,int tag);
-        void onSuccess(Bitmap bitmap);
-        void onFielDownload(File file,int tag);
+
+
+    }
+    public interface PostCallBack{
+        void onSuccess(String response,int tag);
+        void onFailed(String error,int tag);
         void onProgress(long currentSize,long totalSize,float progress,long networkSpeed);
+        }
+
+    public interface BitmapCallBack{
+        void onSuccess(Bitmap bitmap);
+    }
+
+    public interface FileCallBack{
+        void onSuccess(String response,int tag);
+        void onFailed(String error,int tag);
+        void onProgress(long currentSize,long totalSize,float progress,long networkSpeed);
+    }
+
+    //异步post请求
+    public static void post(Map<String, String> params,Object obj,final GetCallBack back,final int tag,final Object listen){
+
+         final Map<String,Boolean> map = new HashMap<>();
+        OkGo.post(Constants.BASE_URL)
+                .tag(obj)
+                .cacheKey(params.get("service"))
+                .params(params,true)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(String s, Call call, Response response) {
+                        if (map.get("s")){
+
+                        }
+                        map.put("s",false);
+                    }
+
+                    @Override
+                    public void onError(Call call, Response response, Exception e) {
+                        super.onError(call, response, e);
+                    }
+
+
+
+                    @Override
+                    public void onCacheSuccess(String s, Call call) {
+                        super.onCacheSuccess(s, call);
+                        map.put("s",true);
+
+                    }
+
+                    @Override
+                    public void onCacheError(Call call, Exception e) {
+                        super.onCacheError(call, e);
+                    }
+                });
     }
 
 }
