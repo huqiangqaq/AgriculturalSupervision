@@ -2,6 +2,7 @@ package agricultural.nxt.agriculturalsupervision.Activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.transition.Transition;
@@ -14,6 +15,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.nxt.zyl.util.ZToastUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import agricultural.nxt.agriculturalsupervision.R;
 import agricultural.nxt.agriculturalsupervision.Util.DoubleClickExitHelper;
@@ -55,6 +59,9 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.tv_Customers)
     TextView tv_customers;
     private DoubleClickExitHelper doubleClickExitHelper;
+    private List<String> list = new ArrayList<>();
+    private  List<Integer> ids = new ArrayList<>();
+    private List<TextView> views = new ArrayList<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -77,6 +84,28 @@ public class MainActivity extends BaseActivity {
     protected void initView() {
         initTopbar(this,"农资电子监管系统");
         doubleClickExitHelper = new DoubleClickExitHelper(this);
+        list.add("产品备案");
+        list.add("产品售出");
+        list.add("往来客户");
+        views.add(tv_product_recode);
+        views.add(tv_product_sold);
+        views.add(tv_customers);
+        //添加对应的模块
+        addImgResource(list);
+        initRes(list,views,ids);
+//        Drawable drawable = getResources().getDrawable(R.mipmap.icon_sc);
+//        drawable.setBounds(0,0,drawable.getMinimumHeight(),drawable.getMinimumHeight());
+//        tv_product_recode.setCompoundDrawables(null,drawable,null,null);
+    }
+
+    private void initRes(List<String> list,List<TextView> tv,List<Integer> resId){
+        for (int i= 0;i<list.size();i++){
+            Drawable drawable = getResources().getDrawable(resId.get(i));
+            drawable.setBounds(0,0,drawable.getMinimumWidth(),drawable.getMinimumHeight());
+            tv.get(i).setCompoundDrawables(null,drawable,null,null);
+            tv.get(i).setText(list.get(i));
+        }
+
     }
 
     @Override
@@ -98,20 +127,21 @@ public class MainActivity extends BaseActivity {
      * 产品备案
      */
     @OnClick(R.id.tv_product_recode) void recode(){
-        ProductRecodeActivity.actionStart(this);
+
+        StartAction(tv_product_recode.getText().toString());
 
     }
     /**
      * 产品售出
      */
     @OnClick(R.id.tv_product_sold) void sold(){
-        startActivity(new Intent(this,Forget_PwdActivity.class));
+        StartAction(tv_product_sold.getText().toString());
     }
     /**
      * 往来客户
      */
     @OnClick(R.id.tv_Customers) void customer(){
-
+        StartAction(tv_customers.getText().toString());
     }
 
     /**
@@ -150,7 +180,8 @@ public class MainActivity extends BaseActivity {
      * 诚信经营
      */
     @OnClick(R.id.tv_check_integrity) void checkIntegrity(){
-        ZToastUtils.showShort(this,"查诚信");
+        IntegritySearchActivity.actionStart(this);
+
     }
     @OnClick(R.id.tv_report) void report(){
         ZToastUtils.showShort(this,"我要举报");
@@ -169,6 +200,19 @@ public class MainActivity extends BaseActivity {
         }
     }
 
+    private void addImgResource(List<String> newList) {
+        //添加全部模块图标资源
+        for (int i=0;i<newList.size();i++){
+            if ("产品备案".equalsIgnoreCase(newList.get(i))){
+                ids.add(R.mipmap.icon_cp);
+            }else if ("产品售出".equalsIgnoreCase(newList.get(i))){
+                ids.add(R.mipmap.icon_sc);
+            }else if ("往来客户".equalsIgnoreCase(newList.get(i))){
+                ids.add(R.mipmap.icon_lw);
+            }
+        }
+    }
+
     /**
      * 双击退出程序
      * @param keyCode
@@ -183,5 +227,19 @@ public class MainActivity extends BaseActivity {
         return super.onKeyDown(keyCode, event);
     }
 
+    /**
+     * 根据模块进行跳转
+     * @param content
+     */
+    private void StartAction(String content) {
+
+        if ("产品备案".equalsIgnoreCase(content)) {
+            ProductRecodeActivity.actionStart(this);
+        } else if ("产品售出".equalsIgnoreCase(content)){
+            ProductSoldActivity.actionStart(this);
+        } else if ("生产区管理".equalsIgnoreCase(content)){
+            ZToastUtils.showShort(this,content);
+        }
+    }
 
 }

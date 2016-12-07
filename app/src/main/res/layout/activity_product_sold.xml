@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_product_sold"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/whitesmoke"
+    tools:context="agricultural.nxt.agriculturalsupervision.Activity.ProductSoldActivity">
+
+
+    <agricultural.nxt.agriculturalsupervision.Widget.LetToolBar
+        android:id="@+id/lettoolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:background="@color/common_color"
+        android:minHeight="?attr/actionBarSize"
+        app:layout_scrollFlags="scroll|enterAlways"
+        app:leftButtonIcon="@mipmap/back"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:title="主页"
+        app:titleTextColor="@color/whitesmoke"
+        app:titleTextSize="6sp" />
+
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/common_text"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_marginRight="20dp"
+            android:layout_centerInParent="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/icon_search"/>
+        <EditText
+            android:background="@null"
+            android:id="@+id/et_search"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp" />
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lv_result">
+    </android.support.v7.widget.RecyclerView>
+
+</LinearLayout>

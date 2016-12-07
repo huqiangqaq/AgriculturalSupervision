@@ -36,7 +36,9 @@
         <activity android:name=".Activity.MainActivity" />
         <activity android:name=".Activity.WebActivity" />
         <activity android:name=".Activity.ProductRecodeActivity" />
-        <activity android:name=".Activity.Forget_PwdActivity"></activity>
+        <activity android:name=".Activity.Forget_PwdActivity" />
+        <activity android:name=".Activity.ProductSoldActivity" />
+        <activity android:name=".Activity.IntegritySearchActivity"></activity>
     </application>
 
 </manifest>
