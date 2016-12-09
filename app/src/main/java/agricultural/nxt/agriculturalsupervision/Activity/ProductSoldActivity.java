@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
+import com.nxt.zyl.util.ZToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +55,12 @@ public class ProductSoldActivity extends BaseActivity {
         resultAdapter = new ResultAdapter(results);
         resultAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN);
         lv_result.setAdapter(resultAdapter);
+        lv_result.addOnItemTouchListener(new OnItemClickListener() {
+            @Override
+            public void SimpleOnItemClick(BaseQuickAdapter baseQuickAdapter, View view, int position) {
+                ZToastUtils.showShort(ProductSoldActivity.this, ""+position);
+            }
+        });
     }
 
     private void initData() {
@@ -66,6 +74,7 @@ public class ProductSoldActivity extends BaseActivity {
     protected int getLayoutResId() {
         return R.layout.activity_product_sold;
     }
+
     public static void actionStart(Context context){
         Intent intent = new Intent(context,ProductSoldActivity.class);
         context.startActivity(intent);

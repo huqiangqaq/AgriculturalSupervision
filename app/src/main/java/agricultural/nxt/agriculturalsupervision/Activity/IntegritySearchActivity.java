@@ -3,13 +3,25 @@ package agricultural.nxt.agriculturalsupervision.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.EditText;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
+import com.nxt.zyl.util.ZToastUtils;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import agricultural.nxt.agriculturalsupervision.R;
 import agricultural.nxt.agriculturalsupervision.Widget.LetToolBar;
+import agricultural.nxt.agriculturalsupervision.adapter.IntegritySearchAdapter;
 import agricultural.nxt.agriculturalsupervision.base.BaseActivity;
+import agricultural.nxt.agriculturalsupervision.entity.IntegritySearch;
 import butterknife.BindView;
 
 public class IntegritySearchActivity extends BaseActivity {
@@ -19,6 +31,8 @@ public class IntegritySearchActivity extends BaseActivity {
     EditText et_search;
     @BindView(R.id.lv_result)
     RecyclerView lv_result;
+    private List<IntegritySearch> results = new ArrayList<>();
+    private IntegritySearchAdapter resultAdapter;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +48,19 @@ public class IntegritySearchActivity extends BaseActivity {
                 finish();
             }
         });
+        initData();
+        lv_result.setLayoutManager(new LinearLayoutManager(this));
+        lv_result.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
+        lv_result.setItemAnimator(new DefaultItemAnimator());
+        resultAdapter = new IntegritySearchAdapter(results);
+        resultAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN);
+        lv_result.setAdapter(resultAdapter);
+        lv_result.addOnItemTouchListener(new OnItemClickListener() {
+            @Override
+            public void SimpleOnItemClick(BaseQuickAdapter baseQuickAdapter, View view, int position) {
+                ZToastUtils.showShort(IntegritySearchActivity.this, ""+position);
+            }
+        });
     }
 
     @Override
@@ -45,4 +72,12 @@ public class IntegritySearchActivity extends BaseActivity {
         Intent intent = new Intent(context,IntegritySearchActivity.class);
         context.startActivity(intent);
     }
+    private void initData() {
+        results.add(new IntegritySearch(1,20161209,"西瓜","江西省种子公司"));
+        results.add(new IntegritySearch(2,20161209,"苹果","南昌县"));
+        results.add(new IntegritySearch(3,20161209,"菠萝","江西省种子工程有限公司"));
+        results.add(new IntegritySearch(3,20161209,"菠萝","江西省种子工程有限公司"));
+        results.add(new IntegritySearch(4,20161209,"菠萝","江西省种子工程有限公司"));
+    }
+
 }

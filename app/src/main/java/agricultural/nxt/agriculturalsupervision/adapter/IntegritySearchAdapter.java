@@ -19,6 +19,16 @@ public class IntegritySearchAdapter extends BaseQuickAdapter<IntegritySearch,Bas
 
     @Override
     protected void convert(BaseViewHolder viewHolder, IntegritySearch integritySearch) {
-
+        viewHolder.setText(R.id.recodeNum,integritySearch.getRecodeNum()+"")
+                .setText(R.id.unitNum,integritySearch.getUnitNum()+"")
+                .setText(R.id.productName,integritySearch.getProductName())
+                .setText(R.id.companyName,integritySearch.getCompanyName());
+        if(viewHolder.getLayoutPosition()==2){
+            viewHolder.setBackgroundRes(R.id.btn_handle,R.drawable.bg_integrity)
+                      .setText(R.id.btn_handle,R.string.integrityhandle);
+        }else {
+            viewHolder.setBackgroundRes(R.id.btn_handle,R.drawable.bg_integrity_red)
+                      .setText(R.id.btn_handle,R.string.integritynohandle);
+        }
     }
 }

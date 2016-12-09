@@ -5,49 +5,57 @@
     android:orientation="vertical"
     android:background="@drawable/selector_common_layout">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="15dp"
-            style="@style/commontext"
-            android:text="投诉记录编号:"
-            android:textColor="@color/black"/>
-        <TextView
-            android:id="@+id/tv_id"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="15dp"
-            style="@style/commontext"
-            android:text="2251678961482222"/>
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="15dp"
+                style="@style/commontext"
+                android:text="投诉记录编号:"
+                android:textColor="@color/black"/>
+            <TextView
+                android:id="@+id/recodeNum"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="15dp"
+                style="@style/commontext"
+                android:text="2251678961482222"/>
+
+        </LinearLayout>
         <Button
+            android:layout_alignParentRight="true"
+            android:id="@+id/btn_handle"
             android:text="已处理"
             android:layout_marginTop="15dp"
-            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
             android:background="@drawable/bg_integrity"
             android:layout_width="100dp"
             android:layout_height="30dp" />
-    </LinearLayout>
+    </RelativeLayout>
+
 
     <LinearLayout
+        android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <TextView
-            android:layout_marginTop="15dp"
             android:layout_marginLeft="15dp"
             style="@style/commontext"
             android:text="投诉单位编号:"
             android:textColor="@color/black"/>
         <TextView
-            android:id="@+id/tv_name"
-            android:layout_marginTop="15dp"
+            android:id="@+id/unitNum"
             android:layout_marginLeft="15dp"
             style="@style/commontext"
             android:text="包菜种子"/>
     </LinearLayout>
     <LinearLayout
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -56,14 +64,12 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <TextView
-                android:layout_marginTop="15dp"
                 android:layout_marginLeft="15dp"
                 style="@style/commontext"
                 android:text="违法产品名称:"
                 android:textColor="@color/black"/>
             <TextView
-                android:id="@+id/tv_specie"
-                android:layout_marginTop="15dp"
+                android:id="@+id/productName"
                 android:layout_marginLeft="15dp"
                 style="@style/commontext"
                 android:text="包菜种子"/>
@@ -74,14 +80,12 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <TextView
-                android:layout_marginTop="15dp"
                 android:layout_marginLeft="15dp"
                 style="@style/commontext"
                 android:text="企业名称:"
                 android:textColor="@color/black"/>
             <TextView
-                android:id="@+id/tv_unit"
-                android:layout_marginTop="15dp"
+                android:id="@+id/companyName"
                 android:layout_marginLeft="15dp"
                 style="@style/commontext"
                 android:text="江西省农业工程有限公司"/>
