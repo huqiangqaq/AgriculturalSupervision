@@ -40,5 +40,4 @@
     <!--控制头部据appbar的样式-->
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
-
 </resources>

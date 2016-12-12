@@ -4,24 +4,23 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.RelativeLayout;
+
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 import agricultural.nxt.agriculturalsupervision.R;
 import agricultural.nxt.agriculturalsupervision.Widget.LetToolBar;
+import agricultural.nxt.agriculturalsupervision.Widget.NiceSpinner;
 import agricultural.nxt.agriculturalsupervision.base.BaseActivity;
 import butterknife.BindView;
-import butterknife.OnClick;
 
-public class ProductRecodeActivity extends BaseActivity{
+public class RecodeActivity extends BaseActivity {
     @BindView(R.id.lettoolbar)
     LetToolBar toolBar;
-    @BindView(R.id.rl_product_recode)
-    RelativeLayout rl_product_recode;
-    @BindView(R.id.rl_batch_code)
-    RelativeLayout rl_batch_code;
-    @BindView(R.id.rl_security_code)
-    RelativeLayout rl_security_code;
-    private static final String cacheKey = "ProductRecodeActivity";
+    @BindView(R.id.sp_isTransgenic)
+    NiceSpinner sp_isTransgenic;
+    private List<String> dataset = new LinkedList<>(Arrays.asList("非转基因", "转基因"));
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,38 +36,17 @@ public class ProductRecodeActivity extends BaseActivity{
                 finish();
             }
         });
-
-    }
-
-    /**
-     * 产品备案
-     */
-    @OnClick(R.id.rl_product_recode) void recode(){
-        RecodeActivity.actionStart(this);
-    }
-
-    /**
-     * 批次码打印
-     */
-    @OnClick(R.id.rl_batch_code) void batch(){
-
-    }
-
-    /**
-     * 防伪码打印
-     */
-    @OnClick(R.id.rl_security_code) void security(){
-
+        sp_isTransgenic.attachDataSource(dataset);
     }
 
     @Override
     protected int getLayoutResId() {
-        return R.layout.activity_product_recode;
+        return R.layout.activity_recode;
     }
+
     public static void actionStart(Context context){
-        Intent intent = new Intent(context,ProductRecodeActivity.class);
+        Intent intent = new Intent(context,RecodeActivity.class);
         context.startActivity(intent);
+
     }
-
-
 }

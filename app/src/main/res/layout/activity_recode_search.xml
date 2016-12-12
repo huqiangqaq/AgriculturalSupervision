@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_product_recode"
+    android:id="@+id/activity_recode_search"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="agricultural.nxt.agriculturalsupervision.Activity.ProductRecodeActivity">
+    tools:context="agricultural.nxt.agriculturalsupervision.Activity.RecodeSearchActivity">
 
     <include layout="@layout/main_toolbar"/>
-
     <RelativeLayout
         android:background="@drawable/selector_common_layout"
         android:id="@+id/rl_product_recode"
@@ -26,7 +25,7 @@
             android:layout_toRightOf="@id/image_one"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/product_recode"/>
+            android:text="查看种子备案"/>
         <ImageView
             android:layout_marginRight="15dp"
             android:layout_centerVertical="true"
@@ -57,7 +56,7 @@
             android:layout_toRightOf="@id/image_two"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="批次码打印"/>
+            android:text="查看农药备案"/>
         <ImageView
             android:layout_marginRight="15dp"
             android:layout_centerVertical="true"
@@ -87,7 +86,7 @@
             android:layout_toRightOf="@id/image_third"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="防伪码打印"/>
+            android:text="查看化肥备案"/>
         <ImageView
             android:layout_marginRight="15dp"
             android:layout_centerVertical="true"
@@ -100,5 +99,4 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/line"/>
-
 </LinearLayout>

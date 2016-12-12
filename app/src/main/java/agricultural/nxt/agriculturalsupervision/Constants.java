@@ -6,4 +6,6 @@ package agricultural.nxt.agriculturalsupervision;
 
 public class Constants {
     public static final String BASE_URL = "";
+    public static final String ANNOUNCEMENT = BASE_URL+"";
+    public static final String INTEGRITY = BASE_URL+"";
 }

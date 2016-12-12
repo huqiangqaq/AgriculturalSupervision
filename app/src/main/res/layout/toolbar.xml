@@ -27,11 +27,12 @@
         android:layout_centerInParent="true" />
 
     <ImageView
+        android:layout_margin="5dp"
+        android:layout_marginRight="10dp"
         android:id="@+id/toolbar_rightbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:background="@mipmap/ic_launcher"
         android:visibility="gone" />
 
 </RelativeLayout>

@@ -21,12 +21,13 @@ import java.util.List;
 
 import agricultural.nxt.agriculturalsupervision.R;
 import agricultural.nxt.agriculturalsupervision.Util.DoubleClickExitHelper;
+import agricultural.nxt.agriculturalsupervision.Util.OkhttpHelper;
 import agricultural.nxt.agriculturalsupervision.Zxing.activity.CaptureActivity;
 import agricultural.nxt.agriculturalsupervision.base.BaseActivity;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements OkhttpHelper.GetCallBack {
     @BindView(R.id.layout_left) RelativeLayout rl_left;
     @BindView(R.id.tv_title) TextView tvTopBarText;
     @BindView(R.id.iv_all) ImageView iv_all;
@@ -58,10 +59,15 @@ public class MainActivity extends BaseActivity {
 
     @BindView(R.id.tv_Customers)
     TextView tv_customers;
+    //备案信息查询
+    @BindView(R.id.tv_recode_search)
+    TextView tv_recode_search;
     private DoubleClickExitHelper doubleClickExitHelper;
     private List<String> list = new ArrayList<>();
     private  List<Integer> ids = new ArrayList<>();
     private List<TextView> views = new ArrayList<>();
+    private static final int ANNOUNCEMENT = 1;
+    private static final int INTEGRITY = 2;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -93,6 +99,14 @@ public class MainActivity extends BaseActivity {
         //添加对应的模块
         addImgResource(list);
         initRes(list,views,ids);
+//        /**
+//         * 通知专栏
+//         */
+//        OkhttpHelper.Get(Constants.ANNOUNCEMENT,this,ANNOUNCEMENT);
+//        /**
+//         * 诚信经营
+//         */
+//        OkhttpHelper.Get(Constants.INTEGRITY,this,INTEGRITY);
 //        Drawable drawable = getResources().getDrawable(R.mipmap.icon_sc);
 //        drawable.setBounds(0,0,drawable.getMinimumHeight(),drawable.getMinimumHeight());
 //        tv_product_recode.setCompoundDrawables(null,drawable,null,null);
@@ -173,7 +187,7 @@ public class MainActivity extends BaseActivity {
      * 通知专栏more
      */
     @OnClick(R.id.tv_more) void More(){
-        ZToastUtils.showShort(this,"通知专栏more");
+        AnnounceActivity.actionStart(this);
     }
 
     /**
@@ -182,6 +196,9 @@ public class MainActivity extends BaseActivity {
     @OnClick(R.id.tv_check_integrity) void checkIntegrity(){
         IntegritySearchActivity.actionStart(this);
 
+    }
+    @OnClick(R.id.tv_recode_search) void recodeSearch(){
+        RecodeSearchActivity.actionStart(this);
     }
     @OnClick(R.id.tv_report) void report(){
         ZToastUtils.showShort(this,"我要举报");
@@ -242,4 +259,18 @@ public class MainActivity extends BaseActivity {
         }
     }
 
+    @Override
+    public void onSuccess(String response, int tag) {
+        switch (tag){
+            case ANNOUNCEMENT:
+                break;
+            case INTEGRITY:
+                break;
+        }
+    }
+
+    @Override
+    public void onFailed(String error, int tag) {
+
+    }
 }

@@ -1,24 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <agricultural.nxt.agriculturalsupervision.Widget.LetToolBar
-        android:id="@+id/lettoolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_gravity="center"
-        android:background="@color/common_color"
-        android:minHeight="?attr/actionBarSize"
-        app:layout_scrollFlags="scroll|enterAlways"
-        app:leftButtonIcon="@mipmap/back"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:title="主页"
-        app:titleTextColor="@color/whitesmoke"
-        app:titleTextSize="6sp"/>
+    <include layout="@layout/main_toolbar"/>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

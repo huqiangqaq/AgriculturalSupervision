@@ -113,13 +113,16 @@
                             android:layout_gravity="center"
                             android:background="@color/line" />
 
-                        <LinearLayout
+                        <RelativeLayout
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:orientation="vertical">
-
-                        </LinearLayout>
+                            <ProgressBar
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true" />
+                        </RelativeLayout>
 
                     </LinearLayout>
                 </LinearLayout>
@@ -143,80 +146,90 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@color/line" />
-
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_gravity="center"
-                    android:orientation="vertical">
-
+                    android:layout_height="100dp">
+                    <ProgressBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"/>
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="horizontal">
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="【最新动态】"
-                            android:textColor="#527fc9" />
-
-                        <TextView
-                            android:id="@+id/tv_LatestNews_1"
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:ellipsize="end"
-                            android:singleLine="true"
-                            android:text="fa464516315318749848516511031541fafjajoewjafn;kansdfonwoean" />
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="【最新动态】"
+                                android:textColor="#527fc9" />
+
+                            <TextView
+                                android:id="@+id/tv_LatestNews_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:singleLine="true"
+                                android:text="fa464516315318749848516511031541fafjajoewjafn;kansdfonwoean" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="【最新动态】"
+                                android:textColor="#527fc9" />
+
+                            <TextView
+                                android:id="@+id/tv_LatestNews_2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:singleLine="true"
+                                android:text="fa464516315318749848516511031541fafjajoewjafn;kansdfonwoean" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="【最新动态】"
+                                android:textColor="#527fc9" />
+
+                            <TextView
+                                android:id="@+id/tv_LatestNews_3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:singleLine="true"
+                                android:text="fa464516315318749848516511031541fafjajoewjafn;kansdfonwoean" />
+                        </LinearLayout>
+
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="horizontal">
+                </RelativeLayout>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="【最新动态】"
-                            android:textColor="#527fc9" />
 
-                        <TextView
-                            android:id="@+id/tv_LatestNews_2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:ellipsize="end"
-                            android:singleLine="true"
-                            android:text="fa464516315318749848516511031541fafjajoewjafn;kansdfonwoean" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="【最新动态】"
-                            android:textColor="#527fc9" />
-
-                        <TextView
-                            android:id="@+id/tv_LatestNews_3"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:ellipsize="end"
-                            android:singleLine="true"
-                            android:text="fa464516315318749848516511031541fafjajoewjafn;kansdfonwoean" />
-                    </LinearLayout>
-
-                </LinearLayout>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -317,6 +330,7 @@
 
 
                         <TextView
+                            android:id="@+id/tv_recode_search"
                             android:layout_marginLeft="5dp"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"

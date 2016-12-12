@@ -25,7 +25,7 @@ public class IntegritySearchAdapter extends BaseQuickAdapter<IntegritySearch,Bas
                 .setText(R.id.companyName,integritySearch.getCompanyName());
         if(viewHolder.getLayoutPosition()==2){
             viewHolder.setBackgroundRes(R.id.btn_handle,R.drawable.bg_integrity)
-                      .setText(R.id.btn_handle,R.string.integrityhandle);
+                        .setText(R.id.btn_handle,R.string.integrityhandle);
         }else {
             viewHolder.setBackgroundRes(R.id.btn_handle,R.drawable.bg_integrity_red)
                       .setText(R.id.btn_handle,R.string.integritynohandle);

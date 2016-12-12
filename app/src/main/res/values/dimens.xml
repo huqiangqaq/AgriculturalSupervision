@@ -4,4 +4,8 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="activity_title_size">20sp</dimen>
     <dimen name="activity_title_height">56dp</dimen>
+    <dimen name="three_grid_unit">24dp</dimen>
+    <dimen name="one_and_a_half_grid_unit">12dp</dimen>
+    <dimen name="item_height">60dp</dimen>
+    <dimen name="item_margin">10dp</dimen>
 </resources>

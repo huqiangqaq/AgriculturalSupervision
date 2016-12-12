@@ -4,24 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.RelativeLayout;
 
 import agricultural.nxt.agriculturalsupervision.R;
 import agricultural.nxt.agriculturalsupervision.Widget.LetToolBar;
 import agricultural.nxt.agriculturalsupervision.base.BaseActivity;
 import butterknife.BindView;
-import butterknife.OnClick;
 
-public class ProductRecodeActivity extends BaseActivity{
+public class RecodeSearchActivity extends BaseActivity {
     @BindView(R.id.lettoolbar)
     LetToolBar toolBar;
-    @BindView(R.id.rl_product_recode)
-    RelativeLayout rl_product_recode;
-    @BindView(R.id.rl_batch_code)
-    RelativeLayout rl_batch_code;
-    @BindView(R.id.rl_security_code)
-    RelativeLayout rl_security_code;
-    private static final String cacheKey = "ProductRecodeActivity";
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +20,7 @@ public class ProductRecodeActivity extends BaseActivity{
 
     @Override
     protected void initView() {
-        toolBar.setTitle("产品备案");
+        toolBar.setTitle("备案信息查询");
         toolBar.setLeftButtonIcon(getResources().getDrawable(R.mipmap.icon_arrow_02));
         toolBar.setLeftButtonOnClickLinster(new View.OnClickListener() {
             @Override
@@ -40,35 +31,12 @@ public class ProductRecodeActivity extends BaseActivity{
 
     }
 
-    /**
-     * 产品备案
-     */
-    @OnClick(R.id.rl_product_recode) void recode(){
-        RecodeActivity.actionStart(this);
-    }
-
-    /**
-     * 批次码打印
-     */
-    @OnClick(R.id.rl_batch_code) void batch(){
-
-    }
-
-    /**
-     * 防伪码打印
-     */
-    @OnClick(R.id.rl_security_code) void security(){
-
-    }
-
     @Override
     protected int getLayoutResId() {
-        return R.layout.activity_product_recode;
+        return R.layout.activity_recode_search;
     }
     public static void actionStart(Context context){
-        Intent intent = new Intent(context,ProductRecodeActivity.class);
+        Intent intent = new Intent(context,RecodeSearchActivity.class);
         context.startActivity(intent);
     }
-
-
 }

@@ -6,4 +6,9 @@
         <attr name="titleTextColor" format="color"/>
         <attr name="titleTextSize" format="dimension"/>
     </declare-styleable>
+
+    <declare-styleable name="NiceSpinner">
+        <attr name="arrowTint" format="color" />
+        <attr name="hideArrow" format="boolean" />
+    </declare-styleable>
 </resources>
