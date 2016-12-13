@@ -204,7 +204,7 @@ public class MainActivity extends BaseActivity implements OkhttpHelper.GetCallBa
         ZToastUtils.showShort(this,"我要举报");
     }
     @OnClick(R.id.tv_view_more) void viewMore(){
-        ZToastUtils.showShort(this,"查看更多");
+        IntegrityMoreActivity.actionStart(this);
     }
 
     @Override

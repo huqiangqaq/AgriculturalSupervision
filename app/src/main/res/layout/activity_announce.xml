@@ -136,7 +136,12 @@
                    android:layout_height="wrap_content"
                    android:text="确定"/>
            </LinearLayout>
+
        </LinearLayout>
+       <com.github.jdsjlzx.recyclerview.LRecyclerView
+           android:id="@+id/list"
+           android:layout_width="fill_parent"
+           android:layout_height="fill_parent"/>
 
        <!--<RelativeLayout-->
        <!--android:layout_width="300dp"-->
@@ -162,10 +167,7 @@
        <!--android:layout_marginLeft="10dp" />-->
 
        <!--</RelativeLayout>-->
-       <com.github.jdsjlzx.recyclerview.LRecyclerView
-           android:id="@+id/list"
-           android:layout_width="fill_parent"
-           android:layout_height="fill_parent"/>
+
        <android.support.design.widget.FloatingActionButton
            android:id="@+id/fab"
            android:layout_width="wrap_content"

@@ -5,11 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.github.jdsjlzx.interfaces.OnLoadMoreListener;
@@ -22,31 +20,21 @@ import com.github.jdsjlzx.view.LoadingFooter;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
 
 import agricultural.nxt.agriculturalsupervision.R;
 import agricultural.nxt.agriculturalsupervision.Util.NetworkUtils;
 import agricultural.nxt.agriculturalsupervision.Widget.LetToolBar;
-import agricultural.nxt.agriculturalsupervision.Widget.NiceSpinner;
 import agricultural.nxt.agriculturalsupervision.adapter.AnnounceAdapter;
+import agricultural.nxt.agriculturalsupervision.adapter.IntegrityMoreAdapter;
 import agricultural.nxt.agriculturalsupervision.base.BaseActivity;
 import agricultural.nxt.agriculturalsupervision.entity.ItemModel;
 import butterknife.BindView;
-import butterknife.OnClick;
 
-public class AnnounceActivity extends BaseActivity {
+public class IntegrityMoreActivity extends BaseActivity {
     @BindView(R.id.lettoolbar)
     LetToolBar toolBar;
-    @BindView(R.id.line_shaixuan)
-    LinearLayout ll_shaixuan;
-    @BindView(R.id.sp_status)
-    NiceSpinner sp_status;
     @BindView(R.id.list)
     LRecyclerView mRecyclerView;
-    @BindView(R.id.fab)
-    FloatingActionButton fab;
     private static final String TAG = "lzx";
 
     /**服务器端一共多少条数据*/
@@ -57,15 +45,11 @@ public class AnnounceActivity extends BaseActivity {
 
     /**已经获取到多少条数据了*/
     private static int mCurrentCounter = 0;
-
-
-    private AnnounceAdapter mDataAdapter = null;
-
+    private IntegrityMoreAdapter mDataAdapter = null;
     private PreviewHandler mHandler = new PreviewHandler(this);
     private LRecyclerViewAdapter mLRecyclerViewAdapter = null;
 
     private boolean isRefresh = false;
-    private List<String> dataset = new LinkedList<>(Arrays.asList("全部", "有效", "无效"));
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -74,30 +58,14 @@ public class AnnounceActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        toolBar.setTitle("通知公告");
+        toolBar.setTitle("诚信列表");
         toolBar.setLeftButtonIcon(getResources().getDrawable(R.mipmap.icon_arrow_02));
         toolBar.setLeftButtonOnClickLinster(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (ll_shaixuan.getVisibility()==View.VISIBLE){
-                    ll_shaixuan.setVisibility(View.GONE);
-                    mRecyclerView.setVisibility(View.VISIBLE);
-                }else {
                     finish();
-                }
-
             }
         });
-        toolBar.setRightButtonIcon(getResources().getDrawable(R.mipmap.icon_search1));
-        toolBar.setRightButtonOnClickLinster(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mRecyclerView.setVisibility(View.GONE);
-                ll_shaixuan.setVisibility(View.VISIBLE);
-            }
-        });
-        sp_status.attachDataSource(dataset);
-
 
         ArrayList<ItemModel> dataList = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
@@ -106,12 +74,13 @@ public class AnnounceActivity extends BaseActivity {
             dataList.add(itemModel);
             mCurrentCounter += dataList.size();
         }
-        mDataAdapter = new AnnounceAdapter(this);
+        mDataAdapter = new IntegrityMoreAdapter(this);
         mDataAdapter.setDataList(dataList);
+
         mDataAdapter.setOnDelListener(new AnnounceAdapter.onSwipeListener() {
             @Override
             public void onDel(int pos) {
-                Toast.makeText(AnnounceActivity.this, "删除:" + pos, Toast.LENGTH_SHORT).show();
+                Toast.makeText(IntegrityMoreActivity.this, "删除:" + pos, Toast.LENGTH_SHORT).show();
 
                 //RecyclerView关于notifyItemRemoved的那点小事 参考：http://blog.csdn.net/jdsjlzx/article/details/52131528
 //                mDataAdapter.getDataList().remove(pos);
@@ -156,7 +125,7 @@ public class AnnounceActivity extends BaseActivity {
         mRecyclerView.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh() {
-                RecyclerViewStateUtils.setFooterViewState(mRecyclerView,LoadingFooter.State.Normal);
+                RecyclerViewStateUtils.setFooterViewState(mRecyclerView, LoadingFooter.State.Normal);
                 mDataAdapter.clear();
                 mLRecyclerViewAdapter.notifyDataSetChanged();//fix bug:crapped or attached views may not be recycled. isScrap:false isAttached:true
                 mCurrentCounter = 0;
@@ -176,11 +145,11 @@ public class AnnounceActivity extends BaseActivity {
 
                 if (mCurrentCounter < TOTAL_COUNTER) {
                     // loading more
-                    RecyclerViewStateUtils.setFooterViewState(AnnounceActivity.this, mRecyclerView, REQUEST_COUNT, LoadingFooter.State.Loading, null);
+                    RecyclerViewStateUtils.setFooterViewState(IntegrityMoreActivity.this, mRecyclerView, REQUEST_COUNT, LoadingFooter.State.Loading, null);
                     requestData();
                 } else {
                     //the end
-                    RecyclerViewStateUtils.setFooterViewState(AnnounceActivity.this, mRecyclerView, REQUEST_COUNT, LoadingFooter.State.TheEnd, null);
+                    RecyclerViewStateUtils.setFooterViewState(IntegrityMoreActivity.this, mRecyclerView, REQUEST_COUNT, LoadingFooter.State.TheEnd, null);
 
                 }
             }
@@ -188,7 +157,6 @@ public class AnnounceActivity extends BaseActivity {
 
 
         mRecyclerView.setRefreshing(true);
-
     }
 
     private void notifyDataSetChanged() {
@@ -205,13 +173,10 @@ public class AnnounceActivity extends BaseActivity {
     private View.OnClickListener mFooterClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            RecyclerViewStateUtils.setFooterViewState(AnnounceActivity.this, mRecyclerView, REQUEST_COUNT, LoadingFooter.State.Loading, null);
+            RecyclerViewStateUtils.setFooterViewState(IntegrityMoreActivity.this, mRecyclerView, REQUEST_COUNT, LoadingFooter.State.Loading, null);
             requestData();
         }
     };
-    @OnClick(R.id.fab) void fab(){
-        AnnounceAddActivity.actionStart(this);
-    }
 
     /**
      * 模拟请求网络
@@ -231,7 +196,7 @@ public class AnnounceActivity extends BaseActivity {
                 }
 
                 //模拟一下网络请求失败的情况
-                if(NetworkUtils.isNetAvailable(AnnounceActivity.this)) {
+                if(NetworkUtils.isNetAvailable(IntegrityMoreActivity.this)) {
                     mHandler.sendEmptyMessage(-1);
                 } else {
                     mHandler.sendEmptyMessage(-3);
@@ -240,34 +205,34 @@ public class AnnounceActivity extends BaseActivity {
         }.start();
     }
 
-
     public static void actionStart(Context context){
-        Intent intent = new Intent(context,AnnounceActivity.class);
+        Intent intent = new Intent(context,IntegrityMoreActivity.class);
         context.startActivity(intent);
     }
+
     @Override
     protected int getLayoutResId() {
-        return R.layout.activity_announce;
+        return R.layout.activity_integrity_more;
     }
 
     private static class PreviewHandler extends Handler {
 
-        private WeakReference<AnnounceActivity> ref;
+        private WeakReference<IntegrityMoreActivity> ref;
 
-        PreviewHandler(AnnounceActivity activity) {
+        PreviewHandler(IntegrityMoreActivity activity) {
             ref = new WeakReference<>(activity);
         }
 
         @Override
         public void handleMessage(Message msg) {
-            final AnnounceActivity activity = ref.get();
+            final IntegrityMoreActivity activity = ref.get();
             if (activity == null || activity.isFinishing()) {
                 return;
             }
             switch (msg.what) {
 
                 case -1:
-                    if(activity.isRefresh){
+                    if (activity.isRefresh) {
                         activity.mDataAdapter.clear();
                         mCurrentCounter = 0;
                     }
@@ -291,7 +256,7 @@ public class AnnounceActivity extends BaseActivity {
 
                     activity.addItems(newList);
 
-                    if(activity.isRefresh){
+                    if (activity.isRefresh) {
                         activity.isRefresh = false;
                         activity.mRecyclerView.refreshComplete();
                     }
@@ -303,7 +268,7 @@ public class AnnounceActivity extends BaseActivity {
                     activity.notifyDataSetChanged();
                     break;
                 case -3:
-                    if(activity.isRefresh){
+                    if (activity.isRefresh) {
                         activity.isRefresh = false;
                         activity.mRecyclerView.refreshComplete();
                     }
@@ -316,6 +281,5 @@ public class AnnounceActivity extends BaseActivity {
         }
 
     }
-
 
 }

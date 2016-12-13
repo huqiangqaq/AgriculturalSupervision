@@ -8,6 +8,7 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -32,8 +33,8 @@ import butterknife.OnClick;
 public class IntegritySearchActivity extends BaseActivity {
     @BindView(R.id.lettoolbar)
     LetToolBar toolBar;
-//    @BindView(R.id.et_search)
-//    EditText et_search;
+    @BindView(R.id.et_search)
+    EditText et_search;
     @BindView(R.id.lv_result)
     RecyclerView lv_result;
     @BindView(R.id.line_shaixuan)
@@ -65,13 +66,13 @@ public class IntegritySearchActivity extends BaseActivity {
 
             }
         });
-        toolBar.setRightButtonIcon(getResources().getDrawable(R.mipmap.icon_search1));
-        toolBar.setRightButtonOnClickLinster(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ll_shaixuan.setVisibility(View.VISIBLE);
-            }
-        });
+//        toolBar.setRightButtonIcon(getResources().getDrawable(R.mipmap.icon_search1));
+//        toolBar.setRightButtonOnClickLinster(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                ll_shaixuan.setVisibility(View.VISIBLE);
+//            }
+//        });
         initData();
         lv_result.setLayoutManager(new LinearLayoutManager(this));
         lv_result.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
@@ -106,7 +107,9 @@ public class IntegritySearchActivity extends BaseActivity {
     }
 
 
-
+    @OnClick(R.id.et_search) void search(){
+        ll_shaixuan.setVisibility(View.VISIBLE);
+    }
     @OnClick(R.id.confirm) void confirm(){
         ll_shaixuan.setVisibility(View.GONE);
     }
