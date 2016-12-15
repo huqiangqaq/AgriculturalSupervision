@@ -10,7 +10,7 @@
     <include layout="@layout/main_toolbar"/>
     <RelativeLayout
         android:background="@drawable/selector_common_layout"
-        android:id="@+id/rl_product_recode"
+        android:id="@+id/rl_product_recode1"
         android:layout_width="match_parent"
         android:layout_height="50dp">
         <ImageView
@@ -41,7 +41,7 @@
 
     <RelativeLayout
         android:background="@drawable/selector_common_layout"
-        android:id="@+id/rl_batch_code"
+        android:id="@+id/rl_batch_code1"
         android:layout_width="match_parent"
         android:layout_height="50dp">
         <ImageView
@@ -71,7 +71,7 @@
         android:background="@color/line"/>
     <RelativeLayout
         android:background="@drawable/selector_common_layout"
-        android:id="@+id/rl_security_code"
+        android:id="@+id/rl_security_code1"
         android:layout_width="match_parent"
         android:layout_height="50dp">
         <ImageView
@@ -95,8 +95,12 @@
             android:layout_height="35dp"
             android:src="@mipmap/icon_arrow"/>
     </RelativeLayout>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/line"/>
+
+
+
 </LinearLayout>

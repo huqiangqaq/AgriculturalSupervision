@@ -154,8 +154,6 @@ public class IntegrityMoreActivity extends BaseActivity {
                 }
             }
         });
-
-
         mRecyclerView.setRefreshing(true);
     }
 
@@ -164,7 +162,6 @@ public class IntegrityMoreActivity extends BaseActivity {
     }
 
     private void addItems(ArrayList<ItemModel> list) {
-
         mDataAdapter.addAll(list);
         mCurrentCounter += list.size();
 

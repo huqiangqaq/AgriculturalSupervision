@@ -43,7 +43,8 @@
         <activity android:name=".Activity.RecodeSearchActivity" />
         <activity android:name=".Activity.AnnounceActivity" />
         <activity android:name=".Activity.AnnounceAddActivity" />
-        <activity android:name=".Activity.IntegrityMoreActivity"></activity>
+        <activity android:name=".Activity.IntegrityMoreActivity" />
+        <activity android:name=".Activity.IntegrityAddActivity"></activity>
     </application>
 
 </manifest>

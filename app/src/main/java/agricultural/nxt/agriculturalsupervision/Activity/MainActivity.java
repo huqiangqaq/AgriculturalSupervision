@@ -201,7 +201,7 @@ public class MainActivity extends BaseActivity implements OkhttpHelper.GetCallBa
         RecodeSearchActivity.actionStart(this);
     }
     @OnClick(R.id.tv_report) void report(){
-        ZToastUtils.showShort(this,"我要举报");
+        IntegrityAddActivity.actionStart(this);
     }
     @OnClick(R.id.tv_view_more) void viewMore(){
         IntegrityMoreActivity.actionStart(this);
