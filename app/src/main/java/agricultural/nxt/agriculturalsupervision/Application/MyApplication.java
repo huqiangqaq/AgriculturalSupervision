@@ -10,6 +10,7 @@ import com.nxt.zyl.util.ZPreferenceUtils;
 
 import java.util.logging.Level;
 
+
 /**
  * Created by huqiang on 2016/11/14 8:57.
  */
@@ -76,7 +77,6 @@ public class MyApplication extends Application {
 
         //搜集本地tbs内核信息并上报服务器，服务器返回结果决定使用哪个内核。
         //TbsDownloader.needDownload(getApplicationContext(), false);
-
     }
 
     public static synchronized MyApplication getInstance() {
@@ -85,4 +85,5 @@ public class MyApplication extends Application {
         }
         return application;
     }
+
 }

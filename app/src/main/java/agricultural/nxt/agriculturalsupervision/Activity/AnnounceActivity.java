@@ -58,7 +58,6 @@ public class AnnounceActivity extends BaseActivity {
     /**已经获取到多少条数据了*/
     private static int mCurrentCounter = 0;
 
-
     private AnnounceAdapter mDataAdapter = null;
 
     private PreviewHandler mHandler = new PreviewHandler(this);
@@ -145,7 +144,6 @@ public class AnnounceActivity extends BaseActivity {
 
         mLRecyclerViewAdapter = new LRecyclerViewAdapter(mDataAdapter);
         mRecyclerView.setAdapter(mLRecyclerViewAdapter);
-
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         mRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);

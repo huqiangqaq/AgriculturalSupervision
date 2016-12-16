@@ -177,7 +177,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:ellipsize="end"
-                                android:singleLine="true"
+                                android:maxLines="1"
                                 android:text="fa464516315318749848516511031541fafjajoewjafn;kansdfonwoean" />
                         </LinearLayout>
 
@@ -199,7 +199,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:ellipsize="end"
-                                android:singleLine="true"
+                                android:maxLines="1"
                                 android:text="fa464516315318749848516511031541fafjajoewjafn;kansdfonwoean" />
                         </LinearLayout>
 
@@ -221,7 +221,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:ellipsize="end"
-                                android:singleLine="true"
+                                android:maxLines="1"
                                 android:text="fa464516315318749848516511031541fafjajoewjafn;kansdfonwoean" />
                         </LinearLayout>
 

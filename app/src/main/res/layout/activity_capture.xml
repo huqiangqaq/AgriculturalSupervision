@@ -23,6 +23,7 @@
             android:layout_height="match_parent">
 
             <ImageView
+                android:contentDescription="@string/app_name"
                 android:id="@+id/capture_mask_top"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
@@ -38,6 +39,7 @@
                 android:background="@drawable/qr_code_bg">
 
                 <ImageView
+                    android:contentDescription="@string/app_name"
                     android:id="@+id/capture_scan_line"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -49,6 +51,7 @@
             </RelativeLayout>
 
             <ImageView
+                android:contentDescription="@string/app_name"
                 android:id="@+id/capture_mask_bottom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -57,6 +60,7 @@
                 android:background="@mipmap/shadow"/>
 
             <ImageView
+                android:contentDescription="@string/app_name"
                 android:id="@+id/capture_mask_left"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -67,6 +71,7 @@
                 android:background="@mipmap/shadow"/>
 
             <ImageView
+                android:contentDescription="@string/app_name"
                 android:id="@+id/capture_mask_right"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"

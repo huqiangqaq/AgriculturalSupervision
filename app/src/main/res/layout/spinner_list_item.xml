@@ -9,5 +9,5 @@
           android:paddingLeft="@dimen/three_grid_unit"
           android:paddingTop="@dimen/one_and_a_half_grid_unit"
           android:paddingBottom="@dimen/one_and_a_half_grid_unit"
-          android:singleLine="true"
+          android:maxLines="1"
           android:textSize="15sp"/>

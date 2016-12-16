@@ -18,6 +18,8 @@ import android.widget.ProgressBar;
 import com.nxt.zyl.util.CommonUtils;
 import com.nxt.zyl.util.ZToastUtils;
 
+import java.lang.ref.WeakReference;
+
 import agricultural.nxt.agriculturalsupervision.R;
 import agricultural.nxt.agriculturalsupervision.Widget.LetToolBar;
 import agricultural.nxt.agriculturalsupervision.base.BaseActivity;
@@ -32,6 +34,7 @@ public class WebActivity extends BaseActivity {
     LetToolBar toolBar;
     @BindView(R.id.appbarlayout)
     AppBarLayout appBarLayout;
+    private PreviewHandler handler = new PreviewHandler(this);
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -133,7 +136,7 @@ public class WebActivity extends BaseActivity {
     }
 
     public void viewInfo() {
-        if (CommonUtils.isNetWorkConnected(this)) {
+        if (CommonUtils.isNetWorkConnected(WebActivity.this)) {
             setWebViewConfig();
             return;
         }
@@ -176,12 +179,18 @@ public class WebActivity extends BaseActivity {
             super.onBackPressed();
         }
     }
-
-
-    private Handler handler = new Handler() {
+    private static class PreviewHandler extends Handler {
+        private WeakReference<WebActivity> ref;
+        PreviewHandler(WebActivity webActivity){
+            ref = new WeakReference<>(webActivity);
+        }
         @Override
         public void handleMessage(Message msg) {
-            viewInfo();
+            final WebActivity activity = ref.get();
+            if (activity == null || activity.isFinishing()) {
+                return;
+            }
+            activity.viewInfo();
             super.handleMessage(msg);
         }
     };
