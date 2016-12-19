@@ -57,7 +57,6 @@ public class ListBaseAdapter<T extends Entity> extends RecyclerView.Adapter {
         }
 
     }
-
     public void clear() {
         mDataList.clear();
         notifyDataSetChanged();

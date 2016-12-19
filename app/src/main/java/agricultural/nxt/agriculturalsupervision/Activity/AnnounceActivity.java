@@ -221,7 +221,6 @@ public class AnnounceActivity extends BaseActivity {
             @Override
             public void run() {
                 super.run();
-
                 try {
                     Thread.sleep(800);
                 } catch (InterruptedException e) {
