@@ -5,14 +5,6 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="agricultural.nxt.agriculturalsupervision.Activity.MainActivity">
-    <com.nxt.zyl.ui.widget.AVLoadingIndicatorView
-        android:id="@+id/loading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:visibility="visible"
-        app:indicator="LineScale"
-        app:indicator_color="@color/home_wlw_yellew" />
 
     <LinearLayout
         android:id="@+id/activity_main"
@@ -42,7 +34,7 @@
 
                     <TextView
                         android:background="@drawable/selector_common_layout"
-                        android:id="@+id/tv_product_recode"
+                        android:id="@+id/tv_01"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -55,7 +47,7 @@
 
                     <TextView
                         android:background="@drawable/selector_common_layout"
-                        android:id="@+id/tv_product_sold"
+                        android:id="@+id/tv_02"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -68,7 +60,7 @@
 
                     <TextView
                         android:background="@drawable/selector_common_layout"
-                        android:id="@+id/tv_Customers"
+                        android:id="@+id/tv_03"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -303,7 +295,7 @@
                     android:background="@color/white"
                     android:gravity="center"
                     android:layout_width="match_parent"
-                    android:layout_height="160dp"
+                    android:layout_height="145dp"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -312,11 +304,12 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/tv_04"
                             android:layout_marginLeft="5dp"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:background="@mipmap/argu_2"
+                            android:background="@mipmap/buy"
                             android:gravity="center" />
 
                         <TextView
@@ -324,26 +317,27 @@
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:background="@mipmap/argu_3"
+                            android:background="@mipmap/entrprise_bg"
                             android:gravity="center"
-                            android:id="@+id/textView" />
+                            android:id="@+id/tv_05" />
 
 
                         <TextView
-                            android:id="@+id/tv_recode_search"
+                            android:id="@+id/tv_06"
                             android:layout_marginLeft="5dp"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:background="@mipmap/argu_1"
+                            android:background="@mipmap/pesticide_bg"
                             android:gravity="center" />
 
                         <TextView
+                            android:id="@+id/tv_07"
                             android:layout_marginLeft="5dp"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:background="@mipmap/argu_4"
+                            android:background="@mipmap/electronic"
                             android:gravity="center"
                             android:layout_marginRight="5dp"/>
 

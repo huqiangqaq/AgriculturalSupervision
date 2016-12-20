@@ -4,7 +4,7 @@
     <string name="integrityhandle">已处理</string>
     <string name="integritynohandle">未处理</string>
     <string name="SeedNum">种子编号:</string>
-
+    <string name="loginprogressmsg">正在登陆中...</string>
 
     <string name="header_text">The Header</string>
     <string name="footer_text">The Footer</string>
@@ -19,4 +19,7 @@
 
     <string name="expand_all">Expand All</string>
     <string name="collapse_all">Collapse All</string>
+    <string name="product_recode_seed">种子备案</string>
+    <string name="product_recode_pesticide">农药备案</string>
+    <string name="product_recode_fertilizer">化肥备案</string>
 </resources>

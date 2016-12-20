@@ -8,7 +8,10 @@ import com.lzy.okgo.cache.CacheMode;
 import com.lzy.okgo.cookie.store.PersistentCookieStore;
 import com.nxt.zyl.util.ZPreferenceUtils;
 
+import java.util.List;
 import java.util.logging.Level;
+
+import agricultural.nxt.agriculturalsupervision.entity.LoginReturn;
 
 
 /**
@@ -17,6 +20,24 @@ import java.util.logging.Level;
 
 public class MyApplication extends Application {
     private static MyApplication application;
+    private LoginReturn.UserInfoBean userInfo;
+    private List<LoginReturn.MenuListBean> menuList;
+
+    public LoginReturn.UserInfoBean getUserInfo() {
+        return userInfo;
+    }
+
+    public void setUserInfo(LoginReturn.UserInfoBean userInfo) {
+        this.userInfo = userInfo;
+    }
+
+    public List<LoginReturn.MenuListBean> getMenuList() {
+        return menuList;
+    }
+
+    public void setMenuList(List<LoginReturn.MenuListBean> menuList) {
+        this.menuList = menuList;
+    }
 
     @Override
     public void onCreate() {

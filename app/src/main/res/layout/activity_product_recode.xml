@@ -11,7 +11,7 @@
 
     <RelativeLayout
         android:background="@drawable/selector_common_layout"
-        android:id="@+id/rl_product_recode"
+        android:id="@+id/rl_product_seed"
         android:layout_width="match_parent"
         android:layout_height="50dp">
         <ImageView
@@ -26,7 +26,7 @@
             android:layout_toRightOf="@id/image_one"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/product_recode"/>
+            android:text="@string/product_recode_seed"/>
         <ImageView
             android:layout_marginRight="15dp"
             android:layout_centerVertical="true"
@@ -42,7 +42,7 @@
 
     <RelativeLayout
         android:background="@drawable/selector_common_layout"
-        android:id="@+id/rl_batch_code"
+        android:id="@+id/rl_product_pesticide"
         android:layout_width="match_parent"
         android:layout_height="50dp">
         <ImageView
@@ -57,7 +57,7 @@
             android:layout_toRightOf="@id/image_two"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="批次码打印"/>
+            android:text="@string/product_recode_pesticide"/>
         <ImageView
             android:layout_marginRight="15dp"
             android:layout_centerVertical="true"
@@ -72,7 +72,7 @@
         android:background="@color/line"/>
     <RelativeLayout
         android:background="@drawable/selector_common_layout"
-        android:id="@+id/rl_security_code"
+        android:id="@+id/rl_product_fertilizer"
         android:layout_width="match_parent"
         android:layout_height="50dp">
         <ImageView
@@ -87,7 +87,97 @@
             android:layout_toRightOf="@id/image_third"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="防伪码打印"/>
+            android:text="@string/product_recode_fertilizer"/>
+        <ImageView
+            android:layout_marginRight="15dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:src="@mipmap/icon_arrow"/>
+    </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/line"/>
+    <RelativeLayout
+        android:background="@drawable/selector_common_layout"
+        android:id="@+id/rl_product_seed_search"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <ImageView
+            android:layout_centerVertical="true"
+            android:id="@+id/image_third1"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:src="@mipmap/security_code"/>
+        <TextView
+            android:layout_marginLeft="25dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/image_third1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="查询种子备案信息"/>
+        <ImageView
+            android:layout_marginRight="15dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:src="@mipmap/icon_arrow"/>
+    </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/line"/>
+    <RelativeLayout
+        android:background="@drawable/selector_common_layout"
+        android:id="@+id/rl_product_pesticide_search"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <ImageView
+            android:layout_centerVertical="true"
+            android:id="@+id/image_third2"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:src="@mipmap/security_code"/>
+        <TextView
+            android:layout_marginLeft="25dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/image_third2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="查询农药备案信息"/>
+        <ImageView
+            android:layout_marginRight="15dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:src="@mipmap/icon_arrow"/>
+    </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/line"/>
+    <RelativeLayout
+        android:background="@drawable/selector_common_layout"
+        android:id="@+id/rl_product_fertilizer_search"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <ImageView
+            android:layout_centerVertical="true"
+            android:id="@+id/image_third3"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:src="@mipmap/security_code"/>
+        <TextView
+            android:layout_marginLeft="25dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/image_third3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="查询化肥备案信息"/>
         <ImageView
             android:layout_marginRight="15dp"
             android:layout_centerVertical="true"

@@ -27,6 +27,7 @@ import agricultural.nxt.agriculturalsupervision.base.BaseActivity;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+
 public class MainActivity extends BaseActivity implements OkhttpHelper.GetCallBack {
     @BindView(R.id.layout_left) RelativeLayout rl_left;
     @BindView(R.id.tv_title) TextView tvTopBarText;
@@ -51,17 +52,23 @@ public class MainActivity extends BaseActivity implements OkhttpHelper.GetCallBa
     @BindView(R.id.tv_view_more) TextView tv_view_more;
     @BindView(R.id.activity_main)
     LinearLayout ll_main;
-    @BindView(R.id.tv_product_recode)
-    TextView tv_product_recode;
+    @BindView(R.id.tv_01)
+    TextView tv_01;
 
-    @BindView(R.id.tv_product_sold)
-    TextView tv_product_sold;
+    @BindView(R.id.tv_02)
+    TextView tv_02;
 
-    @BindView(R.id.tv_Customers)
-    TextView tv_customers;
-    //备案信息查询
-    @BindView(R.id.tv_recode_search)
-    TextView tv_recode_search;
+    @BindView(R.id.tv_03)
+    TextView tv_03;
+    @BindView(R.id.tv_04)
+    TextView tv_04;
+    @BindView(R.id.tv_05)
+    TextView tv_05;
+    @BindView(R.id.tv_06)
+    TextView tv_06;
+    @BindView(R.id.tv_07)
+    TextView tv_07;
+
     private DoubleClickExitHelper doubleClickExitHelper;
     private List<String> list = new ArrayList<>();
     private  List<Integer> ids = new ArrayList<>();
@@ -91,11 +98,19 @@ public class MainActivity extends BaseActivity implements OkhttpHelper.GetCallBa
         initTopbar(this,"农资电子监管系统");
         doubleClickExitHelper = new DoubleClickExitHelper(this);
         list.add("产品备案");
-        list.add("产品售出");
-        list.add("往来客户");
-        views.add(tv_product_recode);
-        views.add(tv_product_sold);
-        views.add(tv_customers);
+        list.add("农资产品销售");
+        list.add("往来管理");
+        list.add("企业管理");
+        list.add("农资产品购进");
+        list.add("农药库管理");
+        list.add("电子处方");
+        views.add(tv_01);
+        views.add(tv_02);
+        views.add(tv_03);
+        views.add(tv_04);
+        views.add(tv_05);
+        views.add(tv_06);
+        views.add(tv_07);
         //添加对应的模块
         addImgResource(list);
         initRes(list,views,ids);
@@ -113,11 +128,16 @@ public class MainActivity extends BaseActivity implements OkhttpHelper.GetCallBa
     }
 
     private void initRes(List<String> list,List<TextView> tv,List<Integer> resId){
-        for (int i= 0;i<list.size();i++){
-            Drawable drawable = getResources().getDrawable(resId.get(i));
-            drawable.setBounds(0,0,drawable.getMinimumWidth(),drawable.getMinimumHeight());
-            tv.get(i).setCompoundDrawables(null,drawable,null,null);
-            tv.get(i).setText(list.get(i));
+        for (int i= 0;i<7;i++){
+            if (i<3){
+                Drawable drawable = getResources().getDrawable(resId.get(i));
+                drawable.setBounds(0,0,drawable.getMinimumWidth(),drawable.getMinimumHeight());
+                tv.get(i).setCompoundDrawables(null,drawable,null,null);
+                tv.get(i).setText(list.get(i));
+            }else {
+                tv.get(i).setBackgroundResource(resId.get(i));
+            }
+
         }
 
     }
@@ -140,22 +160,34 @@ public class MainActivity extends BaseActivity implements OkhttpHelper.GetCallBa
     /**
      * 产品备案
      */
-    @OnClick(R.id.tv_product_recode) void recode(){
+    @OnClick(R.id.tv_01) void recode(){
 
-        StartAction(tv_product_recode.getText().toString());
+        StartAction(tv_01.getText().toString());
 
     }
     /**
      * 产品售出
      */
-    @OnClick(R.id.tv_product_sold) void sold(){
-        StartAction(tv_product_sold.getText().toString());
+    @OnClick(R.id.tv_02) void sold(){
+        StartAction(tv_02.getText().toString());
     }
     /**
      * 往来客户
      */
-    @OnClick(R.id.tv_Customers) void customer(){
-        StartAction(tv_customers.getText().toString());
+    @OnClick(R.id.tv_03) void customer(){
+        StartAction(tv_03.getText().toString());
+    }
+    @OnClick(R.id.tv_04) void botttom4(){
+        StartAction(list.get(3));
+    }
+    @OnClick(R.id.tv_05) void bottom5(){
+        StartAction(list.get(4));
+    }
+    @OnClick(R.id.tv_06) void recodeSearch(){
+        RecodeSearchActivity.actionStart(this);
+    }
+    @OnClick(R.id.tv_07) void bottom6(){
+        StartAction(list.get(6));
     }
 
     /**
@@ -197,9 +229,7 @@ public class MainActivity extends BaseActivity implements OkhttpHelper.GetCallBa
         IntegritySearchActivity.actionStart(this);
 
     }
-    @OnClick(R.id.tv_recode_search) void recodeSearch(){
-        RecodeSearchActivity.actionStart(this);
-    }
+
     @OnClick(R.id.tv_report) void report(){
         IntegrityAddActivity.actionStart(this);
     }
@@ -221,11 +251,53 @@ public class MainActivity extends BaseActivity implements OkhttpHelper.GetCallBa
         //添加全部模块图标资源
         for (int i=0;i<newList.size();i++){
             if ("产品备案".equalsIgnoreCase(newList.get(i))){
-                ids.add(R.mipmap.icon_cp);
-            }else if ("产品售出".equalsIgnoreCase(newList.get(i))){
-                ids.add(R.mipmap.icon_sc);
-            }else if ("往来客户".equalsIgnoreCase(newList.get(i))){
-                ids.add(R.mipmap.icon_lw);
+                if (i<3){
+                    ids.add(R.mipmap.recode);
+                }else {
+                    ids.add(R.mipmap.recode_bg);
+                }
+            }else if ("农资产品销售".equalsIgnoreCase(newList.get(i))){
+                if (i<3){
+                    ids.add(R.mipmap.sold);
+                }else {
+                    ids.add(R.mipmap.sold_bg);
+                }
+            }else if ("往来管理".equalsIgnoreCase(newList.get(i))){
+                if (i<3){
+                    ids.add(R.mipmap.contract);
+                }else {
+                    ids.add(R.mipmap.contract_bg);
+                }
+            }else if ("农资产品购进".equalsIgnoreCase(newList.get(i))){
+                if (i<3){
+                    ids.add(R.mipmap.buy_bg);
+                }else {
+                    ids.add(R.mipmap.buy);
+                }
+            }else if ("企业管理".equalsIgnoreCase(newList.get(i))){
+                if (i<3){
+                    ids.add(R.mipmap.entrprise);
+                }else {
+                    ids.add(R.mipmap.entrprise_bg);
+                }
+            }else if ("农药库管理".equalsIgnoreCase(newList.get(i))){
+                if (i<3){
+                    ids.add(R.mipmap.pesticide);
+                }else {
+                    ids.add(R.mipmap.pesticide_bg);
+                }
+            }else if ("电子处方".equalsIgnoreCase(newList.get(i))){
+                if (i<3){
+                    ids.add(R.mipmap.electronic_bg);
+                }else {
+                    ids.add(R.mipmap.electronic);
+                }
+            }else if ("销售员管理".equalsIgnoreCase(newList.get(i))){
+                if (i<3){
+                    ids.add(R.mipmap.saleman);
+                }else {
+                    ids.add(R.mipmap.saleman_bg);
+                }
             }
         }
     }
@@ -252,9 +324,19 @@ public class MainActivity extends BaseActivity implements OkhttpHelper.GetCallBa
 
         if ("产品备案".equalsIgnoreCase(content)) {
             ProductRecodeActivity.actionStart(this);
-        } else if ("产品售出".equalsIgnoreCase(content)){
+        } else if ("农资产品销售".equalsIgnoreCase(content)){
             ProductSoldActivity.actionStart(this);
-        } else if ("生产区管理".equalsIgnoreCase(content)){
+        } else if ("往来管理".equalsIgnoreCase(content)){
+            ZToastUtils.showShort(this,content);
+        }else if ("农资产品购进".equalsIgnoreCase(content)){
+            ZToastUtils.showShort(this,content);
+        }else if ("企业管理".equalsIgnoreCase(content)){
+            ZToastUtils.showShort(this,content);
+        }else if ("农药库管理".equalsIgnoreCase(content)){
+            ZToastUtils.showShort(this,content);
+        }else if ("电子处方".equalsIgnoreCase(content)){
+            ZToastUtils.showShort(this,content);
+        }else if ("销售员管理".equalsIgnoreCase(content)){
             ZToastUtils.showShort(this,content);
         }
     }

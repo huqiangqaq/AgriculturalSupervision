@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class ListBaseAdapter<T extends Entity> extends RecyclerView.Adapter {
+public class ListBaseAdapter<T> extends RecyclerView.Adapter {
     protected Context mContext;
 
     protected ArrayList<T> mDataList = new ArrayList<>();

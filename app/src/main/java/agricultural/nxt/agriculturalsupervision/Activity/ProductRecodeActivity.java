@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.RelativeLayout;
 
+import com.nxt.zyl.util.ZPreferenceUtils;
+
 import agricultural.nxt.agriculturalsupervision.R;
 import agricultural.nxt.agriculturalsupervision.Widget.LetToolBar;
 import agricultural.nxt.agriculturalsupervision.base.BaseActivity;
@@ -15,12 +17,12 @@ import butterknife.OnClick;
 public class ProductRecodeActivity extends BaseActivity{
     @BindView(R.id.lettoolbar)
     LetToolBar toolBar;
-    @BindView(R.id.rl_product_recode)
-    RelativeLayout rl_product_recode;
-    @BindView(R.id.rl_batch_code)
-    RelativeLayout rl_batch_code;
-    @BindView(R.id.rl_security_code)
-    RelativeLayout rl_security_code;
+    @BindView(R.id.rl_product_seed)
+    RelativeLayout rl_product_seed;
+    @BindView(R.id.rl_product_pesticide)
+    RelativeLayout rl_batch_pesticide;
+    @BindView(R.id.rl_product_fertilizer)
+    RelativeLayout rl_product_fertilizer;
     private static final String cacheKey = "ProductRecodeActivity";
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,27 +39,28 @@ public class ProductRecodeActivity extends BaseActivity{
                 finish();
             }
         });
+        String id = ZPreferenceUtils.getPrefString("产品备案","");
 
     }
 
     /**
-     * 产品备案
+     * 种子备案
      */
-    @OnClick(R.id.rl_product_recode) void recode(){
+    @OnClick(R.id.rl_product_seed) void recode(){
         RecodeActivity.actionStart(this);
     }
 
     /**
-     * 批次码打印
+     * 农药备案
      */
-    @OnClick(R.id.rl_batch_code) void batch(){
+    @OnClick(R.id.rl_product_pesticide) void batch(){
 
     }
 
     /**
-     * 防伪码打印
+     * 化肥备案
      */
-    @OnClick(R.id.rl_security_code) void security(){
+    @OnClick(R.id.rl_product_fertilizer) void security(){
 
     }
 
