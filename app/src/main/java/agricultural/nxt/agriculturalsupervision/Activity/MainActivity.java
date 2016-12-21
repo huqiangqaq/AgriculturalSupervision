@@ -54,10 +54,8 @@ public class MainActivity extends BaseActivity implements OkhttpHelper.GetCallBa
     LinearLayout ll_main;
     @BindView(R.id.tv_01)
     TextView tv_01;
-
     @BindView(R.id.tv_02)
     TextView tv_02;
-
     @BindView(R.id.tv_03)
     TextView tv_03;
     @BindView(R.id.tv_04)
@@ -128,7 +126,7 @@ public class MainActivity extends BaseActivity implements OkhttpHelper.GetCallBa
     }
 
     private void initRes(List<String> list,List<TextView> tv,List<Integer> resId){
-        for (int i= 0;i<7;i++){
+        for (int i= 0;i<list.size();i++){
             if (i<3){
                 Drawable drawable = getResources().getDrawable(resId.get(i));
                 drawable.setBounds(0,0,drawable.getMinimumWidth(),drawable.getMinimumHeight());
