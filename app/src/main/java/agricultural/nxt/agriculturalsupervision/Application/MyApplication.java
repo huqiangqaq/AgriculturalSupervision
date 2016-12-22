@@ -56,7 +56,7 @@ public class MyApplication extends Application {
                 .debug("OkGo", Level.INFO, true)
 
                 //如果使用默认的 60秒,以下三行也不需要传
-                .setConnectTimeout(OkGo.DEFAULT_MILLISECONDS)  //全局的连接超时时间
+                .setConnectTimeout(10000)  //全局的连接超时时间
                 .setReadTimeOut(OkGo.DEFAULT_MILLISECONDS)     //全局的读取超时时间
                 .setWriteTimeOut(OkGo.DEFAULT_MILLISECONDS)    //全局的写入超时时间
 

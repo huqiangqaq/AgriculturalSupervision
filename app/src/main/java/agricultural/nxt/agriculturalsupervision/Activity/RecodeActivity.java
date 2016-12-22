@@ -52,6 +52,7 @@ public class RecodeActivity extends BaseActivity {
                 finish();
             }
         });
+
 //        sp_isTransgenic.attachDataSource(dataset);
     }
 

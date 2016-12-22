@@ -24,6 +24,7 @@ import agricultural.nxt.agriculturalsupervision.Util.DoubleClickExitHelper;
 import agricultural.nxt.agriculturalsupervision.Util.OkhttpHelper;
 import agricultural.nxt.agriculturalsupervision.Zxing.activity.CaptureActivity;
 import agricultural.nxt.agriculturalsupervision.base.BaseActivity;
+import agricultural.nxt.agriculturalsupervision.entity.LoginReturn;
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -69,11 +70,13 @@ public class MainActivity extends BaseActivity implements OkhttpHelper.GetCallBa
 
     private DoubleClickExitHelper doubleClickExitHelper;
     private List<String> list = new ArrayList<>();
+    private List<LoginReturn.MenuListBean> menuList = new ArrayList<>();
     private  List<Integer> ids = new ArrayList<>();
     private List<TextView> views = new ArrayList<>();
     private static final int ANNOUNCEMENT = 1;
     private static final int INTEGRITY = 2;
-
+    public String[] menuText = { "产品备案", "往来管理", "农资产品购进", "企业管理", "农资产品销售", "农药库管理",
+            "电子处方", "销售员管理"};
     @Override
     public void onCreate(Bundle savedInstanceState) {
         //setcontentview之前使用，告诉Window页面切换需要动画
@@ -93,22 +96,10 @@ public class MainActivity extends BaseActivity implements OkhttpHelper.GetCallBa
 
     @Override
     protected void initView() {
+        menuList = application.getMenuList();
         initTopbar(this,"农资电子监管系统");
         doubleClickExitHelper = new DoubleClickExitHelper(this);
-        list.add("产品备案");
-        list.add("农资产品销售");
-        list.add("往来管理");
-        list.add("企业管理");
-        list.add("农资产品购进");
-        list.add("农药库管理");
-        list.add("电子处方");
-        views.add(tv_01);
-        views.add(tv_02);
-        views.add(tv_03);
-        views.add(tv_04);
-        views.add(tv_05);
-        views.add(tv_06);
-        views.add(tv_07);
+        getMenuList();
         //添加对应的模块
         addImgResource(list);
         initRes(list,views,ids);
@@ -125,18 +116,48 @@ public class MainActivity extends BaseActivity implements OkhttpHelper.GetCallBa
 //        tv_product_recode.setCompoundDrawables(null,drawable,null,null);
     }
 
-    private void initRes(List<String> list,List<TextView> tv,List<Integer> resId){
-        for (int i= 0;i<list.size();i++){
-            if (i<3){
-                Drawable drawable = getResources().getDrawable(resId.get(i));
-                drawable.setBounds(0,0,drawable.getMinimumWidth(),drawable.getMinimumHeight());
-                tv.get(i).setCompoundDrawables(null,drawable,null,null);
-                tv.get(i).setText(list.get(i));
-            }else {
-                tv.get(i).setBackgroundResource(resId.get(i));
+    private void getMenuList() {
+        for (int i = 0;i<menuList.size();i++){
+            for (int j=0;j<menuText.length;j++){
+                if (menuList.get(i).getName().contains(menuText[j])){
+                    list.add(menuText[j]);
+                }
             }
-
         }
+        views.add(tv_01);
+        views.add(tv_02);
+        views.add(tv_03);
+        views.add(tv_04);
+        views.add(tv_05);
+        views.add(tv_06);
+        views.add(tv_07);
+    }
+
+    private void initRes(List<String> list,List<TextView> tv,List<Integer> resId){
+        if (list.size()<8){
+            for (int i= 0;i<list.size();i++){
+                if (i<3){
+                    Drawable drawable = getResources().getDrawable(resId.get(i));
+                    drawable.setBounds(0,0,drawable.getMinimumWidth(),drawable.getMinimumHeight());
+                    tv.get(i).setCompoundDrawables(null,drawable,null,null);
+                    tv.get(i).setText(list.get(i));
+                }else {
+                    tv.get(i).setBackgroundResource(resId.get(i));
+                }
+            }
+        }else {
+            for (int i= 0;i<7;i++){
+                if (i<3){
+                    Drawable drawable = getResources().getDrawable(resId.get(i));
+                    drawable.setBounds(0,0,drawable.getMinimumWidth(),drawable.getMinimumHeight());
+                    tv.get(i).setCompoundDrawables(null,drawable,null,null);
+                    tv.get(i).setText(list.get(i));
+                }else {
+                    tv.get(i).setBackgroundResource(resId.get(i));
+                }
+            }
+        }
+
 
     }
 

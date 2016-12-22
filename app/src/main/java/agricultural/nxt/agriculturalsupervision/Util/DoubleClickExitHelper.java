@@ -20,7 +20,7 @@ public class DoubleClickExitHelper {
     private boolean isOnKeyBacking;
     private Handler mHandler;
     private Snackbar snackbar;
-
+    private static final int LOGOUT =0;
     public DoubleClickExitHelper(Activity activity) {
         mActivity = activity;
         mHandler = new Handler(Looper.getMainLooper());

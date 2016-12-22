@@ -5,7 +5,8 @@
     <string name="integritynohandle">未处理</string>
     <string name="SeedNum">种子编号:</string>
     <string name="loginprogressmsg">正在登陆中...</string>
-
+    <string name="register">注册中...</string>
+    <string name="loading">加载中...</string>
     <string name="header_text">The Header</string>
     <string name="footer_text">The Footer</string>
 

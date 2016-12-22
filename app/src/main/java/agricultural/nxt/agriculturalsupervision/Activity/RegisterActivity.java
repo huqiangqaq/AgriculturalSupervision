@@ -12,11 +12,20 @@ import android.widget.TextView;
 import com.lljjcoder.citypickerview.widget.CityPicker;
 import com.nxt.zyl.util.ZSnackBarUtils;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import agricultural.nxt.agriculturalsupervision.Constants;
 import agricultural.nxt.agriculturalsupervision.R;
+import agricultural.nxt.agriculturalsupervision.Util.OkhttpHelper;
 import agricultural.nxt.agriculturalsupervision.Widget.LetToolBar;
 import agricultural.nxt.agriculturalsupervision.base.BaseActivity;
 import butterknife.BindView;
 import butterknife.OnClick;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class RegisterActivity extends BaseActivity {
     @BindView(R.id.lettoolbar)
@@ -45,15 +54,18 @@ public class RegisterActivity extends BaseActivity {
     //手机号
     @BindView(R.id.et_phone)
     EditText et_phone;
+
     private CityPicker cityPicker;
     private String province;//省份
     private String city;//城市
     private String district; //区县（如果设定了两级联动，那么该项返回空）
     private String code;//邮编
+    private static final int REGISTER = 1;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
@@ -68,8 +80,7 @@ public class RegisterActivity extends BaseActivity {
         tv_login.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
     }
 
-    @OnClick(R.id.btn_register)
-    void register() {
+    @OnClick(R.id.btn_register) void register() {
         String company = et_company.getText().toString().trim();
         String name = et_name.getText().toString().trim();
         String userName = et_account.getText().toString().trim();
@@ -77,18 +88,61 @@ public class RegisterActivity extends BaseActivity {
         String confirm_pwd = et_confirm_pwd.getText().toString().trim();
         String phone = et_phone.getText().toString().trim();
         if (TextUtils.isEmpty(userName) | TextUtils.isEmpty(passWord) | TextUtils.isEmpty(confirm_pwd)) {
-            ZSnackBarUtils.showShort(toolBar, "账号或密码不能为空!");
+            ZSnackBarUtils.showShort(toolBar, "内容不能为空");
             return;
         }
         if (!TextUtils.equals(passWord, confirm_pwd)) {
             ZSnackBarUtils.showShort(toolBar, "两次输入的密码不相同!");
             return;
         }
+        Map<String,String> map = new HashMap<>();
+        map.put("province",province);
+        map.put("city",city);
+        map.put("district",district);
+        map.put("companyName",company);
+        map.put("name",name);
+        map.put("loginName",userName);
+        map.put("newPassword",passWord);
+        map.put("confirmNewPassword",confirm_pwd);
+        map.put("mobile",phone);
+        showLoadingDialog(R.string.register);
+        OkhttpHelper.Post(Constants.REGISTER_URL, map, new OkhttpHelper.PostCallBack() {
+            @Override
+            public void onSuccess(String response, int tag) {
+                dismissLoadingDialog();
+                try {
+                    JSONObject object = new JSONObject(response);
+                    String msg = object.getString("msg");
+                    String success = object.getString("success");
+                    if ("true".equalsIgnoreCase(success)){
+                        new SweetAlertDialog(RegisterActivity.this, SweetAlertDialog.SUCCESS_TYPE)
+                                .setTitleText("Good job!")
+                                .setContentText("注册成功")
+                                .show();
+                    }else {
+                        new SweetAlertDialog(RegisterActivity.this,SweetAlertDialog.ERROR_TYPE)
+                                .setTitleText(msg)
+                                .show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailed(String error, int tag) {
+
+            }
+
+            @Override
+            public void onProgress(long currentSize, long totalSize, float progress, long networkSpeed) {
+
+            }
+        },REGISTER);
 
     }
 
-    @OnClick(R.id.et_dit)
-    void chooseDit() {
+    @OnClick(R.id.et_dit) void chooseDit() {
         cityPicker = new CityPicker.Builder(RegisterActivity.this).textSize(16)//滚轮文字的大小
                 .title("地区选择")
                 .titleBackgroundColor("#234Dfa") //标题背景
@@ -101,7 +155,7 @@ public class RegisterActivity extends BaseActivity {
                 .provinceCyclic(false)
                 .cityCyclic(false)
                 .districtCyclic(false)
-                .visibleItemsCount(7)
+                .visibleItemsCount(5)
                 .itemPadding(10)
                 .build();
         cityPicker.show();

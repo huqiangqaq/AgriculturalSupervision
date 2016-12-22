@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -281,6 +280,7 @@ public class CityPicker implements CanShow, OnWheelChangedListener {
         mViewCity.addChangingListener(this);
         // 添加change事件
         mViewDistrict.addChangingListener(this);
+
         // 添加onclick事件
         mTvCancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -803,7 +803,6 @@ public class CityPicker implements CanShow, OnWheelChangedListener {
     public void onChanged(WheelView wheel, int oldValue, int newValue) {
         // TODO Auto-generated method stub
         if (wheel == mViewProvince) {
-
             updateCities();
         } else if (wheel == mViewCity) {
             updateAreas();
