@@ -1,12 +1,13 @@
 <resources>
     <string name="app_name">农资电子监管系统</string>
     <string name="product_recode">产品备案</string>
-    <string name="integrityhandle">已处理</string>
-    <string name="integritynohandle">未处理</string>
+    <string name="integrityhandle">已审核</string>
+    <string name="integritynohandle">未审核</string>
     <string name="SeedNum">种子编号:</string>
     <string name="loginprogressmsg">正在登陆中...</string>
     <string name="register">注册中...</string>
     <string name="loading">加载中...</string>
+    <string name="searching">查询中...</string>
     <string name="header_text">The Header</string>
     <string name="footer_text">The Footer</string>
 
@@ -23,4 +24,5 @@
     <string name="product_recode_seed">种子备案</string>
     <string name="product_recode_pesticide">农药备案</string>
     <string name="product_recode_fertilizer">化肥备案</string>
+    <string name="DEL">删除中...</string>
 </resources>

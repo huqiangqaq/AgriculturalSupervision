@@ -163,13 +163,14 @@ public class LoginActivity extends BaseActivity {
                     }
                 } else {
                     ZSnackBarUtils.showShort(ll_content, msg);
+
                 }
             }
 
             @Override
             public void onFailed(String error, int tag) {
                 dismissLoadingDialog();
-                ZSnackBarUtils.showShort(ll_content,"登陆失败..."+error);
+                ZSnackBarUtils.showShort(ll_content, "登陆失败...");
             }
 
             @Override

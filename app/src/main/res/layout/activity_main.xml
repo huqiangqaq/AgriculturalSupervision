@@ -142,6 +142,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="100dp">
                     <ProgressBar
+                        android:id="@+id/pb_integrity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"/>
@@ -170,7 +171,7 @@
                                 android:layout_height="wrap_content"
                                 android:ellipsize="end"
                                 android:maxLines="1"
-                                android:text="fa464516315318749848516511031541fafjajoewjafn;kansdfonwoean" />
+                                android:text="" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -192,7 +193,7 @@
                                 android:layout_height="wrap_content"
                                 android:ellipsize="end"
                                 android:maxLines="1"
-                                android:text="fa464516315318749848516511031541fafjajoewjafn;kansdfonwoean" />
+                                android:text="" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -214,7 +215,7 @@
                                 android:layout_height="wrap_content"
                                 android:ellipsize="end"
                                 android:maxLines="1"
-                                android:text="fa464516315318749848516511031541fafjajoewjafn;kansdfonwoean" />
+                                android:text="" />
                         </LinearLayout>
 
                     </LinearLayout>

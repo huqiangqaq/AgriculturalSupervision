@@ -12,7 +12,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewParent;
 
-import com.github.jdsjlzx.interfaces.BaseRefreshHeader;
 import com.github.jdsjlzx.interfaces.OnLoadMoreListener;
 import com.github.jdsjlzx.interfaces.OnRefreshListener;
 import com.github.jdsjlzx.util.RecyclerViewStateUtils;
@@ -26,8 +25,7 @@ import com.github.jdsjlzx.view.LoadingFooter;
  *
  */
 public class LRecyclerView extends RecyclerView {
-    private boolean mPullRefreshEnabled = true;
-    private boolean mLoadMoreEnabled = true;
+    private boolean pullRefreshEnabled = true;
     private OnRefreshListener mRefreshListener;
     private OnLoadMoreListener mLoadMoreListener;
     private LScrollListener mLScrollListener;
@@ -106,11 +104,10 @@ public class LRecyclerView extends RecyclerView {
     }
 
     private void init() {
-        if (mPullRefreshEnabled) {
+        if (pullRefreshEnabled) {
             mRefreshHeader = new ArrowRefreshHeader(getContext());
             mRefreshHeader.setProgressStyle(mRefreshProgressStyle);
         }
-
         LoadingFooter footView = new LoadingFooter(getContext());
         mFootView = footView;
         mFootView.setVisibility(GONE);
@@ -120,15 +117,10 @@ public class LRecyclerView extends RecyclerView {
     public void setAdapter(Adapter adapter) {
         mWrapAdapter = (LRecyclerViewAdapter) adapter;
         super.setAdapter(mWrapAdapter);
-
-        mWrapAdapter.getInnerAdapter().registerAdapterDataObserver(mDataObserver);
         mDataObserver.onChanged();
 
         mWrapAdapter.setRefreshHeader(mRefreshHeader);
-
-        if (mLoadMoreEnabled) {
-            mWrapAdapter.addFooterView(mFootView);
-        }
+        mWrapAdapter.addFooterView(mFootView);
 
     }
 
@@ -138,9 +130,9 @@ public class LRecyclerView extends RecyclerView {
             Adapter<?> adapter = getAdapter();
 
             if (adapter instanceof LRecyclerViewAdapter) {
-                LRecyclerViewAdapter lRecyclerViewAdapter = (LRecyclerViewAdapter) adapter;
-                if (lRecyclerViewAdapter.getInnerAdapter() != null && mEmptyView != null) {
-                    int count = lRecyclerViewAdapter.getInnerAdapter().getItemCount();
+                LRecyclerViewAdapter headerAndFooterAdapter = (LRecyclerViewAdapter) adapter;
+                if (headerAndFooterAdapter.getInnerAdapter() != null && mEmptyView != null) {
+                    int count = headerAndFooterAdapter.getInnerAdapter().getItemCount();
                     if (count == 0) {
                         mEmptyView.setVisibility(View.VISIBLE);
                         LRecyclerView.this.setVisibility(View.GONE);
@@ -164,28 +156,6 @@ public class LRecyclerView extends RecyclerView {
             if (mWrapAdapter != null) {
                 mWrapAdapter.notifyDataSetChanged();
             }
-
-        }
-
-        @Override
-        public void onItemRangeChanged(int positionStart, int itemCount) {
-            mWrapAdapter.notifyItemRangeChanged(positionStart + mWrapAdapter.getHeaderViewsCount() + 1, itemCount);
-        }
-
-        @Override
-        public void onItemRangeInserted(int positionStart, int itemCount) {
-            mWrapAdapter.notifyItemRangeInserted(positionStart + mWrapAdapter.getHeaderViewsCount() + 1, itemCount);
-        }
-
-        @Override
-        public void onItemRangeRemoved(int positionStart, int itemCount) {
-            mWrapAdapter.notifyItemRangeRemoved(positionStart + mWrapAdapter.getHeaderViewsCount() + 1, itemCount);
-        }
-
-        @Override
-        public void onItemRangeMoved(int fromPosition, int toPosition, int itemCount) {
-            int headerViewsCountCount = mWrapAdapter.getHeaderViewsCount();
-            mWrapAdapter.notifyItemRangeChanged(fromPosition + headerViewsCountCount + 1, toPosition + headerViewsCountCount + 1 + itemCount);
         }
 
     }
@@ -198,11 +168,12 @@ public class LRecyclerView extends RecyclerView {
         switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 mLastY = ev.getRawY();
+
                 break;
             case MotionEvent.ACTION_MOVE:
                 final float deltaY = ev.getRawY() - mLastY;
                 mLastY = ev.getRawY();
-                if (isOnTop() && mPullRefreshEnabled  && (appbarState == AppBarStateChangeListener.State.EXPANDED)) {
+                if (isOnTop() && pullRefreshEnabled  && (appbarState == AppBarStateChangeListener.State.EXPANDED)) {
                     mRefreshHeader.onMove(deltaY / DRAG_RATE);
                     if (mRefreshHeader.getVisibleHeight() > 0 && mRefreshHeader.getState() < ArrowRefreshHeader.STATE_REFRESHING) {
                         return false;
@@ -212,7 +183,7 @@ public class LRecyclerView extends RecyclerView {
                 break;
             default:
                 mLastY = -1; // reset
-                if (isOnTop() && mPullRefreshEnabled && appbarState == AppBarStateChangeListener.State.EXPANDED) {
+                if (isOnTop() && pullRefreshEnabled && appbarState == AppBarStateChangeListener.State.EXPANDED) {
                     if (mRefreshHeader.releaseAction()) {
                         if (mRefreshListener != null) {
                             mRefreshListener.onRefresh();
@@ -245,7 +216,7 @@ public class LRecyclerView extends RecyclerView {
     }
 
     private boolean isOnTop() {
-        if (mPullRefreshEnabled && mRefreshHeader.getParent() != null) {
+        if (pullRefreshEnabled && mRefreshHeader.getParent() != null) {
             return true;
         } else {
             return false;
@@ -260,7 +231,6 @@ public class LRecyclerView extends RecyclerView {
      */
     public void setEmptyView(View emptyView) {
         this.mEmptyView = emptyView;
-        mDataObserver.onChanged();
     }
 
     public void refreshComplete() {
@@ -272,23 +242,12 @@ public class LRecyclerView extends RecyclerView {
         isNoMore = noMore;
     }
 
-    public void setRefreshHeader(BaseRefreshHeader refreshHeader) {
-        mRefreshHeader = (ArrowRefreshHeader) refreshHeader;
+    public void setRefreshHeader(ArrowRefreshHeader refreshHeader) {
+        mRefreshHeader = refreshHeader;
     }
 
     public void setPullRefreshEnabled(boolean enabled) {
-        mPullRefreshEnabled = enabled;
-    }
-
-    public void setLoadMoreEnabled(boolean enabled) {
-        mLoadMoreEnabled = enabled;
-        if (!enabled) {
-            if (mFootView instanceof LoadingFooter && null !=mWrapAdapter) {
-                mWrapAdapter.removeFooterView();
-            } else {
-                mFootView.setVisibility(VISIBLE);
-            }
-        }
+        pullRefreshEnabled = enabled;
     }
 
     public void setRefreshProgressStyle(int style) {
@@ -327,7 +286,7 @@ public class LRecyclerView extends RecyclerView {
     }
 
     public void setRefreshing(boolean refreshing) {
-        if (refreshing && mPullRefreshEnabled && mRefreshListener != null) {
+        if (refreshing && pullRefreshEnabled && mRefreshListener != null) {
             mRefreshHeader.setState(ArrowRefreshHeader.STATE_REFRESHING);
             mRefreshHeaderHeight = mRefreshHeader.getMeasuredHeight();
             mRefreshHeader.onMove(mRefreshHeaderHeight);
@@ -340,7 +299,7 @@ public class LRecyclerView extends RecyclerView {
         if(state == LoadingFooter.State.Loading) {
             return;
         }
-        if (mPullRefreshEnabled && mRefreshListener != null) {
+        if (pullRefreshEnabled && mRefreshListener != null) {
             scrollToPosition(0);
             mRefreshHeader.setState(ArrowRefreshHeader.STATE_REFRESHING);
             mRefreshHeader.onMove(mRefreshHeaderHeight);
@@ -417,7 +376,7 @@ public class LRecyclerView extends RecyclerView {
             mLScrollListener.onScrollStateChanged(state);
         }
 
-        if (mLoadMoreListener != null && mLoadMoreEnabled) {
+        if (mLoadMoreListener != null) {
             if (currentScrollState == RecyclerView.SCROLL_STATE_IDLE) {
                 RecyclerView.LayoutManager layoutManager = getLayoutManager();
                 int visibleItemCount = layoutManager.getChildCount();

@@ -28,10 +28,11 @@
                     android:gravity="right"
                     android:textColor="@color/black"
                     style="@style/commontext"
-                    android:layout_width="90dp"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:text="违法时间:"/>
-                <EditText
+                <TextView
+                    android:id="@+id/dtarosedate"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="20dp"
                     android:layout_width="match_parent"
@@ -49,10 +50,11 @@
                     android:gravity="right"
                     android:textColor="@color/black"
                     style="@style/commontext"
-                    android:layout_width="90dp"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:text="违法企业名称:"/>
                 <EditText
+                    android:id="@+id/vcillegalcomp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="20dp"
                     android:layout_width="match_parent"
@@ -70,11 +72,11 @@
                     android:gravity="right"
                     android:textColor="@color/black"
                     style="@style/commontext"
-                    android:layout_width="90dp"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:text="产品类别:"/>
                 <agricultural.nxt.agriculturalsupervision.Widget.NiceSpinner
-                    android:id="@+id/sp_isTransgenic"
+                    android:id="@+id/iproducttype"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="20dp"
                     android:layout_width="match_parent"
@@ -92,10 +94,11 @@
                     android:gravity="right"
                     android:textColor="@color/black"
                     style="@style/commontext"
-                    android:layout_width="90dp"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:text="产品名称:"/>
                 <EditText
+                    android:id="@+id/vcillegalprod"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="20dp"
                     android:layout_width="match_parent"
@@ -112,11 +115,12 @@
                 <TextView
                     android:textColor="@color/black"
                     style="@style/commontext"
-                    android:layout_width="90dp"
+                    android:layout_width="100dp"
                     android:gravity="right"
                     android:layout_height="wrap_content"
                     android:text="违法事件描述:"/>
                 <EditText
+                    android:id="@+id/vcdesc"
                     android:gravity="start"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="20dp"
@@ -126,6 +130,50 @@
             </LinearLayout>
 
             <!--不可填，直接获取当前系统时间-->
+            <!--<LinearLayout-->
+                <!--android:gravity="center_horizontal"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="horizontal">-->
+
+                <!--<TextView-->
+                    <!--android:gravity="right"-->
+                    <!--android:textColor="@color/black"-->
+                    <!--style="@style/commontext"-->
+                    <!--android:layout_width="100dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="审核时间:"/>-->
+                <!--<EditText-->
+                    <!--android:layout_marginLeft="5dp"-->
+                    <!--android:layout_marginRight="20dp"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="40dp"-->
+                    <!--android:background="@drawable/bg_commonet"/>-->
+            <!--</LinearLayout>-->
+            <!--<LinearLayout-->
+                <!--android:gravity="center_horizontal"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="horizontal">-->
+
+                <!--<TextView-->
+                    <!--android:gravity="right"-->
+                    <!--android:textColor="@color/black"-->
+                    <!--style="@style/commontext"-->
+                    <!--android:layout_width="100dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="处罚意见:"/>-->
+                <!--<EditText-->
+                    <!--android:textSize="14sp"-->
+                    <!--android:gravity="start"-->
+                    <!--android:layout_marginLeft="5dp"-->
+                    <!--android:layout_marginRight="20dp"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="100dp"-->
+                    <!--android:background="@drawable/bg_commonet"/>-->
+            <!--</LinearLayout>-->
             <LinearLayout
                 android:gravity="center_horizontal"
                 android:layout_marginTop="5dp"
@@ -137,51 +185,7 @@
                     android:gravity="right"
                     android:textColor="@color/black"
                     style="@style/commontext"
-                    android:layout_width="90dp"
-                    android:layout_height="wrap_content"
-                    android:text="审核时间:"/>
-                <EditText
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:background="@drawable/bg_commonet"/>
-            </LinearLayout>
-            <LinearLayout
-                android:gravity="center_horizontal"
-                android:layout_marginTop="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:gravity="right"
-                    android:textColor="@color/black"
-                    style="@style/commontext"
-                    android:layout_width="90dp"
-                    android:layout_height="wrap_content"
-                    android:text="处罚意见:"/>
-                <EditText
-                    android:textSize="14sp"
-                    android:gravity="start"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:background="@drawable/bg_commonet"/>
-            </LinearLayout>
-            <LinearLayout
-                android:gravity="center_horizontal"
-                android:layout_marginTop="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:gravity="right"
-                    android:textColor="@color/black"
-                    style="@style/commontext"
-                    android:layout_width="90dp"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:text="备注信息:"/>
                 <EditText
@@ -192,6 +196,7 @@
                     android:background="@drawable/bg_commonet"/>
             </LinearLayout>
             <Button
+                android:id="@+id/btn_save"
                 android:layout_marginTop="15dp"
                 android:layout_gravity="center_horizontal"
                 android:text="保存"

@@ -5,8 +5,8 @@ package agricultural.nxt.agriculturalsupervision;
  */
 
 public class Constants {
-    public static final String BASE_URL = "http://192.168.10.26:8080/jeesite/a";
-    public static final String URL = "http://192.168.10.26:8080";
+    public static final String BASE_URL = "http://192.168.10.11:8080/jeesite/a";
+    public static final String URL = "http://192.168.10.11:8080/jeesite";
     //登陆http://zs.yxag.gov.cn:8081/nzgl
     public static final String LOGIN_URL = BASE_URL+"/login";
     //退出登陆
@@ -18,7 +18,12 @@ public class Constants {
     //公告
     public static final String ANNOUNCEMENT = BASE_URL+"/login?username=%s&password=%s";
     //诚信
-    public static final String INTEGRITY = BASE_URL+"";
+    public static final String INTEGRITY = URL+"/credit/appIllegalinfo/list?pageNo=%s&pageSize=";
+    public static final String INTEGRITY_DEL = URL+"/credit/appIllegalinfo/delete?id=";
+    public static final String INTEGRITY_DETAIL = URL+"/credit/appIllegalinfo/form?id=";
+    public static final String INTEGRITY_ADD = URL+"/credit/appIllegalinfo/save";
+    public static final String INTEGRITY_CHECK = URL+"/credit/appIllegalinfo/check";
+    public static final String INTEGRITY_SEARCH = URL+"/credit/appIllegalinfo/list";
     //种子备案
-    public static final String SEED_RECODE = URL+"/nzgl/product/appSeed/list?";
+    public static final String SEED_RECODE = URL+"/product/appSeed/list?";
 }

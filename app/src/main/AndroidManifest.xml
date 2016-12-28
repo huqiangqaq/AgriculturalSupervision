@@ -35,8 +35,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Zxing.activity.CaptureActivity">
-        </activity>
+        <activity android:name=".Zxing.activity.CaptureActivity" />
         <activity android:name=".Activity.RegisterActivity" />
         <activity android:name=".Activity.MainActivity" />
         <activity android:name=".Activity.WebActivity" />
@@ -49,12 +48,15 @@
         <activity android:name=".Activity.AnnounceActivity" />
         <activity android:name=".Activity.AnnounceAddActivity" />
         <activity android:name=".Activity.IntegrityMoreActivity" />
-        <activity android:name=".Activity.IntegrityAddActivity">
-        </activity>
+        <activity android:name=".Activity.IntegrityAddActivity" />
+
         <meta-data
             android:name="UMENG_CHANNEL"
             android:value="${UMENG_CHANNEL_VALUE}" />
-    </application>
 
+        <activity android:name=".AllActivity" />
+        <activity android:name=".Activity.Integrity.IntegrityDetailActivity" />
+        <activity android:name=".Activity.Integrity.IntegrityCheckActivity"></activity>
+    </application>
 
 </manifest>

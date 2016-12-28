@@ -8,22 +8,28 @@ import android.os.Bundle;
 import android.transition.Transition;
 import android.transition.TransitionInflater;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.nxt.zyl.util.ZToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import agricultural.nxt.agriculturalsupervision.AllActivity;
+import agricultural.nxt.agriculturalsupervision.Constants;
 import agricultural.nxt.agriculturalsupervision.R;
 import agricultural.nxt.agriculturalsupervision.Util.DoubleClickExitHelper;
 import agricultural.nxt.agriculturalsupervision.Util.OkhttpHelper;
 import agricultural.nxt.agriculturalsupervision.Zxing.activity.CaptureActivity;
 import agricultural.nxt.agriculturalsupervision.base.BaseActivity;
+import agricultural.nxt.agriculturalsupervision.entity.Integrity;
 import agricultural.nxt.agriculturalsupervision.entity.LoginReturn;
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -67,11 +73,13 @@ public class MainActivity extends BaseActivity implements OkhttpHelper.GetCallBa
     TextView tv_06;
     @BindView(R.id.tv_07)
     TextView tv_07;
-
+    @BindView(R.id.pb_integrity)
+    ProgressBar pb_integrity;
     private DoubleClickExitHelper doubleClickExitHelper;
-    private List<String> list = new ArrayList<>();
+    private ArrayList<String> list = new ArrayList<>();
     private List<LoginReturn.MenuListBean> menuList = new ArrayList<>();
-    private  List<Integer> ids = new ArrayList<>();
+    private ArrayList<Integer> ids = new ArrayList<>();
+    private ArrayList<Integer> allIds = new ArrayList<>();
     private List<TextView> views = new ArrayList<>();
     private static final int ANNOUNCEMENT = 1;
     private static final int INTEGRITY = 2;
@@ -114,6 +122,40 @@ public class MainActivity extends BaseActivity implements OkhttpHelper.GetCallBa
 //        Drawable drawable = getResources().getDrawable(R.mipmap.icon_sc);
 //        drawable.setBounds(0,0,drawable.getMinimumHeight(),drawable.getMinimumHeight());
 //        tv_product_recode.setCompoundDrawables(null,drawable,null,null);
+    }
+
+    private void getIntegrity() {
+        String url = String.format(Constants.INTEGRITY,1,3);
+        OkhttpHelper.Get(url, new OkhttpHelper.GetCallBack() {
+            @Override
+            public void onSuccess(String response, int tag) {
+                if (pb_integrity.isShown()){
+                    pb_integrity.setVisibility(View.GONE);
+                }
+                Integrity integrity = new Gson().fromJson(response,Integrity.class);
+                List<Integrity.ListBean> listBeen = integrity.getList();
+                if (!listBeen.isEmpty()){
+                    if (listBeen.size()>=3){
+                        tv_LatestNews_1.setText(integrity.getList().get(0).getVcdesc());
+                        tv_LatestNews_2.setText(integrity.getList().get(1).getVcdesc());
+                        tv_LatestNews_3.setText(integrity.getList().get(2).getVcdesc());
+                    }else if (listBeen.size()>=2){
+                        tv_LatestNews_1.setText(integrity.getList().get(0).getVcdesc());
+                        tv_LatestNews_2.setText(integrity.getList().get(1).getVcdesc());
+                        tv_LatestNews_3.setText("");
+                    }else if (listBeen.size()>=1){
+                        tv_LatestNews_1.setText(integrity.getList().get(0).getVcdesc());
+                        tv_LatestNews_2.setText("");
+                        tv_LatestNews_3.setText("");
+                    }
+                }
+            }
+
+            @Override
+            public void onFailed(String error, int tag) {
+
+            }
+        },1);
     }
 
     private void getMenuList() {
@@ -222,7 +264,10 @@ public class MainActivity extends BaseActivity implements OkhttpHelper.GetCallBa
      * 全部板块
      */
     @OnClick(R.id.iv_all) void All(){
-        ZToastUtils.showShort(this,"全部板块");
+        Intent intent = new Intent(this, AllActivity.class);
+        intent.putStringArrayListExtra("menu",list);
+        intent.putIntegerArrayListExtra("ids",allIds);
+        startActivity(intent);
     }
 
     /**
@@ -270,48 +315,56 @@ public class MainActivity extends BaseActivity implements OkhttpHelper.GetCallBa
         //添加全部模块图标资源
         for (int i=0;i<newList.size();i++){
             if ("产品备案".equalsIgnoreCase(newList.get(i))){
+                allIds.add(R.mipmap.recode);
                 if (i<3){
                     ids.add(R.mipmap.recode);
                 }else {
                     ids.add(R.mipmap.recode_bg);
                 }
             }else if ("农资产品销售".equalsIgnoreCase(newList.get(i))){
+                allIds.add(R.mipmap.sold);
                 if (i<3){
                     ids.add(R.mipmap.sold);
                 }else {
                     ids.add(R.mipmap.sold_bg);
                 }
             }else if ("往来管理".equalsIgnoreCase(newList.get(i))){
+                allIds.add(R.mipmap.contract);
                 if (i<3){
                     ids.add(R.mipmap.contract);
                 }else {
                     ids.add(R.mipmap.contract_bg);
                 }
             }else if ("农资产品购进".equalsIgnoreCase(newList.get(i))){
+                allIds.add(R.mipmap.buy_bg);
                 if (i<3){
                     ids.add(R.mipmap.buy_bg);
                 }else {
                     ids.add(R.mipmap.buy);
                 }
             }else if ("企业管理".equalsIgnoreCase(newList.get(i))){
+                allIds.add(R.mipmap.entrprise);
                 if (i<3){
                     ids.add(R.mipmap.entrprise);
                 }else {
                     ids.add(R.mipmap.entrprise_bg);
                 }
             }else if ("农药库管理".equalsIgnoreCase(newList.get(i))){
+                allIds.add(R.mipmap.pesticide);
                 if (i<3){
                     ids.add(R.mipmap.pesticide);
                 }else {
                     ids.add(R.mipmap.pesticide_bg);
                 }
             }else if ("电子处方".equalsIgnoreCase(newList.get(i))){
+                allIds.add(R.mipmap.electronic_bg);
                 if (i<3){
                     ids.add(R.mipmap.electronic_bg);
                 }else {
                     ids.add(R.mipmap.electronic);
                 }
             }else if ("销售员管理".equalsIgnoreCase(newList.get(i))){
+                allIds.add(R.mipmap.saleman);
                 if (i<3){
                     ids.add(R.mipmap.saleman);
                 }else {
@@ -373,5 +426,11 @@ public class MainActivity extends BaseActivity implements OkhttpHelper.GetCallBa
     @Override
     public void onFailed(String error, int tag) {
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getIntegrity();
     }
 }

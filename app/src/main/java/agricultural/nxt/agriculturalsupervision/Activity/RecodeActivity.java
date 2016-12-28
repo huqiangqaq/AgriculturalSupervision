@@ -14,6 +14,7 @@ import java.util.List;
 
 import agricultural.nxt.agriculturalsupervision.R;
 import agricultural.nxt.agriculturalsupervision.Widget.LetToolBar;
+import agricultural.nxt.agriculturalsupervision.adapter.RecodeAdapter;
 import agricultural.nxt.agriculturalsupervision.base.BaseActivity;
 import butterknife.BindView;
 
@@ -36,6 +37,7 @@ public class RecodeActivity extends BaseActivity {
     private static int mCurrentCounter = 0;
 //    @BindView(R.id.sp_isTransgenic)
 //    NiceSpinner sp_isTransgenic;
+    private RecodeAdapter recodeAdapter;
     private List<String> dataset = new LinkedList<>(Arrays.asList("非转基因", "转基因"));
     @Override
     public void onCreate(Bundle savedInstanceState) {

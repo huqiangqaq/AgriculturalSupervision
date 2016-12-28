@@ -102,9 +102,10 @@ dependencies {
     compile files('libs/zxing.jar')
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.4.7'
     compile 'com.android.support:recyclerview-v7:24.2.1'
-    compile project(':LRecyclerview_library')
     compile project(':citypickerview')
-    compile 'com.zhy:okhttputils:2.6.2'
     compile 'cn.pedant.sweetalert:library:1.3'
-
+    compile project(':LRecyclerview_library')
+    compile project(':cptr')
+    compile 'com.github.mcxtzhang:SwipeDelMenuLayout:V1.2.5'
+    compile 'com.jzxiang.pickerview:TimePickerDialog:1.0.1'
 }
