@@ -1,62 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:background="@color/whitesmoke"
-    tools:context="agricultural.nxt.agriculturalsupervision.Activity.ProductSoldActivity">
+    android:orientation="vertical">
 
 
-    <include layout="@layout/main_toolbar"/>
+    <include layout="@layout/main_toolbar" />
 
-    <RelativeLayout
+    <com.chanven.lib.cptr.PtrClassicFrameLayout
+        xmlns:cube_ptr="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/test_list_view_frame"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#f0f0f0"
+        cube_ptr:ptr_duration_to_close="200"
+        cube_ptr:ptr_duration_to_close_header="700"
+        cube_ptr:ptr_keep_header_when_refresh="true"
+        cube_ptr:ptr_pull_to_fresh="false"
+        cube_ptr:ptr_ratio_of_header_height_to_refresh="1.2"
+        cube_ptr:ptr_resistance="1.8" >
 
-        <com.github.jdsjlzx.recyclerview.LRecyclerView
-            android:id="@+id/list"
+        <ListView
+            android:id="@+id/lv_integrity"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:dividerHeight="0.1dp"
+            android:background="@android:color/white"
+            android:divider="#b0b0b0"
+            android:choiceMode="singleChoice"
+            android:fadingEdge="none"
+            android:scrollbarStyle="outsideOverlay" />
+    </com.chanven.lib.cptr.PtrClassicFrameLayout>
 
-        <!--<RelativeLayout-->
-        <!--android:layout_width="300dp"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:layout_marginTop="30dp"-->
-        <!--android:background="@drawable/common_text"-->
-        <!--android:gravity="center"-->
-        <!--android:orientation="horizontal">-->
-        <!--<ImageView-->
-        <!--android:layout_marginRight="20dp"-->
-        <!--android:layout_centerInParent="true"-->
-        <!--android:layout_alignParentRight="true"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:background="@mipmap/icon_search"/>-->
-        <!--<EditText-->
-        <!--android:focusable="false"-->
-        <!--android:background="@null"-->
-        <!--android:id="@+id/et_search"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="40dp"-->
-        <!--android:layout_marginLeft="10dp" />-->
-
-        <!--</RelativeLayout>-->
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/icon_09"
-            app:rippleColor="#33728dff"
-            app:elevation="6dp"
-            android:layout_marginBottom="15dp"
-            app:pressedTranslationZ="12dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"/>
-    </RelativeLayout>
 
 
 </LinearLayout>

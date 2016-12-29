@@ -41,7 +41,6 @@ public class IntegrityMoreActivity extends BaseActivity  {
     private List<Integrity.ListBean> dataList = new ArrayList<>();
     private static IntegrityMoreAdapter adapter = null;
     private PtrClassicFrameLayout ptrClassicFrameLayout = null;
-    private boolean isRefresh = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

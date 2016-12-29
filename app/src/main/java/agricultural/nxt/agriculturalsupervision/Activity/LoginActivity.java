@@ -68,6 +68,10 @@ public class LoginActivity extends BaseActivity {
         application = MyApplication.getInstance();
         doubleClickExitHelper = new DoubleClickExitHelper(this);
         tv_resgister.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
+        if (ZPreferenceUtils.getPrefBoolean("islogin",false)){
+            etUserName.setText(ZPreferenceUtils.getPrefString("username",""));
+            etPassWord.setText(ZPreferenceUtils.getPrefString("password",""));
+        }
     }
 
     @Override
@@ -78,6 +82,8 @@ public class LoginActivity extends BaseActivity {
     private void login() {
         UserName = etUserName.getText().toString().trim();
         PassWord = etPassWord.getText().toString().trim();
+        ZPreferenceUtils.setPrefString("username",UserName);
+        ZPreferenceUtils.setPrefString("password",PassWord);
 //        Intent intent = new Intent(this, MainActivity.class);
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 //            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
@@ -93,7 +99,6 @@ public class LoginActivity extends BaseActivity {
             return;
         }
         showLoadingDialog(R.string.loginprogressmsg);
-        String loginUrl = String.format(Constants.LOGIN_URL, UserName, PassWord);
         Map<String, String> map = new HashMap<>();
         map.put("username", UserName);
         map.put("password", PassWord);
@@ -115,6 +120,7 @@ public class LoginActivity extends BaseActivity {
         OkhttpHelper.Post(Constants.LOGIN_URL, map, new OkhttpHelper.PostCallBack() {
             @Override
             public void onSuccess(String response, int tag) {
+                ZPreferenceUtils.setPrefBoolean("islogin",true);
                 dismissLoadingDialog();
                 String result = null;
                 String msg = null;

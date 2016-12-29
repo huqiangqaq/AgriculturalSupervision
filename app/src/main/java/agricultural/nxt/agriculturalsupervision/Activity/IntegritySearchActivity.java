@@ -25,6 +25,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import agricultural.nxt.agriculturalsupervision.Activity.Integrity.IntegrityDetailActivity;
 import agricultural.nxt.agriculturalsupervision.Constants;
 import agricultural.nxt.agriculturalsupervision.R;
 import agricultural.nxt.agriculturalsupervision.Util.OkhttpHelper;
@@ -33,7 +34,6 @@ import agricultural.nxt.agriculturalsupervision.adapter.IntegritySearchAdapter;
 import agricultural.nxt.agriculturalsupervision.base.BaseActivity;
 import agricultural.nxt.agriculturalsupervision.entity.Integrity;
 import butterknife.BindView;
-import butterknife.OnClick;
 
 public class IntegritySearchActivity extends BaseActivity {
     @BindView(R.id.lettoolbar)
@@ -67,7 +67,7 @@ public class IntegritySearchActivity extends BaseActivity {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if(actionId == EditorInfo.IME_ACTION_SEARCH)
                 {
-
+                    search();
                     // search pressed and perform your functionality.
                 }
                 return false;
@@ -101,8 +101,26 @@ public class IntegritySearchActivity extends BaseActivity {
             @Override
             public void onSuccess(String response, int tag) {
                 dismissLoadingDialog();
-                Integrity integrity = new Gson().fromJson(response,Integrity.class);
+                final Integrity integrity = new Gson().fromJson(response,Integrity.class);
                 results = integrity.getList();
+                if (results == null||results.isEmpty()){
+                   ZToastUtils.showShort(IntegritySearchActivity.this,"没有查到相关记录！");
+                    return;
+                }
+              lv_result.setLayoutManager(new LinearLayoutManager(IntegritySearchActivity.this));
+                lv_result.addItemDecoration(new DividerItemDecoration(IntegritySearchActivity.this,DividerItemDecoration.VERTICAL));
+                lv_result.setItemAnimator(new DefaultItemAnimator());
+                resultAdapter = new IntegritySearchAdapter(results);
+                resultAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN);
+                lv_result.setAdapter(resultAdapter);
+                lv_result.addOnItemTouchListener(new OnItemClickListener() {
+                    @Override
+                    public void SimpleOnItemClick(BaseQuickAdapter baseQuickAdapter, View view, int position) {
+                        Intent intent = new Intent(IntegritySearchActivity.this, IntegrityDetailActivity.class);
+                        intent.putExtra("id",results.get(position).getId());
+                        startActivity(intent);
+                    }
+                });
             }
 
             @Override
@@ -118,7 +136,7 @@ public class IntegritySearchActivity extends BaseActivity {
     }
 
 
-    @OnClick(R.id.iv_search) void search(){
+    private void search(){
         showLoadingDialog(R.string.searching);
         vcillegalcomp = et_search.getText().toString().trim();
         if (TextUtils.isEmpty(vcillegalcomp)){
@@ -126,18 +144,7 @@ public class IntegritySearchActivity extends BaseActivity {
             return;
         }
         initData();
-        lv_result.setLayoutManager(new LinearLayoutManager(this));
-        lv_result.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
-        lv_result.setItemAnimator(new DefaultItemAnimator());
-        resultAdapter = new IntegritySearchAdapter(results);
-        resultAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN);
-        lv_result.setAdapter(resultAdapter);
-        lv_result.addOnItemTouchListener(new OnItemClickListener() {
-            @Override
-            public void SimpleOnItemClick(BaseQuickAdapter baseQuickAdapter, View view, int position) {
-                ZToastUtils.showShort(IntegritySearchActivity.this, ""+position);
-            }
-        });
+
     }
 //    @OnClick(R.id.confirm) void confirm(){
 //        ll_shaixuan.setVisibility(View.GONE);

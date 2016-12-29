@@ -18,12 +18,14 @@ public class Constants {
     //公告
     public static final String ANNOUNCEMENT = BASE_URL+"/login?username=%s&password=%s";
     //诚信
-    public static final String INTEGRITY = URL+"/credit/appIllegalinfo/list?pageNo=%s&pageSize=";
+    public static final String INTEGRITY = URL+"/credit/appIllegalinfo/list?pageNo=1&pageSize=";
     public static final String INTEGRITY_DEL = URL+"/credit/appIllegalinfo/delete?id=";
     public static final String INTEGRITY_DETAIL = URL+"/credit/appIllegalinfo/form?id=";
     public static final String INTEGRITY_ADD = URL+"/credit/appIllegalinfo/save";
     public static final String INTEGRITY_CHECK = URL+"/credit/appIllegalinfo/check";
     public static final String INTEGRITY_SEARCH = URL+"/credit/appIllegalinfo/list";
     //种子备案
-    public static final String SEED_RECODE = URL+"/product/appSeed/list?";
+    public static final String SEED_RECODE = URL+"/product/appSeed/list?pageNo=1&pageSize=";
+    //查看种子备案
+    public static final String SEED_RECODE_VIEW = URL+"/product/appSeed/selectList?pageNo=1&pageSize=";
 }

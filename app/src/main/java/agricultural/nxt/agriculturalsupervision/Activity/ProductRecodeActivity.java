@@ -3,7 +3,6 @@ package agricultural.nxt.agriculturalsupervision.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.RelativeLayout;
 
@@ -81,14 +80,23 @@ public class ProductRecodeActivity extends BaseActivity{
         map.put("种子备案",false);
         map.put("农药备案",false);
         map.put("化肥备案",false);
+        ZPreferenceUtils.setPrefBoolean("备案",false);
+        ZPreferenceUtils.setPrefBoolean("审核",false);
+        ZPreferenceUtils.setPrefBoolean("查看",false);
         for (int i=0;i<list.size();i++){
             String name = list.get(i).getName();
-            if (TextUtils.equals("种子备案",name)){
+            if (name.contains("种子备案")){
                 map.put("种子备案",true);
-            }else if (TextUtils.equals("农药备案",name)){
+            }else if (name.contains("农药备案")){
                 map.put("农药备案",true);
-            }else if (TextUtils.equals("化肥备案",name)){
+            }else if (name.contains("化肥备案")){
                 map.put("化肥备案",true);
+            }else if (name.contains("审核")){
+                ZPreferenceUtils.setPrefBoolean("审核",true);
+            }else if (name.contains("查看")){
+                ZPreferenceUtils.setPrefBoolean("查看",true);
+            }else if (name.equalsIgnoreCase("产品备案")){
+                ZPreferenceUtils.setPrefBoolean("备案",true);
             }
         }
         if (map.get("种子备案")){

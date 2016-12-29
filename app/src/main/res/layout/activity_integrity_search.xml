@@ -178,7 +178,10 @@
             android:layout_height="wrap_content"
             android:background="@mipmap/icon_search"/>
         <EditText
-            android:focusable="false"
+            android:hint="输入查询的单位名称"
+            android:inputType="text"
+            android:maxLines="1"
+            android:imeOptions="actionSearch"
             android:background="@null"
             android:id="@+id/et_search"
             android:layout_width="match_parent"

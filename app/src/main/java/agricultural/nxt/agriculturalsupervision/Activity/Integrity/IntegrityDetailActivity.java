@@ -2,6 +2,7 @@ package agricultural.nxt.agriculturalsupervision.Activity.Integrity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -9,11 +10,14 @@ import com.google.gson.Gson;
 import agricultural.nxt.agriculturalsupervision.Constants;
 import agricultural.nxt.agriculturalsupervision.R;
 import agricultural.nxt.agriculturalsupervision.Util.OkhttpHelper;
+import agricultural.nxt.agriculturalsupervision.Widget.LetToolBar;
 import agricultural.nxt.agriculturalsupervision.base.BaseActivity;
 import agricultural.nxt.agriculturalsupervision.entity.IntegrityDetail;
 import butterknife.BindView;
 
 public class IntegrityDetailActivity extends BaseActivity {
+    @BindView(R.id.lettoolbar)
+    LetToolBar toolBar;
     @BindView(R.id.dtarosedate)
     TextView dtarosedate;
     @BindView(R.id.vcillegalcomp)
@@ -41,15 +45,25 @@ public class IntegrityDetailActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        toolBar.setTitle("诚信详情");
+        toolBar.setLeftButtonIcon(getResources().getDrawable(R.mipmap.icon_arrow_02));
+        toolBar.setLeftButtonOnClickLinster(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         getData();
     }
 
     private void getData() {
         Intent intent = getIntent();
         String id = intent.getStringExtra("id");
+        showLoadingDialog(R.string.loading);
         OkhttpHelper.Get(Constants.INTEGRITY_DETAIL + id, new OkhttpHelper.GetCallBack() {
             @Override
             public void onSuccess(String response, int tag) {
+                dismissLoadingDialog();
                 IntegrityDetail detail = new Gson().fromJson(response,IntegrityDetail.class);
                 dtarosedate.setText(detail.getDtarosedate());
                 vcillegalcomp.setText(detail.getVcillegalcomp());

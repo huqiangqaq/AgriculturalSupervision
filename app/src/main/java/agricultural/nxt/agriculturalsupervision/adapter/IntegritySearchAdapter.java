@@ -21,9 +21,15 @@ public class IntegritySearchAdapter extends BaseQuickAdapter<Integrity.ListBean,
     protected void convert(BaseViewHolder viewHolder, Integrity.ListBean integrity) {
         viewHolder.setText(R.id.dtarosedate,integrity.getDtarosedate())
                 .setText(R.id.vcillegalprod,integrity.getVcillegalprod())
-                .setText(R.id.iproducttype,integrity.getIproducttype())
                 .setText(R.id.vcillegalcomp,integrity.getVcillegalcomp())
                 .setText(R.id.ownerName,integrity.getOwnerName());
+        if ("0".equalsIgnoreCase(integrity.getIproducttype())){
+            viewHolder.setText(R.id.iproducttype,"种子");
+        }else if ("1".equalsIgnoreCase(integrity.getIproducttype())){
+            viewHolder.setText(R.id.iproducttype,"化肥");
+        }else if ("2".equalsIgnoreCase(integrity.getIproducttype())){
+            viewHolder.setText(R.id.iproducttype,"农药");
+        }
         if("1".equalsIgnoreCase(integrity.getIcheckstatus())){
             viewHolder.setBackgroundRes(R.id.btn_handle,R.drawable.bg_integrity)
                         .setText(R.id.btn_handle,R.string.integrityhandle);
