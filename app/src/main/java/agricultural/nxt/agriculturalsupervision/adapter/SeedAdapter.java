@@ -28,6 +28,7 @@ public class SeedAdapter extends BaseAdapter {
     private List<Seed.ListBean> list = new ArrayList<>();
     protected ProgressDialog loadingDialog;
     private SeedAdapter.ViewHolder holder;
+
     public SeedAdapter(Context mContext, List<Seed.ListBean> list) {
         this.mContext = mContext;
         this.list = list;
@@ -59,8 +60,8 @@ public class SeedAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         holder = new ViewHolder();
-        if (convertView==null){
-            convertView = LayoutInflater.from(mContext).inflate(R.layout.seed_item,parent,false);
+        if (convertView == null) {
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.seed_item, parent, false);
             holder.swipe_content = (SwipeMenuLayout) convertView.findViewById(R.id.swipe_content);
             holder.tv_vcvarietyname = (TextView) convertView.findViewById(R.id.tv_vcvarietyname);
             holder.tv_vccategory = (TextView) convertView.findViewById(R.id.tv_vccategory);
@@ -71,7 +72,7 @@ public class SeedAdapter extends BaseAdapter {
             holder.btn_detail = (Button) convertView.findViewById(R.id.btn_detail);
             holder.btn_update = (Button) convertView.findViewById(R.id.btn_update);
             convertView.setTag(holder);
-        }else {
+        } else {
             holder = (ViewHolder) convertView.getTag();
         }
 
@@ -82,45 +83,42 @@ public class SeedAdapter extends BaseAdapter {
         holder.tv_vcorgname.setText(seed.getOwner().getVcorgname());
 
         String status = list.get(position).getIcheckstatus();
-        boolean b1 =ZPreferenceUtils.getPrefBoolean("查看",false);
-        boolean b2 = ZPreferenceUtils.getPrefBoolean("备案",false);
-        boolean b3 = ZPreferenceUtils.getPrefBoolean("审核",false);
+        boolean b1 = ZPreferenceUtils.getPrefBoolean("查看", false);
+        boolean b2 = ZPreferenceUtils.getPrefBoolean("备案", false);
+        boolean b3 = ZPreferenceUtils.getPrefBoolean("审核", false);
 
-        if (b1&b2&b3){                                    //全部权限
+        if (b1 & b2 & b3) {                                    //全部权限
             holder.btn_detail.setVisibility(View.VISIBLE);
             holder.btn_del.setVisibility(View.VISIBLE);
             holder.btn_update.setVisibility(View.VISIBLE);
-            if ("-1".equalsIgnoreCase(status)){
+            if ("-1".equalsIgnoreCase(status)) {
                 holder.btn_check.setVisibility(View.VISIBLE);
             }
-        }else if (b1&!b2&!b3){                            //只有查看权限
-           holder.btn_detail.setVisibility(View.VISIBLE);
-        }else if (b1&b3){                             //查看，审核
+        } else if (b1 & !b2 & !b3) {                            //只有查看权限
             holder.btn_detail.setVisibility(View.VISIBLE);
-            if ("-1".equalsIgnoreCase(status)){
+        } else if (b1 & b3) {                             //查看，审核
+            holder.btn_detail.setVisibility(View.VISIBLE);
+            if ("-1".equalsIgnoreCase(status)) {
                 holder.btn_check.setVisibility(View.VISIBLE);
             }
-        }else if (b2&!b3){                            //备案
+        } else if (b2 & !b3) {                            //备案
             holder.btn_detail.setVisibility(View.VISIBLE);
             holder.btn_del.setVisibility(View.VISIBLE);
             holder.btn_update.setVisibility(View.VISIBLE);
         }
 
-        if (ZPreferenceUtils.getPrefBoolean("审核",false)){
+        if (ZPreferenceUtils.getPrefBoolean("审核", false)) {
             //待审核
-            if ("-1".equalsIgnoreCase(status)){
+            if ("-1".equalsIgnoreCase(status)) {
 
             }
         }
-
-
         return convertView;
     }
 
-    private class ViewHolder{
+    private class ViewHolder {
         SwipeMenuLayout swipe_content;
-        TextView tv_vcvarietyname,tv_vccategory,tv_icheckstatus,tv_vcorgname;
-        Button btn_detail,btn_del,btn_check,btn_update;
-
+        TextView tv_vcvarietyname, tv_vccategory, tv_icheckstatus, tv_vcorgname;
+        Button btn_detail, btn_del, btn_check, btn_update;
     }
 }

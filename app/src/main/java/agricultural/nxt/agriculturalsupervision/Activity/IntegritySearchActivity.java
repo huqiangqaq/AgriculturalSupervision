@@ -47,6 +47,7 @@ public class IntegritySearchActivity extends BaseActivity {
     private List<Integrity.ListBean> results = new ArrayList<>();
     private IntegritySearchAdapter resultAdapter;
     private String vcillegalcomp;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,28 +60,19 @@ public class IntegritySearchActivity extends BaseActivity {
         toolBar.setLeftButtonOnClickLinster(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    finish();
+                finish();
             }
         });
+        //点击键盘搜索
         et_search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if(actionId == EditorInfo.IME_ACTION_SEARCH)
-                {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                     search();
-                    // search pressed and perform your functionality.
                 }
                 return false;
             }
         });
-//        toolBar.setRightButtonIcon(getResources().getDrawable(R.mipmap.icon_search1));
-//        toolBar.setRightButtonOnClickLinster(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                ll_shaixuan.setVisibility(View.VISIBLE);
-//            }
-//        });
-
     }
 
     @Override
@@ -88,27 +80,28 @@ public class IntegritySearchActivity extends BaseActivity {
         return R.layout.activity_integrity_search;
     }
 
-    public static void actionStart(Context context){
-        Intent intent = new Intent(context,IntegritySearchActivity.class);
+    public static void actionStart(Context context) {
+        Intent intent = new Intent(context, IntegritySearchActivity.class);
         context.startActivity(intent);
     }
+
     private void initData() {
-        Map<String,String> map = new HashMap<>();
-        map.put("pageNo","1");
-        map.put("pageSize","30");
-        map.put("vcillegalcomp",vcillegalcomp);
+        Map<String, String> map = new HashMap<>();
+        map.put("pageNo", "1");
+        map.put("pageSize", "30");
+        map.put("vcillegalcomp", vcillegalcomp);
         OkhttpHelper.Post(Constants.INTEGRITY_SEARCH, map, new OkhttpHelper.PostCallBack() {
             @Override
             public void onSuccess(String response, int tag) {
                 dismissLoadingDialog();
-                final Integrity integrity = new Gson().fromJson(response,Integrity.class);
+                final Integrity integrity = new Gson().fromJson(response, Integrity.class);
                 results = integrity.getList();
-                if (results == null||results.isEmpty()){
-                   ZToastUtils.showShort(IntegritySearchActivity.this,"没有查到相关记录！");
+                if (results == null || results.isEmpty()) {
+                    ZToastUtils.showShort(IntegritySearchActivity.this, "没有查到相关记录！");
                     return;
                 }
-              lv_result.setLayoutManager(new LinearLayoutManager(IntegritySearchActivity.this));
-                lv_result.addItemDecoration(new DividerItemDecoration(IntegritySearchActivity.this,DividerItemDecoration.VERTICAL));
+                lv_result.setLayoutManager(new LinearLayoutManager(IntegritySearchActivity.this));
+                lv_result.addItemDecoration(new DividerItemDecoration(IntegritySearchActivity.this, DividerItemDecoration.VERTICAL));
                 lv_result.setItemAnimator(new DefaultItemAnimator());
                 resultAdapter = new IntegritySearchAdapter(results);
                 resultAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN);
@@ -117,7 +110,7 @@ public class IntegritySearchActivity extends BaseActivity {
                     @Override
                     public void SimpleOnItemClick(BaseQuickAdapter baseQuickAdapter, View view, int position) {
                         Intent intent = new Intent(IntegritySearchActivity.this, IntegrityDetailActivity.class);
-                        intent.putExtra("id",results.get(position).getId());
+                        intent.putExtra("id", results.get(position).getId());
                         startActivity(intent);
                     }
                 });
@@ -132,23 +125,20 @@ public class IntegritySearchActivity extends BaseActivity {
             public void onProgress(long currentSize, long totalSize, float progress, long networkSpeed) {
 
             }
-        },1);
+        }, 1);
     }
 
 
-    private void search(){
+    private void search() {
         showLoadingDialog(R.string.searching);
         vcillegalcomp = et_search.getText().toString().trim();
-        if (TextUtils.isEmpty(vcillegalcomp)){
-            ZToastUtils.showShort(IntegritySearchActivity.this,"请先填写搜索内容");
+        if (TextUtils.isEmpty(vcillegalcomp)) {
+            ZToastUtils.showShort(IntegritySearchActivity.this, "请先填写搜索内容");
             return;
         }
         initData();
 
     }
-//    @OnClick(R.id.confirm) void confirm(){
-//        ll_shaixuan.setVisibility(View.GONE);
-//    }
 
     @Override
     public void onBackPressed() {

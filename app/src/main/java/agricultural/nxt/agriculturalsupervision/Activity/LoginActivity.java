@@ -68,9 +68,9 @@ public class LoginActivity extends BaseActivity {
         application = MyApplication.getInstance();
         doubleClickExitHelper = new DoubleClickExitHelper(this);
         tv_resgister.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
-        if (ZPreferenceUtils.getPrefBoolean("islogin",false)){
-            etUserName.setText(ZPreferenceUtils.getPrefString("username",""));
-            etPassWord.setText(ZPreferenceUtils.getPrefString("password",""));
+        if (ZPreferenceUtils.getPrefBoolean("islogin", false)) {
+            etUserName.setText(ZPreferenceUtils.getPrefString("username", ""));
+            etPassWord.setText(ZPreferenceUtils.getPrefString("password", ""));
         }
     }
 
@@ -82,14 +82,9 @@ public class LoginActivity extends BaseActivity {
     private void login() {
         UserName = etUserName.getText().toString().trim();
         PassWord = etPassWord.getText().toString().trim();
-        ZPreferenceUtils.setPrefString("username",UserName);
-        ZPreferenceUtils.setPrefString("password",PassWord);
-//        Intent intent = new Intent(this, MainActivity.class);
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
-//        } else {
-//            startActivity(intent);
-//        }
+        ZPreferenceUtils.setPrefString("username", UserName);
+        ZPreferenceUtils.setPrefString("password", PassWord);
+
         if (TextUtils.isEmpty(UserName) || TextUtils.isEmpty(PassWord)) {
             ZSnackBarUtils.showShort(ll_content, "账号或密码不能为空!");
             return;
@@ -103,24 +98,11 @@ public class LoginActivity extends BaseActivity {
         map.put("username", UserName);
         map.put("password", PassWord);
         map.put("mobileLogin", "true");
-//        OkhttpHelper.Get(loginUrl,this,LOGIN);
-//        OkHttpUtils.get().url(loginUrl)
-//                .build()
-//                .execute(new StringCallback() {
-//                    @Override
-//                    public void onError(Call call, Exception e, int id) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onResponse(String response, int id) {
-//                        String ss = response;
-//                    }
-//                });
+
         OkhttpHelper.Post(Constants.LOGIN_URL, map, new OkhttpHelper.PostCallBack() {
             @Override
             public void onSuccess(String response, int tag) {
-                ZPreferenceUtils.setPrefBoolean("islogin",true);
+                ZPreferenceUtils.setPrefBoolean("islogin", true);
                 dismissLoadingDialog();
                 String result = null;
                 String msg = null;
@@ -158,8 +140,6 @@ public class LoginActivity extends BaseActivity {
                             ZPreferenceUtils.setPrefString("销售员管理", id);
                         }
                     }
-                    String id = ZPreferenceUtils.getPrefString("产品备案", "");
-
                     ZToastUtils.showShort(LoginActivity.this, "登陆成功");
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -220,46 +200,5 @@ public class LoginActivity extends BaseActivity {
         return super.onKeyDown(keyCode, event);
     }
 
-//    @Override
-//    public void onSuccess(String response, int tag) {
-//        LoginReturn loginReturn = new Gson().fromJson(response, LoginReturn.class);
-//        application.setUserInfo(loginReturn.getUserInfo());
-//        application.setMenuList(loginReturn.getMenuList());
-//        //保存id信息
-//        for (int i = 0;i<application.getMenuList().size();i++){
-//            String name = application.getMenuList().get(i).getName();
-//            String id = application.getMenuList().get(i).getId();
-//            if (TextUtils.equals(name,"产品备案")){
-//                ZPreferenceUtils.setPrefString("产品备案",id);
-//            }else if (TextUtils.equals(name,"农资产品购进")){
-//                ZPreferenceUtils.setPrefString("农资产品购进",id);
-//            }else if (TextUtils.equals(name,"农资产品销售")){
-//                ZPreferenceUtils.setPrefString("农资产品销售",id);
-//            }else if (TextUtils.equals(name,"往来管理")){
-//                ZPreferenceUtils.setPrefString("往来管理",id);
-//            }else if (TextUtils.equals(name,"农药库管理")){
-//                ZPreferenceUtils.setPrefString("农药库管理",id);
-//            }
-//        }
-//        String id = ZPreferenceUtils.getPrefString("农资产品购进","");
-//        if ("true".equalsIgnoreCase(loginReturn.getSuccess())) {
-//            dismissLoadingDialog();
-//            ZToastUtils.showShort(LoginActivity.this, "登陆成功");
-//            Intent intent = new Intent(this, MainActivity.class);
-//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
-//            } else {
-//                startActivity(intent);
-//            }
-//        } else {
-//            ZSnackBarUtils.showShort(ll_content,"登陆失败，请检查用户名或密码!");
-//        }
-//    }
-//
-//    @Override
-//    public void onFailed(String error, int tag) {
-//        dismissLoadingDialog();
-//        ZSnackBarUtils.showShort(ll_content,"登陆失败...");
-//    }
 }
 

@@ -30,6 +30,7 @@ public abstract class BaseActivity extends AppCompatActivity implements DatePick
     protected MyApplication application;
     protected static Calendar calendar = Calendar.getInstance();
     protected AVLoadingIndicatorView loadingIndicatorView;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,6 +107,7 @@ public abstract class BaseActivity extends AppCompatActivity implements DatePick
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 
     }
+
     public void showloading() {
         loadingIndicatorView = new AVLoadingIndicatorView(this);
         loadingIndicatorView.setVisibility(View.VISIBLE);
@@ -115,8 +117,10 @@ public abstract class BaseActivity extends AppCompatActivity implements DatePick
         if (loadingIndicatorView != null)
             loadingIndicatorView.setVisibility(View.GONE);
     }
+
     /**
      * 提升点击范围
+     *
      * @param view
      * @param expandTouchWidth
      */

@@ -36,6 +36,7 @@ public class IntegrityMoreAdapter extends BaseAdapter {
     private List<Integrity.ListBean> list = new ArrayList<>();
     protected ProgressDialog loadingDialog;
     private ViewHolder holder;
+
     public IntegrityMoreAdapter(Context mContext, List<Integrity.ListBean> list) {
         this.mContext = mContext;
         this.list = list;
@@ -66,9 +67,9 @@ public class IntegrityMoreAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-         holder = new ViewHolder();
-        if (convertView==null){
-            convertView = LayoutInflater.from(mContext).inflate(R.layout.integrity_item,parent,false);
+        holder = new ViewHolder();
+        if (convertView == null) {
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.integrity_item, parent, false);
             holder.swipe_content = (SwipeMenuLayout) convertView.findViewById(R.id.swipe_content);
             holder.tv_illegalprod = (TextView) convertView.findViewById(R.id.tv_illegalprod);
             holder.tv_producttype = (TextView) convertView.findViewById(R.id.tv_producttype);
@@ -78,7 +79,7 @@ public class IntegrityMoreAdapter extends BaseAdapter {
             holder.btn_del = (Button) convertView.findViewById(R.id.btn_del);
             holder.btn_detail = (Button) convertView.findViewById(R.id.btn_detail);
             convertView.setTag(holder);
-        }else {
+        } else {
             holder = (ViewHolder) convertView.getTag();
         }
         Integrity.ListBean bean = list.get(position);
@@ -88,7 +89,7 @@ public class IntegrityMoreAdapter extends BaseAdapter {
         holder.tv_ownerName.setText(bean.getOwnerName());
         String status = list.get(position).getIcheckstatus();
         //待审核
-        if ("-1".equalsIgnoreCase(status)){
+        if ("-1".equalsIgnoreCase(status)) {
             holder.btn_check.setVisibility(View.VISIBLE);
         }
         final SwipeMenuLayout finalConvertView = (SwipeMenuLayout) convertView;
@@ -98,12 +99,12 @@ public class IntegrityMoreAdapter extends BaseAdapter {
                 finalConvertView.quickClose();
                 Integrity.ListBean listBean = list.get(position);
                 Intent intent = new Intent(mContext, IntegrityCheckActivity.class);
-                intent.putExtra("id",listBean.getId());
-                intent.putExtra("dtarosedate",listBean.getDtarosedate());
-                intent.putExtra("vcillegalcomp",listBean.getVcillegalcomp());
-                intent.putExtra("iproducttype",listBean.getIproducttype());
-                intent.putExtra("vcillegalprod",listBean.getVcillegalprod());
-                intent.putExtra("vcdesc",listBean.getVcdesc());
+                intent.putExtra("id", listBean.getId());
+                intent.putExtra("dtarosedate", listBean.getDtarosedate());
+                intent.putExtra("vcillegalcomp", listBean.getVcillegalcomp());
+                intent.putExtra("iproducttype", listBean.getIproducttype());
+                intent.putExtra("vcillegalprod", listBean.getVcillegalprod());
+                intent.putExtra("vcdesc", listBean.getVcdesc());
                 mContext.startActivity(intent);
             }
         });
@@ -114,7 +115,7 @@ public class IntegrityMoreAdapter extends BaseAdapter {
                 finalConvertView.quickClose();
                 String id = list.get(position).getId();
                 Intent intent = new Intent(mContext, IntegrityDetailActivity.class);
-                intent.putExtra("id",id);
+                intent.putExtra("id", id);
                 mContext.startActivity(intent);
             }
         });
@@ -122,53 +123,52 @@ public class IntegrityMoreAdapter extends BaseAdapter {
         holder.btn_del.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                delete(finalHolder,position);
+                delete(finalHolder, position);
             }
         });
         return convertView;
     }
 
 
-
     private void delete(final ViewHolder holder, final int pos) {
         new AlertDialog.Builder(mContext)
-                    .setTitle("提示")
-                    .setMessage("确定删除此条记录吗?")
-                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            String id = list.get(pos).getId();
-                            showLoadingDialog("删除中...");
-                            OkhttpHelper.Get(Constants.INTEGRITY_DEL+id, new OkhttpHelper.GetCallBack() {
-                                @Override
-                                public void onSuccess(String response, int tag) {
-                                    dismissLoadingDialog();
-                                    if (TextUtils.equals(JsonUtil.PareJson(response),"true")){
-                                        new SweetAlertDialog(mContext, SweetAlertDialog.SUCCESS_TYPE)
-                                                .setConfirmText("删除成功")
-                                                .show();
-                                        holder.swipe_content.quickClose();
-                                        list.remove(pos);
-                                        notifyDataSetChanged();
-                                    }else {
-                                        new SweetAlertDialog(mContext,SweetAlertDialog.ERROR_TYPE)
-                                                .setConfirmText("删除失败,"+JsonUtil.ParseMsg(response))
-                                                .show();
-                                    }
+                .setTitle("提示")
+                .setMessage("确定删除此条记录吗?")
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String id = list.get(pos).getId();
+                        showLoadingDialog("删除中...");
+                        OkhttpHelper.Get(Constants.INTEGRITY_DEL + id, new OkhttpHelper.GetCallBack() {
+                            @Override
+                            public void onSuccess(String response, int tag) {
+                                dismissLoadingDialog();
+                                if (TextUtils.equals(JsonUtil.PareJson(response), "true")) {
+                                    new SweetAlertDialog(mContext, SweetAlertDialog.SUCCESS_TYPE)
+                                            .setConfirmText("删除成功")
+                                            .show();
+                                    holder.swipe_content.quickClose();
+                                    list.remove(pos);
+                                    notifyDataSetChanged();
+                                } else {
+                                    new SweetAlertDialog(mContext, SweetAlertDialog.ERROR_TYPE)
+                                            .setConfirmText("删除失败," + JsonUtil.ParseMsg(response))
+                                            .show();
                                 }
+                            }
 
-                                @Override
-                                public void onFailed(String error, int tag) {
+                            @Override
+                            public void onFailed(String error, int tag) {
 
-                                }
-                            },1);
-                        }
-                    }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
-                }
-            }).show();
+                            }
+                        }, 1);
+                    }
+                }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        }).show();
     }
 
 
@@ -177,7 +177,9 @@ public class IntegrityMoreAdapter extends BaseAdapter {
      */
     public interface onSwipeListener {
         void onDel(int pos);
+
         void onDetail(int pos);
+
         void onCheck(int pos);
     }
 
@@ -187,10 +189,10 @@ public class IntegrityMoreAdapter extends BaseAdapter {
         this.mOnSwipeListener = mOnDelListener;
     }
 
-    private class ViewHolder{
+    private class ViewHolder {
         SwipeMenuLayout swipe_content;
-        TextView tv_illegalprod,tv_producttype,tv_vcillegalcomp,tv_ownerName;
-        Button btn_detail,btn_del,btn_check;
+        TextView tv_illegalprod, tv_producttype, tv_vcillegalcomp, tv_ownerName;
+        Button btn_detail, btn_del, btn_check;
 
     }
 

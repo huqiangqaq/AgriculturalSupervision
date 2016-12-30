@@ -49,13 +49,19 @@ public class AnnounceActivity extends BaseActivity {
     FloatingActionButton fab;
     private static final String TAG = "lzx";
 
-    /**服务器端一共多少条数据*/
+    /**
+     * 服务器端一共多少条数据
+     */
     private static final int TOTAL_COUNTER = 64;
 
-    /**每一页展示多少条数据*/
+    /**
+     * 每一页展示多少条数据
+     */
     private static final int REQUEST_COUNT = 10;
 
-    /**已经获取到多少条数据了*/
+    /**
+     * 已经获取到多少条数据了
+     */
     private static int mCurrentCounter = 0;
 
     private AnnounceAdapter mDataAdapter = null;
@@ -78,10 +84,10 @@ public class AnnounceActivity extends BaseActivity {
         toolBar.setLeftButtonOnClickLinster(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (ll_shaixuan.getVisibility()==View.VISIBLE){
+                if (ll_shaixuan.getVisibility() == View.VISIBLE) {
                     ll_shaixuan.setVisibility(View.GONE);
                     mRecyclerView.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     finish();
                 }
 
@@ -116,7 +122,7 @@ public class AnnounceActivity extends BaseActivity {
 //                mDataAdapter.getDataList().remove(pos);
                 mDataAdapter.notifyItemRemoved(pos);//推荐用这个
 
-                if(pos != (mDataAdapter.getDataList().size())){ // 如果移除的是最后一个，忽略
+                if (pos != (mDataAdapter.getDataList().size())) { // 如果移除的是最后一个，忽略
                     mDataAdapter.notifyItemRangeChanged(pos, mDataAdapter.getDataList().size() - pos);
                 }
                 //且如果想让侧滑菜单同时关闭，需要同时调用 ((CstSwipeDelMenu) holder.itemView).quickClose();
@@ -133,8 +139,8 @@ public class AnnounceActivity extends BaseActivity {
                 mDataAdapter.notifyItemInserted(0);
 
 
-                if(pos != (mDataAdapter.getDataList().size())){ // 如果移除的是最后一个，忽略
-                    mDataAdapter.notifyItemRangeChanged(0, mDataAdapter.getDataList().size() - 1,"jdsjlzx");
+                if (pos != (mDataAdapter.getDataList().size())) { // 如果移除的是最后一个，忽略
+                    mDataAdapter.notifyItemRangeChanged(0, mDataAdapter.getDataList().size() - 1, "jdsjlzx");
                 }
 
                 mRecyclerView.scrollToPosition(0);
@@ -154,7 +160,7 @@ public class AnnounceActivity extends BaseActivity {
         mRecyclerView.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh() {
-                RecyclerViewStateUtils.setFooterViewState(mRecyclerView,LoadingFooter.State.Normal);
+                RecyclerViewStateUtils.setFooterViewState(mRecyclerView, LoadingFooter.State.Normal);
                 mDataAdapter.clear();
                 mLRecyclerViewAdapter.notifyDataSetChanged();//fix bug:crapped or attached views may not be recycled. isScrap:false isAttached:true
                 mCurrentCounter = 0;
@@ -167,7 +173,7 @@ public class AnnounceActivity extends BaseActivity {
             @Override
             public void onLoadMore() {
                 LoadingFooter.State state = RecyclerViewStateUtils.getFooterViewState(mRecyclerView);
-                if(state == LoadingFooter.State.Loading) {
+                if (state == LoadingFooter.State.Loading) {
                     Log.d(TAG, "the state is Loading, just wait..");
                     return;
                 }
@@ -207,7 +213,9 @@ public class AnnounceActivity extends BaseActivity {
             requestData();
         }
     };
-    @OnClick(R.id.fab) void fab(){
+
+    @OnClick(R.id.fab)
+    void fab() {
         AnnounceAddActivity.actionStart(this);
     }
 
@@ -228,7 +236,7 @@ public class AnnounceActivity extends BaseActivity {
                 }
 
                 //模拟一下网络请求失败的情况
-                if(NetworkUtils.isNetAvailable(AnnounceActivity.this)) {
+                if (NetworkUtils.isNetAvailable(AnnounceActivity.this)) {
                     mHandler.sendEmptyMessage(-1);
                 } else {
                     mHandler.sendEmptyMessage(-3);
@@ -238,10 +246,11 @@ public class AnnounceActivity extends BaseActivity {
     }
 
 
-    public static void actionStart(Context context){
-        Intent intent = new Intent(context,AnnounceActivity.class);
+    public static void actionStart(Context context) {
+        Intent intent = new Intent(context, AnnounceActivity.class);
         context.startActivity(intent);
     }
+
     @Override
     protected int getLayoutResId() {
         return R.layout.activity_announce;
@@ -264,7 +273,7 @@ public class AnnounceActivity extends BaseActivity {
             switch (msg.what) {
 
                 case -1:
-                    if(activity.isRefresh){
+                    if (activity.isRefresh) {
                         activity.mDataAdapter.clear();
                         mCurrentCounter = 0;
                     }
@@ -288,7 +297,7 @@ public class AnnounceActivity extends BaseActivity {
 
                     activity.addItems(newList);
 
-                    if(activity.isRefresh){
+                    if (activity.isRefresh) {
                         activity.isRefresh = false;
                         activity.mRecyclerView.refreshComplete();
                     }
@@ -300,7 +309,7 @@ public class AnnounceActivity extends BaseActivity {
                     activity.notifyDataSetChanged();
                     break;
                 case -3:
-                    if(activity.isRefresh){
+                    if (activity.isRefresh) {
                         activity.isRefresh = false;
                         activity.mRecyclerView.refreshComplete();
                     }

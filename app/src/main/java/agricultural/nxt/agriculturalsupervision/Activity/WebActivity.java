@@ -27,7 +27,8 @@ import butterknife.BindView;
 
 public class WebActivity extends BaseActivity {
     private String loadUrl = null;
-    @BindView(R.id.webview) WebView webView;
+    @BindView(R.id.webview)
+    WebView webView;
     @BindView(R.id.swipe_container)
     SwipeRefreshLayout swipeRefreshLayout;
     @BindView(R.id.lettoolbar)
@@ -35,6 +36,7 @@ public class WebActivity extends BaseActivity {
     @BindView(R.id.appbarlayout)
     AppBarLayout appBarLayout;
     private PreviewHandler handler = new PreviewHandler(this);
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,9 +49,9 @@ public class WebActivity extends BaseActivity {
         toolBar.setLeftButtonOnClickLinster(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (webView.canGoBack()){
+                if (webView.canGoBack()) {
                     webView.goBack();
-                }else {
+                } else {
                     WebActivity.super.onBackPressed();
                 }
             }
@@ -87,14 +89,15 @@ public class WebActivity extends BaseActivity {
     protected int getLayoutResId() {
         return R.layout.activity_web;
     }
-    private void initWebView(){
-    /**
-    * 初始化webview设置
-    */
-        if (Build.VERSION.SDK_INT >=19){
+
+    private void initWebView() {
+        /**
+         * 初始化webview设置
+         */
+        if (Build.VERSION.SDK_INT >= 19) {
             /*对系统API在19以上的版本作了兼容。因为4.4以上系统在onPageFinished时再恢复图片加载时,如果存在多张图片引用的是相同的src时，会只有一个image标签得到加载，因而对于这样的系统我们就先直接加载。*/
             webView.getSettings().setLoadsImagesAutomatically(true);
-        }else {
+        } else {
             webView.getSettings().setLoadsImagesAutomatically(false);
         }
         /**
@@ -145,7 +148,7 @@ public class WebActivity extends BaseActivity {
 
     private void setWebViewConfig() {
         webView.loadUrl(loadUrl);
-        webView.setWebViewClient(new WebViewClient(){
+        webView.setWebViewClient(new WebViewClient() {
             //设置在webview中点击打开的新网页在当前页面显示，而不跳转到浏览器中
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
@@ -160,7 +163,7 @@ public class WebActivity extends BaseActivity {
                 if (swipeRefreshLayout.isRefreshing()) {
                     swipeRefreshLayout.setRefreshing(false);
                 }
-                if (!webView.getSettings().getLoadsImagesAutomatically()){
+                if (!webView.getSettings().getLoadsImagesAutomatically()) {
                     webView.getSettings().setLoadsImagesAutomatically(true);
                 }
             }
@@ -173,17 +176,20 @@ public class WebActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        if (webView.canGoBack()){
+        if (webView.canGoBack()) {
             webView.goBack();
-        }else {
+        } else {
             super.onBackPressed();
         }
     }
+
     private static class PreviewHandler extends Handler {
         private WeakReference<WebActivity> ref;
-        PreviewHandler(WebActivity webActivity){
+
+        PreviewHandler(WebActivity webActivity) {
             ref = new WeakReference<>(webActivity);
         }
+
         @Override
         public void handleMessage(Message msg) {
             final WebActivity activity = ref.get();
@@ -193,5 +199,5 @@ public class WebActivity extends BaseActivity {
             activity.viewInfo();
             super.handleMessage(msg);
         }
-    };
+    }
 }

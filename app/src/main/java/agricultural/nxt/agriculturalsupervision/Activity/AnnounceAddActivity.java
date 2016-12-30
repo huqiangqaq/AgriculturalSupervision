@@ -24,8 +24,8 @@ public class AnnounceAddActivity extends BaseActivity {
         return R.layout.activity_announce_add;
     }
 
-    public static void actionStart(Context context){
-        Intent intent = new Intent(context,AnnounceAddActivity.class);
+    public static void actionStart(Context context) {
+        Intent intent = new Intent(context, AnnounceAddActivity.class);
         context.startActivity(intent);
     }
 }

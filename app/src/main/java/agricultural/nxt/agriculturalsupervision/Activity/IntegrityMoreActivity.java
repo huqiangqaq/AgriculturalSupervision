@@ -24,19 +24,25 @@ import agricultural.nxt.agriculturalsupervision.base.BaseActivity;
 import agricultural.nxt.agriculturalsupervision.entity.Integrity;
 import butterknife.BindView;
 
-public class IntegrityMoreActivity extends BaseActivity  {
+public class IntegrityMoreActivity extends BaseActivity {
     @BindView(R.id.lettoolbar)
     LetToolBar toolBar;
     @BindView(R.id.lv_integrity)
     ListView lv_integrity;
     private static final String TAG = "lzx";
-    /**服务器端一共多少条数据*/
+    /**
+     * 服务器端一共多少条数据
+     */
     private static int TOTAL_COUNTER = 20;
 
-    /**每一页展示多少条数据*/
+    /**
+     * 每一页展示多少条数据
+     */
     private static int REQUEST_COUNT = 10;
 
-    /**已经获取到多少条数据了*/
+    /**
+     * 已经获取到多少条数据了
+     */
     private static int mCurrentCounter = 0;
     private List<Integrity.ListBean> dataList = new ArrayList<>();
     private static IntegrityMoreAdapter adapter = null;
@@ -56,10 +62,9 @@ public class IntegrityMoreActivity extends BaseActivity  {
                 OkhttpHelper.Get(Constants.INTEGRITY + REQUEST_COUNT, new OkhttpHelper.GetCallBack() {
                     @Override
                     public void onSuccess(String response, int tag) {
-                        if (response!=null){
-                            Integrity integrity = new Gson().fromJson(response,Integrity.class);
+                        if (response != null) {
+                            Integrity integrity = new Gson().fromJson(response, Integrity.class);
                             dataList = integrity.getList();
-//                            adapter.setList(dataList);
                             adapter.notifyDataSetChanged();
                             ptrClassicFrameLayout.refreshComplete();
                             ptrClassicFrameLayout.setLoadMoreEnable(true);
@@ -70,23 +75,22 @@ public class IntegrityMoreActivity extends BaseActivity  {
                     public void onFailed(String error, int tag) {
 
                     }
-                },1);
+                }, 1);
             }
         });
 
         ptrClassicFrameLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void loadMore() {
-                REQUEST_COUNT+=10;
-                if (mCurrentCounter<TOTAL_COUNTER){
+                REQUEST_COUNT += 10;
+                if (mCurrentCounter < TOTAL_COUNTER) {
                     OkhttpHelper.Get(Constants.INTEGRITY + REQUEST_COUNT, new OkhttpHelper.GetCallBack() {
                         @Override
                         public void onSuccess(String response, int tag) {
-                            if (response!=null){
-                                Integrity integrity = new Gson().fromJson(response,Integrity.class);
+                            if (response != null) {
+                                Integrity integrity = new Gson().fromJson(response, Integrity.class);
                                 dataList.clear();
                                 dataList.addAll(integrity.getList());
-//                                adapter.setList(dataList);
                                 adapter.notifyDataSetChanged();
                                 ptrClassicFrameLayout.loadMoreComplete(true);
                                 mCurrentCounter = dataList.size();
@@ -97,8 +101,8 @@ public class IntegrityMoreActivity extends BaseActivity  {
                         public void onFailed(String error, int tag) {
 
                         }
-                    },2);
-                }else {
+                    }, 2);
+                } else {
                     ptrClassicFrameLayout.loadMoreComplete(true);
                     ptrClassicFrameLayout.setNoMoreData();
                 }
@@ -107,13 +111,13 @@ public class IntegrityMoreActivity extends BaseActivity  {
     }
 
     private void refresh() {
-        OkhttpHelper.Get(Constants.INTEGRITY+REQUEST_COUNT, new OkhttpHelper.GetCallBack() {
+        OkhttpHelper.Get(Constants.INTEGRITY + REQUEST_COUNT, new OkhttpHelper.GetCallBack() {
             @Override
             public void onSuccess(String response, int tag) {
-                Integrity integrity = new Gson().fromJson(response,Integrity.class);
+                Integrity integrity = new Gson().fromJson(response, Integrity.class);
                 dataList = integrity.getList();
                 TOTAL_COUNTER = integrity.getCount();
-                adapter = new IntegrityMoreAdapter(IntegrityMoreActivity.this,dataList);
+                adapter = new IntegrityMoreAdapter(IntegrityMoreActivity.this, dataList);
                 lv_integrity.setAdapter(adapter);
                 ptrClassicFrameLayout.autoRefresh(true);
             }
@@ -122,7 +126,7 @@ public class IntegrityMoreActivity extends BaseActivity  {
             public void onFailed(String error, int tag) {
 
             }
-        },1);
+        }, 1);
     }
 
 
@@ -142,8 +146,8 @@ public class IntegrityMoreActivity extends BaseActivity  {
 
     }
 
-    public static void actionStart(Context context){
-        Intent intent = new Intent(context,IntegrityMoreActivity.class);
+    public static void actionStart(Context context) {
+        Intent intent = new Intent(context, IntegrityMoreActivity.class);
         context.startActivity(intent);
     }
 

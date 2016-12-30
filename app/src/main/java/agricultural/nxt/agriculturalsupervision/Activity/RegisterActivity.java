@@ -80,7 +80,8 @@ public class RegisterActivity extends BaseActivity {
         tv_login.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
     }
 
-    @OnClick(R.id.btn_register) void register() {
+    @OnClick(R.id.btn_register)
+    void register() {
         String company = et_company.getText().toString().trim();
         String name = et_name.getText().toString().trim();
         String userName = et_account.getText().toString().trim();
@@ -95,16 +96,16 @@ public class RegisterActivity extends BaseActivity {
             ZSnackBarUtils.showShort(toolBar, "两次输入的密码不相同!");
             return;
         }
-        Map<String,String> map = new HashMap<>();
-        map.put("province",province);
-        map.put("city",city);
-        map.put("district",district);
-        map.put("companyName",company);
-        map.put("name",name);
-        map.put("loginName",userName);
-        map.put("newPassword",passWord);
-        map.put("confirmNewPassword",confirm_pwd);
-        map.put("mobile",phone);
+        Map<String, String> map = new HashMap<>();
+        map.put("province", province);
+        map.put("city", city);
+        map.put("district", district);
+        map.put("companyName", company);
+        map.put("name", name);
+        map.put("loginName", userName);
+        map.put("newPassword", passWord);
+        map.put("confirmNewPassword", confirm_pwd);
+        map.put("mobile", phone);
         showLoadingDialog(R.string.register);
         OkhttpHelper.Post(Constants.REGISTER_URL, map, new OkhttpHelper.PostCallBack() {
             @Override
@@ -114,13 +115,13 @@ public class RegisterActivity extends BaseActivity {
                     JSONObject object = new JSONObject(response);
                     String msg = object.getString("msg");
                     String success = object.getString("success");
-                    if ("true".equalsIgnoreCase(success)){
+                    if ("true".equalsIgnoreCase(success)) {
                         new SweetAlertDialog(RegisterActivity.this, SweetAlertDialog.SUCCESS_TYPE)
                                 .setTitleText("Good job!")
                                 .setContentText("注册成功")
                                 .show();
-                    }else {
-                        new SweetAlertDialog(RegisterActivity.this,SweetAlertDialog.ERROR_TYPE)
+                    } else {
+                        new SweetAlertDialog(RegisterActivity.this, SweetAlertDialog.ERROR_TYPE)
                                 .setTitleText(msg)
                                 .show();
                     }
@@ -138,11 +139,12 @@ public class RegisterActivity extends BaseActivity {
             public void onProgress(long currentSize, long totalSize, float progress, long networkSpeed) {
 
             }
-        },REGISTER);
+        }, REGISTER);
 
     }
 
-    @OnClick(R.id.et_dit) void chooseDit() {
+    @OnClick(R.id.et_dit)
+    void chooseDit() {
         cityPicker = new CityPicker.Builder(RegisterActivity.this).textSize(16)//滚轮文字的大小
                 .title("地区选择")
                 .titleBackgroundColor("#234Dfa") //标题背景
@@ -166,7 +168,7 @@ public class RegisterActivity extends BaseActivity {
                 city = citySelected[1];
                 district = citySelected[2];
                 code = citySelected[3];
-                et_dit.setText(province + city  + district);
+                et_dit.setText(province + city + district);
             }
         });
     }

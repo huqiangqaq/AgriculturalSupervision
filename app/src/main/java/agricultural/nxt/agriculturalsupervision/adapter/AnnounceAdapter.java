@@ -21,7 +21,7 @@ import agricultural.nxt.agriculturalsupervision.entity.ItemModel;
  * Created by huqiang on 2016/12/12 15:04.
  */
 
-public class AnnounceAdapter extends ListBaseAdapter<ItemModel>{
+public class AnnounceAdapter extends ListBaseAdapter<ItemModel> {
 
     private LayoutInflater inflater;
     private Context mContext;

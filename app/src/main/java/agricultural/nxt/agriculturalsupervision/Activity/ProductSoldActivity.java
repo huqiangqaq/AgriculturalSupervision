@@ -33,6 +33,7 @@ public class ProductSoldActivity extends BaseActivity {
     RecyclerView lv_result;
     private List<SeachResult> results = new ArrayList<>();
     private ResultAdapter resultAdapter;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +51,7 @@ public class ProductSoldActivity extends BaseActivity {
         });
         initData();
         lv_result.setLayoutManager(new LinearLayoutManager(this));
-        lv_result.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
+        lv_result.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         lv_result.setItemAnimator(new DefaultItemAnimator());
         resultAdapter = new ResultAdapter(results);
         resultAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN);
@@ -58,16 +59,16 @@ public class ProductSoldActivity extends BaseActivity {
         lv_result.addOnItemTouchListener(new OnItemClickListener() {
             @Override
             public void SimpleOnItemClick(BaseQuickAdapter baseQuickAdapter, View view, int position) {
-                ZToastUtils.showShort(ProductSoldActivity.this, ""+position);
+                ZToastUtils.showShort(ProductSoldActivity.this, "" + position);
             }
         });
     }
 
     private void initData() {
-        results.add(new SeachResult(1,"种子","西瓜","江西省种子公司"));
-        results.add(new SeachResult(2,"种子","苹果","南昌县"));
-        results.add(new SeachResult(3,"种子","菠萝","江西省种子工程有限公司"));
-        results.add(new SeachResult(3,"种子","菠萝","江西省种子工程有限公司"));
+        results.add(new SeachResult(1, "种子", "西瓜", "江西省种子公司"));
+        results.add(new SeachResult(2, "种子", "苹果", "南昌县"));
+        results.add(new SeachResult(3, "种子", "菠萝", "江西省种子工程有限公司"));
+        results.add(new SeachResult(3, "种子", "菠萝", "江西省种子工程有限公司"));
     }
 
     @Override
@@ -75,8 +76,8 @@ public class ProductSoldActivity extends BaseActivity {
         return R.layout.activity_product_sold;
     }
 
-    public static void actionStart(Context context){
-        Intent intent = new Intent(context,ProductSoldActivity.class);
+    public static void actionStart(Context context) {
+        Intent intent = new Intent(context, ProductSoldActivity.class);
         context.startActivity(intent);
     }
 }

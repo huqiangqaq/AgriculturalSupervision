@@ -13,6 +13,7 @@ import butterknife.BindView;
 public class RecodeSearchActivity extends BaseActivity {
     @BindView(R.id.lettoolbar)
     LetToolBar toolBar;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,8 +36,9 @@ public class RecodeSearchActivity extends BaseActivity {
     protected int getLayoutResId() {
         return R.layout.activity_recode_search;
     }
-    public static void actionStart(Context context){
-        Intent intent = new Intent(context,RecodeSearchActivity.class);
+
+    public static void actionStart(Context context) {
+        Intent intent = new Intent(context, RecodeSearchActivity.class);
         context.startActivity(intent);
     }
 }

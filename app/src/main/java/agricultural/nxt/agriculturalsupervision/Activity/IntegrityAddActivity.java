@@ -50,10 +50,11 @@ public class IntegrityAddActivity extends BaseActivity implements OnDateSetListe
     EditText et_vcillegalprod;
     @BindView(R.id.vcdesc)
     EditText et_vcdesc;
-    private String dtarosedate,vcillegalcomp,vcillegalprod,vcdesc,iproducttype;
+    private String dtarosedate, vcillegalcomp, vcillegalprod, vcdesc, iproducttype;
     private List<String> dataset = new LinkedList<>(Arrays.asList("农药", "化肥", "种子"));
     private SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private long tenYears = 10L * 365 * 1000 * 60 * 60 * 24L;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +63,7 @@ public class IntegrityAddActivity extends BaseActivity implements OnDateSetListe
     @Override
     protected void initView() {
         toolBar.setTitle("我要举报");
-        toolBar.setLeftButtonIcon(ContextCompat.getDrawable(this,R.mipmap.icon_arrow_02));
+        toolBar.setLeftButtonIcon(ContextCompat.getDrawable(this, R.mipmap.icon_arrow_02));
         toolBar.setLeftButtonOnClickLinster(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,11 +81,11 @@ public class IntegrityAddActivity extends BaseActivity implements OnDateSetListe
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String staus = dataset.get(position);
-                if ("种子".equalsIgnoreCase(staus)){
+                if ("种子".equalsIgnoreCase(staus)) {
                     iproducttype = "0";
-                }else if ("化肥".equalsIgnoreCase(staus)){
+                } else if ("化肥".equalsIgnoreCase(staus)) {
                     iproducttype = "1";
-                }else if ("农药".equalsIgnoreCase(staus)){
+                } else if ("农药".equalsIgnoreCase(staus)) {
                     iproducttype = "2";
                 }
             }
@@ -109,7 +110,7 @@ public class IntegrityAddActivity extends BaseActivity implements OnDateSetListe
                 .setHourText("时")
                 .setMinuteText("分")
                 .setCyclic(false)
-                .setMinMillseconds(System.currentTimeMillis()-tenYears/2)
+                .setMinMillseconds(System.currentTimeMillis() - tenYears / 2)
                 .setMaxMillseconds(System.currentTimeMillis() + tenYears)
                 .setCurrentMillseconds(System.currentTimeMillis())
                 .setThemeColor(getResources().getColor(R.color.timepicker_toolbar_bg))
@@ -118,7 +119,7 @@ public class IntegrityAddActivity extends BaseActivity implements OnDateSetListe
                 .setWheelItemTextSelectorColor(getResources().getColor(R.color.timepicker_toolbar_bg))
                 .setWheelItemTextSize(18)
                 .build();
-        mDialogAll.show(getSupportFragmentManager(),"all");
+        mDialogAll.show(getSupportFragmentManager(), "all");
     }
 
     @Override
@@ -127,38 +128,39 @@ public class IntegrityAddActivity extends BaseActivity implements OnDateSetListe
     }
 
     //跳转
-    public static void actionStart(Context context){
-        Intent intent = new Intent(context,IntegrityAddActivity.class);
+    public static void actionStart(Context context) {
+        Intent intent = new Intent(context, IntegrityAddActivity.class);
         context.startActivity(intent);
     }
 
-    @OnClick(R.id.btn_save) void Save(){
-        vcillegalcomp  = et_vcillegalcomp.getText().toString().trim();
+    @OnClick(R.id.btn_save)
+    void Save() {
+        vcillegalcomp = et_vcillegalcomp.getText().toString().trim();
         vcillegalprod = et_vcillegalprod.getText().toString().trim();
         vcdesc = et_vcdesc.getText().toString().trim();
-        if (TextUtils.isEmpty(dtarosedate) || TextUtils.isEmpty(vcillegalcomp) ||TextUtils.isEmpty(vcillegalprod) ||TextUtils.isEmpty(vcdesc)
+        if (TextUtils.isEmpty(dtarosedate) || TextUtils.isEmpty(vcillegalcomp) || TextUtils.isEmpty(vcillegalprod) || TextUtils.isEmpty(vcdesc)
                 || TextUtils.isEmpty(iproducttype)) {
-            ZToastUtils.showShort(IntegrityAddActivity.this,"请先填写信息!");
+            ZToastUtils.showShort(IntegrityAddActivity.this, "请先填写信息!");
             return;
         }
-        Map<String,String> map = new HashMap<>();
-        map.put("dtarosedate",dtarosedate);
-        map.put("vcillegalcomp",vcillegalcomp);
-        map.put("vcillegalprod",vcillegalprod);
-        map.put("vcdesc",vcdesc);
-        map.put("iproducttype",iproducttype);
+        Map<String, String> map = new HashMap<>();
+        map.put("dtarosedate", dtarosedate);
+        map.put("vcillegalcomp", vcillegalcomp);
+        map.put("vcillegalprod", vcillegalprod);
+        map.put("vcdesc", vcdesc);
+        map.put("iproducttype", iproducttype);
         showLoadingDialog(R.string.loading);
         OkhttpHelper.Post(Constants.INTEGRITY_ADD, map, new OkhttpHelper.PostCallBack() {
             @Override
             public void onSuccess(String response, int tag) {
                 dismissLoadingDialog();
-                if ("true".equalsIgnoreCase(JsonUtil.PareJson(response))){
+                if ("true".equalsIgnoreCase(JsonUtil.PareJson(response))) {
                     new SweetAlertDialog(IntegrityAddActivity.this, SweetAlertDialog.SUCCESS_TYPE)
                             .setConfirmText("添加成功")
                             .show();
-                }else {
-                    new SweetAlertDialog(IntegrityAddActivity.this,SweetAlertDialog.ERROR_TYPE)
-                            .setConfirmText("添加失败,"+JsonUtil.ParseMsg(response))
+                } else {
+                    new SweetAlertDialog(IntegrityAddActivity.this, SweetAlertDialog.ERROR_TYPE)
+                            .setConfirmText("添加失败," + JsonUtil.ParseMsg(response))
                             .show();
                 }
             }
@@ -172,13 +174,13 @@ public class IntegrityAddActivity extends BaseActivity implements OnDateSetListe
             public void onProgress(long currentSize, long totalSize, float progress, long networkSpeed) {
 
             }
-        },1);
+        }, 1);
 
     }
 
     @Override
     public void onDateSet(TimePickerDialog timePickerView, long millseconds) {
-        dtarosedate= getDateToString(millseconds);
+        dtarosedate = getDateToString(millseconds);
         tv_dtarosedate.setText(dtarosedate);
     }
 
