@@ -3,8 +3,10 @@ package agricultural.nxt.agriculturalsupervision.base;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.TouchDelegate;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
@@ -112,5 +114,26 @@ public abstract class BaseActivity extends AppCompatActivity implements DatePick
     public void dismissloading() {
         if (loadingIndicatorView != null)
             loadingIndicatorView.setVisibility(View.GONE);
+    }
+    /**
+     * 提升点击范围
+     * @param view
+     * @param expandTouchWidth
+     */
+    public void setTouchDelegate(final View view, final int expandTouchWidth) {
+        final View parentView = (View) view.getParent();
+        parentView.post(new Runnable() {
+            @Override
+            public void run() {
+                final Rect rect = new Rect();
+                view.getHitRect(rect);
+                rect.top -= expandTouchWidth;
+                rect.bottom += expandTouchWidth;
+                rect.left -= expandTouchWidth;
+                rect.right += expandTouchWidth;
+                TouchDelegate touchDelegate = new TouchDelegate(rect, view);
+                parentView.setTouchDelegate(touchDelegate);
+            }
+        });
     }
 }

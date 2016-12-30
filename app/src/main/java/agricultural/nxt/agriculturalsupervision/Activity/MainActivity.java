@@ -107,6 +107,7 @@ public class MainActivity extends BaseActivity implements OkhttpHelper.GetCallBa
         menuList = application.getMenuList();
         initTopbar(this,"农资电子监管系统");
         doubleClickExitHelper = new DoubleClickExitHelper(this);
+        setTouchDelegate(iv_all,200);
         getMenuList();
         //添加对应的模块
         addImgResource(list);
@@ -427,6 +428,8 @@ public class MainActivity extends BaseActivity implements OkhttpHelper.GetCallBa
     public void onFailed(String error, int tag) {
 
     }
+
+
 
     @Override
     protected void onResume() {

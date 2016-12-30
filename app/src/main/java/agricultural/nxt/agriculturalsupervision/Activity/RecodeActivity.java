@@ -99,7 +99,7 @@ public class RecodeActivity extends BaseActivity {
             @Override
             public void loadMore() {
                 REQUEST_COUNT+=10;
-                if (mCurrentCounter<TOTAL_COUNTER){
+                if (mCurrentCounter+10<TOTAL_COUNTER){
                     OkhttpHelper.Get(url + REQUEST_COUNT, new OkhttpHelper.GetCallBack() {
                         @Override
                         public void onSuccess(String response, int tag) {
