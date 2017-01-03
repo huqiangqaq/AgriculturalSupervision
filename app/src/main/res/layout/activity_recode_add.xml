@@ -32,6 +32,7 @@
                     android:layout_height="wrap_content"
                     android:text="品种名称"/>
                 <EditText
+                    android:id="@+id/vcvarietyname"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="20dp"
                     android:layout_width="match_parent"
@@ -53,6 +54,7 @@
                     android:layout_height="wrap_content"
                     android:text="种子类别:"/>
                 <EditText
+                    android:id="@+id/vccategory"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="20dp"
                     android:layout_width="match_parent"
@@ -74,6 +76,7 @@
                     android:layout_height="wrap_content"
                     android:text="生产单位:"/>
                 <EditText
+                    android:id="@+id/vcproductionunit"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="20dp"
                     android:layout_width="match_parent"
@@ -95,6 +98,7 @@
                     android:layout_height="wrap_content"
                     android:text="许可证号:"/>
                 <EditText
+                    android:id="@+id/vcbusinesslicense"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="20dp"
                     android:layout_width="match_parent"
@@ -116,6 +120,7 @@
                     android:layout_height="wrap_content"
                     android:text="检疫证书号:"/>
                 <EditText
+                    android:id="@+id/vcquarantineno"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="20dp"
                     android:layout_width="match_parent"
@@ -160,6 +165,7 @@
                     android:layout_height="wrap_content"
                     android:text="种子评价:"/>
                 <EditText
+                    android:id="@+id/vcappraisal"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="20dp"
                     android:layout_width="match_parent"
@@ -181,6 +187,7 @@
                     android:layout_height="wrap_content"
                     android:text="产品条码:"/>
                 <EditText
+                    android:id="@+id/vcuniquecode"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="20dp"
                     android:layout_width="match_parent"
@@ -209,6 +216,7 @@
                     android:background="@drawable/bg_commonet"/>
             </LinearLayout>
             <Button
+                android:id="@+id/btnUpdateAdd"
                 android:layout_marginTop="15dp"
                 android:layout_gravity="center_horizontal"
                 android:text="保存"

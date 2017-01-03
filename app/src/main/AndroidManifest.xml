@@ -56,7 +56,9 @@
 
         <activity android:name=".AllActivity" />
         <activity android:name=".Activity.Integrity.IntegrityDetailActivity" />
-        <activity android:name=".Activity.Integrity.IntegrityCheckActivity"></activity>
+        <activity android:name=".Activity.Integrity.IntegrityCheckActivity" />
+        <activity android:name=".Activity.Seed.SeedDetailActivity" />
+        <activity android:name=".Activity.Seed.SeedUpdateAddActivity"></activity>
     </application>
 
 </manifest>

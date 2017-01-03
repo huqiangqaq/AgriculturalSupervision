@@ -20,6 +20,7 @@ import agricultural.nxt.agriculturalsupervision.Constants;
 import agricultural.nxt.agriculturalsupervision.R;
 import agricultural.nxt.agriculturalsupervision.Util.JsonUtil;
 import agricultural.nxt.agriculturalsupervision.Util.OkhttpHelper;
+import agricultural.nxt.agriculturalsupervision.Widget.LetToolBar;
 import agricultural.nxt.agriculturalsupervision.Widget.NiceSpinner;
 import agricultural.nxt.agriculturalsupervision.base.BaseActivity;
 import butterknife.BindView;
@@ -45,6 +46,8 @@ public class IntegrityCheckActivity extends BaseActivity {
     TextView tv_dtcheckdate;
     @BindView(R.id.btn_save)
     Button btn_save;
+    @BindView(R.id.lettoolbar)
+    LetToolBar toolBar;
     private List<String> dataset = new LinkedList<>(Arrays.asList("审核未通过", "审核通过"));
     private String icheckstatus,vcpunishment,id;
     @Override
@@ -54,6 +57,14 @@ public class IntegrityCheckActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        toolBar.setTitle("诚信审核");
+        toolBar.setLeftButtonIcon(getResources().getDrawable(R.mipmap.icon_arrow_02));
+        toolBar.setLeftButtonOnClickLinster(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         Intent intent = getIntent();
         id = intent.getStringExtra("id");
         tv_dtarosedate.setText(intent.getStringExtra("dtarosedate"));

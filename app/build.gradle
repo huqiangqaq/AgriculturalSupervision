@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda' //加上这句加,入plugin声明
 
 def releaseTime() {
     return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
@@ -29,6 +30,15 @@ android {
     }
     lintOptions{
         abortOnError true
+    }
+    compileOptions {
+        //使用JAVA8语法解析
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    retrolambda {
+        //指定将源码编译的级别，使用下列代码，会将代码编译到兼容1.6的字节码格式
+        javaVersion JavaVersion.VERSION_1_7
     }
     buildTypes {
         debug{

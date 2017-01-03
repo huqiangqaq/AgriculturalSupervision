@@ -37,7 +37,6 @@ public abstract class BaseActivity extends AppCompatActivity implements DatePick
         setContentView(getLayoutResId());
         AppManager.getAppManager().addActivity(this);
         application = MyApplication.getInstance();
-
         ButterKnife.bind(this);
         initView();
     }

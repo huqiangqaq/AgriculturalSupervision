@@ -5,8 +5,8 @@ package agricultural.nxt.agriculturalsupervision;
  */
 
 public interface Constants {
-    String BASE_URL = "http://192.168.10.11:8080/jeesite/a";
-    String URL = "http://192.168.10.11:8080/jeesite";
+    String BASE_URL = "http://zs.yxag.gov.cn:8081/nzgl/a";
+    String URL = "http://zs.yxag.gov.cn:8081/nzgl";
     //登陆http://zs.yxag.gov.cn:8081/nzgl
     String LOGIN_URL = BASE_URL + "/login";
     //退出登陆
@@ -28,4 +28,12 @@ public interface Constants {
     String SEED_RECODE = URL + "/product/appSeed/list?pageNo=1&pageSize=";
     //查看种子备案
     String SEED_RECODE_VIEW = URL + "/product/appSeed/selectList?pageNo=1&pageSize=";
+    String SEED_RECODE_DEL = URL+"/product/appSeed/delete?id=";
+    String SEED_RECODE_DETAIL = URL+"/product/appSeed/form?id=";
+    //修改
+    String SEED_RECODE_UPDATE = URL+"/product/appSeed/save";
+    //添加
+    String SEED_RECODE_ADD = URL+"/product/appSeed/save";
+    //审核
+    String SEED_RECODE_CHECK = URL+"/product/appSeed/checkOK?id=";
 }

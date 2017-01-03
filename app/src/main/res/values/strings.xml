@@ -8,6 +8,7 @@
     <string name="register">注册中...</string>
     <string name="loading">加载中...</string>
     <string name="searching">查询中...</string>
+    <string name="checking">审核中...</string>
     <string name="header_text">The Header</string>
     <string name="footer_text">The Footer</string>
 
