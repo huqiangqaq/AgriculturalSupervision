@@ -1,4 +1,4 @@
-package agricultural.nxt.agriculturalsupervision.Activity;
+package agricultural.nxt.agriculturalsupervision.Activity.fertilizer;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -20,20 +20,19 @@ import com.nxt.zyl.util.ZPreferenceUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-import agricultural.nxt.agriculturalsupervision.Activity.Seed.SeedUpdateAddActivity;
 import agricultural.nxt.agriculturalsupervision.Constants;
 import agricultural.nxt.agriculturalsupervision.R;
 import agricultural.nxt.agriculturalsupervision.Util.CircularAnimUtil;
 import agricultural.nxt.agriculturalsupervision.Util.JsonUtil;
 import agricultural.nxt.agriculturalsupervision.Util.OkhttpHelper;
 import agricultural.nxt.agriculturalsupervision.Widget.LetToolBar;
-import agricultural.nxt.agriculturalsupervision.adapter.SeedAdapter;
+import agricultural.nxt.agriculturalsupervision.adapter.FertilizerAdapter;
 import agricultural.nxt.agriculturalsupervision.base.BaseActivity;
-import agricultural.nxt.agriculturalsupervision.entity.Seed;
+import agricultural.nxt.agriculturalsupervision.entity.Fertilizer;
 import butterknife.BindView;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
-public class RecodeActivity extends BaseActivity {
+public class FertilizerActivity extends BaseActivity {
     @BindView(R.id.lettoolbar)
     LetToolBar toolBar;
     @BindView(R.id.lv_integrity)
@@ -55,11 +54,10 @@ public class RecodeActivity extends BaseActivity {
      * 已经获取到多少条数据了
      */
     private static int mCurrentCounter = 0;
-    private List<Seed.ListBean> dataList = new ArrayList<>();
-    private static SeedAdapter adapter = null;
+    private List<Fertilizer.ListBean> dataList = new ArrayList<>();
+    private static FertilizerAdapter adapter = null;
     private PtrClassicFrameLayout ptrClassicFrameLayout = null;
     private String url = null;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,25 +65,23 @@ public class RecodeActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        toolBar.setTitle("种子备案");
+        toolBar.setTitle("化肥备案");
         toolBar.setLeftButtonIcon(getResources().getDrawable(R.mipmap.icon_arrow_02));
         toolBar.setLeftButtonOnClickLinster(v -> finish());
         ptrClassicFrameLayout = (PtrClassicFrameLayout) this.findViewById(R.id.test_list_view_frame);
         ptrClassicFrameLayout.setLastUpdateTimeRelateObject(this);
         if (ZPreferenceUtils.getPrefBoolean("查看", false)) {
-            url = Constants.SEED_RECODE_VIEW;
+            url = Constants.FERTILIZER_RECODE_VIEW;
         } else {
-            url = Constants.SEED_RECODE;
+            url = Constants.FERTILIZER_RECODE;
         }
         fab.setOnClickListener(v -> fabAction());
         initData();
-
     }
-
     private void fabAction() {
-        Intent intent = new Intent(RecodeActivity.this, SeedUpdateAddActivity.class);
+        Intent intent = new Intent(FertilizerActivity.this, FertilizerUpdateAddActivity.class);
         intent.putExtra("type", "add");
-        CircularAnimUtil.startActivity(RecodeActivity.this, intent, fab,
+        CircularAnimUtil.startActivity(FertilizerActivity.this, intent, fab,
                 R.color.common_color);
     }
 
@@ -98,9 +94,11 @@ public class RecodeActivity extends BaseActivity {
                     @Override
                     public void onSuccess(String response, int tag) {
                         if (response != null) {
-                            Seed seed = new Gson().fromJson(response, Seed.class);
-                            dataList = seed.getList();
-                            adapter.notifyDataSetChanged();
+                            Fertilizer pesticide = new Gson().fromJson(response, Fertilizer.class);
+                            dataList = pesticide.getList();
+                            if (dataList!=null){
+                                adapter.notifyDataSetChanged();
+                            }
                             ptrClassicFrameLayout.refreshComplete();
                             ptrClassicFrameLayout.setLoadMoreEnable(true);
                         }
@@ -123,9 +121,9 @@ public class RecodeActivity extends BaseActivity {
                         @Override
                         public void onSuccess(String response, int tag) {
                             if (response != null) {
-                                Seed seed = new Gson().fromJson(response, Seed.class);
+                                Fertilizer fertilizer = new Gson().fromJson(response, Fertilizer.class);
                                 dataList.clear();
-                                dataList.addAll(seed.getList());
+                                dataList.addAll(fertilizer.getList());
                                 adapter.notifyDataSetChanged();
                                 ptrClassicFrameLayout.loadMoreComplete(true);
                                 mCurrentCounter = dataList.size();
@@ -149,17 +147,21 @@ public class RecodeActivity extends BaseActivity {
         OkhttpHelper.Get(url + REQUEST_COUNT, new OkhttpHelper.GetCallBack() {
             @Override
             public void onSuccess(String response, int tag) {
-                Seed seed = new Gson().fromJson(response, Seed.class);
-                dataList = seed.getList();
-                TOTAL_COUNTER = seed.getCount();
-                adapter = new SeedAdapter(RecodeActivity.this, dataList);
-                adapter.setSwipeCheck(new SeedAdapter.onSwipeCheck() {
-                    @Override
-                    public void onCheck(int postion, SwipeMenuLayout finalConvertView) {
-                        check(postion, finalConvertView);
-                    }
-                });
-                lv_integrity.setAdapter(adapter);
+                Fertilizer fertilizer = new Gson().fromJson(response, Fertilizer.class);
+                dataList = fertilizer.getList();
+                if (dataList!=null){
+                    TOTAL_COUNTER = fertilizer.getCount();
+                    adapter = new FertilizerAdapter(FertilizerActivity.this, dataList);
+                    adapter.setSwipeCheck(new FertilizerAdapter.onSwipeCheck() {
+                        @Override
+                        public void onCheck(int postion, SwipeMenuLayout finalConvertView) {
+                            check(postion,finalConvertView);
+                        }
+                    });
+
+                    lv_integrity.setAdapter(adapter);
+                }
+
                 ptrClassicFrameLayout.autoRefresh(true);
             }
 
@@ -170,44 +172,27 @@ public class RecodeActivity extends BaseActivity {
         }, 1);
     }
 
-    @Override
-    protected int getLayoutResId() {
-        return R.layout.activity_recode;
-    }
-
-    public static void actionStart(Context context) {
-        Intent intent = new Intent(context, RecodeActivity.class);
-        context.startActivity(intent);
-
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        refresh();
-    }
-
     private void check(int postion, SwipeMenuLayout finalConvertView) {
-        new AlertDialog.Builder(RecodeActivity.this)
+        new AlertDialog.Builder(FertilizerActivity.this)
                 .setTitle("系统提示")
-                .setMessage("确定审批该种子备案吗?")
+                .setMessage("确定审批该化肥备案吗?")
                 .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String id = dataList.get(postion).getId();
                         showLoadingDialog(R.string.checking);
-                        OkhttpHelper.Get(Constants.SEED_RECODE_CHECK + id, new OkhttpHelper.GetCallBack() {
+                        OkhttpHelper.Get(Constants.FERTILIZER_CHECK + id, new OkhttpHelper.GetCallBack() {
                             @Override
                             public void onSuccess(String response, int tag) {
                                 dismissLoadingDialog();
                                 if (TextUtils.equals(JsonUtil.PareJson(response), "true")) {
-                                    new SweetAlertDialog(RecodeActivity.this, SweetAlertDialog.SUCCESS_TYPE)
+                                    new SweetAlertDialog(FertilizerActivity.this, SweetAlertDialog.SUCCESS_TYPE)
                                             .setConfirmText("审核成功")
                                             .show();
                                     finalConvertView.quickClose();
                                     refresh();
                                 } else {
-                                    new SweetAlertDialog(RecodeActivity.this, SweetAlertDialog.ERROR_TYPE)
+                                    new SweetAlertDialog(FertilizerActivity.this, SweetAlertDialog.ERROR_TYPE)
                                             .setConfirmText("审核失败," + JsonUtil.ParseMsg(response))
                                             .show();
                                 }
@@ -221,5 +206,21 @@ public class RecodeActivity extends BaseActivity {
                     }
                 }).setNegativeButton("取消", (dialog, which) -> dialog.dismiss()).show();
 
+    }
+
+    public static void actionStart(Context context) {
+        Intent intent = new Intent(context, FertilizerActivity.class);
+        context.startActivity(intent);
+
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        refresh();
+    }
+
+    @Override
+    protected int getLayoutResId() {
+        return R.layout.activity_fertilizer;
     }
 }

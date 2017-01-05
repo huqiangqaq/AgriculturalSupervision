@@ -64,19 +64,10 @@ public class IntegrityAddActivity extends BaseActivity implements OnDateSetListe
     protected void initView() {
         toolBar.setTitle("我要举报");
         toolBar.setLeftButtonIcon(ContextCompat.getDrawable(this, R.mipmap.icon_arrow_02));
-        toolBar.setLeftButtonOnClickLinster(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        toolBar.setLeftButtonOnClickLinster(v -> finish());
         sp_iproducttype.attachDataSource(dataset);
-        tv_dtarosedate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showTimePickDialog();
-            }
-        });
+        tv_dtarosedate.setOnClickListener(v -> showTimePickDialog());
+
         sp_iproducttype.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

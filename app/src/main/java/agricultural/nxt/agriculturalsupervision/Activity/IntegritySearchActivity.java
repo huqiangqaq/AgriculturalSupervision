@@ -57,12 +57,8 @@ public class IntegritySearchActivity extends BaseActivity {
     protected void initView() {
         toolBar.setTitle("查诚信");
         toolBar.setLeftButtonIcon(getResources().getDrawable(R.mipmap.icon_arrow_02));
-        toolBar.setLeftButtonOnClickLinster(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        toolBar.setLeftButtonOnClickLinster(v -> finish());
+
         //点击键盘搜索
         et_search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override

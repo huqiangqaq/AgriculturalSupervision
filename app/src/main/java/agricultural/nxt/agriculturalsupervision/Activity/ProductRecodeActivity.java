@@ -13,6 +13,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import agricultural.nxt.agriculturalsupervision.Activity.fertilizer.FertilizerActivity;
+import agricultural.nxt.agriculturalsupervision.Activity.pesticide.PesticideActivity;
 import agricultural.nxt.agriculturalsupervision.Constants;
 import agricultural.nxt.agriculturalsupervision.R;
 import agricultural.nxt.agriculturalsupervision.Util.OkhttpHelper;
@@ -123,16 +125,16 @@ public class ProductRecodeActivity extends BaseActivity {
      * 农药备案
      */
     @OnClick(R.id.rl_product_pesticide)
-    void batch() {
-
+    void pesticide() {
+        PesticideActivity.actionStart(this);
     }
 
     /**
      * 化肥备案
      */
     @OnClick(R.id.rl_product_fertilizer)
-    void security() {
-
+    void fertilizer() {
+        FertilizerActivity.actionStart(this);
     }
 
     @Override

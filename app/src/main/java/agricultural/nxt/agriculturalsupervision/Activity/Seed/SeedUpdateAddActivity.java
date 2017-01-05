@@ -51,6 +51,7 @@ public class SeedUpdateAddActivity extends BaseActivity {
     private String id = null;
     private boolean isUpdate = false;
     private List<String> dataset = new LinkedList<>(Arrays.asList("非转基因", "转基因"));
+    private String url = null;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,12 +60,8 @@ public class SeedUpdateAddActivity extends BaseActivity {
     @Override
     protected void initView() {
         toolBar.setLeftButtonIcon(getResources().getDrawable(R.mipmap.icon_arrow_02));
-        toolBar.setLeftButtonOnClickLinster(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        toolBar.setLeftButtonOnClickLinster(v -> finish());
+
         sp_btransgene.attachDataSource(dataset);
         Intent intent = getIntent();
         String type = intent.getStringExtra("type");
@@ -73,6 +70,7 @@ public class SeedUpdateAddActivity extends BaseActivity {
         }
         toolBar.setTitle("update".equalsIgnoreCase(type)?"种子备案修改":"种子备案添加");
         if (isUpdate){
+            btnUpdateAdd.setText("修改");
             id = intent.getStringExtra("id");
             String vcvarietyname = intent.getStringExtra("vcvarietyname");
             String vccategory = intent.getStringExtra("vccategory");
@@ -130,7 +128,12 @@ public class SeedUpdateAddActivity extends BaseActivity {
         map.put("vcuniquecode",vcuniquecode);
         map.put("vcappraisal",vcappraisal);
         showLoadingDialog(R.string.LOADING);
-        OkhttpHelper.Post(Constants.SEED_RECODE_UPDATE, map, new OkhttpHelper.PostCallBack() {
+        if (isUpdate){
+            url = Constants.SEED_RECODE_UPDATE;
+        }else {
+            url = Constants.SEED_RECODE_ADD;
+        }
+        OkhttpHelper.Post(url, map, new OkhttpHelper.PostCallBack() {
             @Override
             public void onSuccess(String response, int tag) {
                 dismissLoadingDialog();

@@ -59,12 +59,7 @@ public class IntegrityCheckActivity extends BaseActivity {
     protected void initView() {
         toolBar.setTitle("诚信审核");
         toolBar.setLeftButtonIcon(getResources().getDrawable(R.mipmap.icon_arrow_02));
-        toolBar.setLeftButtonOnClickLinster(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        toolBar.setLeftButtonOnClickLinster(v -> finish());
         Intent intent = getIntent();
         id = intent.getStringExtra("id");
         tv_dtarosedate.setText(intent.getStringExtra("dtarosedate"));

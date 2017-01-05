@@ -2,7 +2,6 @@ package agricultural.nxt.agriculturalsupervision.Activity.Integrity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -47,12 +46,8 @@ public class IntegrityDetailActivity extends BaseActivity {
     protected void initView() {
         toolBar.setTitle("诚信详情");
         toolBar.setLeftButtonIcon(getResources().getDrawable(R.mipmap.icon_arrow_02));
-        toolBar.setLeftButtonOnClickLinster(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        toolBar.setLeftButtonOnClickLinster(v -> finish());
+
         getData();
     }
 

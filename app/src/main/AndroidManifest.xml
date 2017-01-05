@@ -58,7 +58,13 @@
         <activity android:name=".Activity.Integrity.IntegrityDetailActivity" />
         <activity android:name=".Activity.Integrity.IntegrityCheckActivity" />
         <activity android:name=".Activity.Seed.SeedDetailActivity" />
-        <activity android:name=".Activity.Seed.SeedUpdateAddActivity"></activity>
+        <activity android:name=".Activity.Seed.SeedUpdateAddActivity" />
+        <activity android:name=".Activity.pesticide.PesticideActivity" />
+        <activity android:name=".Activity.pesticide.PesticideUpdateAddActivity" />
+        <activity android:name=".Activity.pesticide.PesticideDetailActivity" />
+        <activity android:name=".Activity.fertilizer.FertilizerActivity" />
+        <activity android:name=".Activity.fertilizer.FertilizerDetailActivity" />
+        <activity android:name=".Activity.fertilizer.FertilizerUpdateAddActivity"></activity>
     </application>
 
 </manifest>
