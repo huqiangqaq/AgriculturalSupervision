@@ -118,4 +118,6 @@ dependencies {
     compile project(':cptr')
     compile 'com.github.mcxtzhang:SwipeDelMenuLayout:V1.2.5'
     compile 'com.jzxiang.pickerview:TimePickerDialog:1.0.1'
+    compile files('libs/BaiduLBS_Android.jar')
+    compile project(':PhotoPicker')
 }

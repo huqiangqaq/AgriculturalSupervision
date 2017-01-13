@@ -80,6 +80,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:orientation="horizontal"
@@ -287,13 +288,16 @@
                     android:background="@color/line" />
 
                 <LinearLayout
+                    android:id="@+id/ll_line"
+                    android:visibility="visible"
                     android:layout_width="match_parent"
                     android:layout_height="15dp"
                     android:background="#eeeeee"
                     android:orientation="horizontal">
                 </LinearLayout>
                 <LinearLayout
-                    android:background="@color/white"
+                    android:visibility="visible"
+                    android:id="@+id/ll"
                     android:gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="145dp"
@@ -310,7 +314,6 @@
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:background="@mipmap/buy"
                             android:gravity="center" />
 
                         <TextView
@@ -318,7 +321,6 @@
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:background="@mipmap/entrprise_bg"
                             android:gravity="center"
                             android:id="@+id/tv_05" />
 
@@ -329,7 +331,6 @@
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:background="@mipmap/pesticide_bg"
                             android:gravity="center" />
 
                         <TextView
@@ -338,7 +339,6 @@
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:background="@mipmap/electronic"
                             android:gravity="center"
                             android:layout_marginRight="5dp"/>
 

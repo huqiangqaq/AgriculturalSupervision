@@ -158,4 +158,5 @@
     <color name="color_ff4a57">#ff4a57</color>
     <color name="griditems_bg">#ffe8ecef</color>
     <color name="commo_text_color">#ff333333</color>
+    <color name="test">#eeeeee</color>
 </resources>

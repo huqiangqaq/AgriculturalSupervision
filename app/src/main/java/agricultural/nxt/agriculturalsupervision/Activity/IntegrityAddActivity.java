@@ -66,6 +66,7 @@ public class IntegrityAddActivity extends BaseActivity implements OnDateSetListe
         toolBar.setLeftButtonIcon(ContextCompat.getDrawable(this, R.mipmap.icon_arrow_02));
         toolBar.setLeftButtonOnClickLinster(v -> finish());
         sp_iproducttype.attachDataSource(dataset);
+        sp_iproducttype.setSelectedIndex(0);
         tv_dtarosedate.setOnClickListener(v -> showTimePickDialog());
 
         sp_iproducttype.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

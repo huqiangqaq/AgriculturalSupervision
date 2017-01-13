@@ -3,9 +3,17 @@ package agricultural.nxt.agriculturalsupervision.Activity.pesticide;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.cache.CacheMode;
+import com.lzy.okgo.callback.StringCallback;
 import com.nxt.zyl.util.ZToastUtils;
 
 import java.util.HashMap;
@@ -17,9 +25,12 @@ import agricultural.nxt.agriculturalsupervision.Util.JsonUtil;
 import agricultural.nxt.agriculturalsupervision.Util.OkhttpHelper;
 import agricultural.nxt.agriculturalsupervision.Widget.LetToolBar;
 import agricultural.nxt.agriculturalsupervision.base.BaseActivity;
+import agricultural.nxt.agriculturalsupervision.entity.PesticideLib;
 import butterknife.BindView;
 import butterknife.OnClick;
 import cn.pedant.SweetAlert.SweetAlertDialog;
+import okhttp3.Call;
+import okhttp3.Response;
 
 public class PesticideUpdateAddActivity extends BaseActivity {
     @BindView(R.id.lettoolbar)
@@ -51,6 +62,7 @@ public class PesticideUpdateAddActivity extends BaseActivity {
     private String id = null;
     private boolean isUpdate = false;
     private String url = null;
+    private String grantNo = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -81,8 +93,60 @@ public class PesticideUpdateAddActivity extends BaseActivity {
             vcbrand.setText(intent.getStringExtra("vcbrand"));
             vcspec.setText(intent.getStringExtra("vcspec"));
             vcuniquecode.setText(intent.getStringExtra("vcuniquecode"));
+        } else {
+            grantNo = vcgrantno.getText().toString().trim();
+            vcgrantno.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                @Override
+                public void onFocusChange(View v, boolean hasFocus) {
+                    if (!hasFocus){ //失去焦点
+                        search();
+                    }
+                }
+            });
+            //点击键盘完成
+            vcgrantno.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                @Override
+                public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                    if (actionId== EditorInfo.IME_ACTION_DONE){
+                        search();
+                    }
+                    return false;
+                }
+            });
+
         }
     }
+
+    private void search() {
+        grantNo = vcgrantno.getText().toString().trim();
+        if (grantNo != null) {
+                OkGo.get(Constants.APPPESTICIDELIB + grantNo)
+                        .tag(this)
+                        .cacheMode(CacheMode.DEFAULT)
+                        .execute(new StringCallback() {
+                            @Override
+                            public void onSuccess(String s, Call call, Response response) {
+                                if (s != null) {
+                                    PesticideLib lib = new Gson().fromJson(s, PesticideLib.class);
+                                    if (lib.getName()!=null){
+                                        if (!btnUpdateAdd.isEnabled()){
+                                           btnUpdateAdd.setEnabled(true);
+                                        }
+                                        vcpesticidename.setText(lib.getName());
+                                        vcproductunit.setText(lib.getCompanyName());
+                                        vcdescription.setText(lib.getCompositionAndContent());
+                                        vcinstructions.setText(lib.getApplicationMethod());
+                                        vcstandards.setText(lib.getDosage());
+                                    }else {
+                                        ZToastUtils.showShort(PesticideUpdateAddActivity.this,"该产品不存在,请重新填写正确的登记证号");
+                                        btnUpdateAdd.setEnabled(false);
+                                    }
+                                }
+                            }
+                        });
+            }
+    }
+
 
     @Override
     protected int getLayoutResId() {
@@ -144,6 +208,7 @@ public class PesticideUpdateAddActivity extends BaseActivity {
 
                 }
             }
+
             @Override
             public void onFailed(String error, int tag) {
 
@@ -155,4 +220,37 @@ public class PesticideUpdateAddActivity extends BaseActivity {
             }
         }, 1);
     }
+
+//    private TextWatcher textWatcher = new TextWatcher() {
+//        @Override
+//        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//        }
+//
+//        @Override
+//        public void onTextChanged(CharSequence s, int start, int before, int count) {
+//
+//        }
+//
+//        @Override
+//        public void afterTextChanged(Editable s) {
+//            String text = s.toString();
+//            if (text != null) {
+//                OkGo.get(Constants.APPPESTICIDELIB + text)
+//                        .tag(this)
+//                        .cacheMode(CacheMode.DEFAULT)
+//                        .execute(new StringCallback() {
+//                            @Override
+//                            public void onSuccess(String s, Call call, Response response) {
+//                                if (s != null) {
+//                                    PesticideLib lib = new Gson().fromJson(s, PesticideLib.class);
+//                                    vcpesticidename.setText(lib.getName());
+//                                    vcproductunit.setText(lib.getCompanyName());
+////                                    vcdescription.setText(lib.getde);
+//                                }
+//                            }
+//                        });
+//            }
+//        }
+//    };
 }

@@ -22,6 +22,7 @@ import com.nxt.zyl.util.ZToastUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import agricultural.nxt.agriculturalsupervision.Activity.company.MenuActivity;
 import agricultural.nxt.agriculturalsupervision.AllActivity;
 import agricultural.nxt.agriculturalsupervision.Constants;
 import agricultural.nxt.agriculturalsupervision.R;
@@ -84,6 +85,10 @@ public class MainActivity extends BaseActivity implements OkhttpHelper.GetCallBa
     TextView tv_07;
     @BindView(R.id.pb_integrity)
     ProgressBar pb_integrity;
+    @BindView(R.id.ll)
+    LinearLayout ll;
+    @BindView(R.id.ll_line)
+    LinearLayout ll_line;
     private DoubleClickExitHelper doubleClickExitHelper;
     private ArrayList<String> list = new ArrayList<>();
     private List<LoginReturn.MenuListBean> menuList = new ArrayList<>();
@@ -170,6 +175,7 @@ public class MainActivity extends BaseActivity implements OkhttpHelper.GetCallBa
     }
 
     private void getMenuList() {
+
         for (int i = 0; i < menuList.size(); i++) {
             for (int j = 0; j < menuText.length; j++) {
                 if (menuList.get(i).getName().contains(menuText[j])) {
@@ -184,6 +190,11 @@ public class MainActivity extends BaseActivity implements OkhttpHelper.GetCallBa
         views.add(tv_05);
         views.add(tv_06);
         views.add(tv_07);
+        if (list.size()<3){
+            ll.clearAnimation();
+            ll.setVisibility(View.GONE);
+            ll_line.setVisibility(View.GONE);
+        }
     }
 
     private void initRes(List<String> list, List<TextView> tv, List<Integer> resId) {
@@ -268,7 +279,7 @@ public class MainActivity extends BaseActivity implements OkhttpHelper.GetCallBa
 
     @OnClick(R.id.tv_06)
     void recodeSearch() {
-        RecodeSearchActivity.actionStart(this);
+        StartAction(list.get(5));
     }
 
     @OnClick(R.id.tv_07)
@@ -438,7 +449,7 @@ public class MainActivity extends BaseActivity implements OkhttpHelper.GetCallBa
         } else if ("农资产品购进".equalsIgnoreCase(content)) {
             ZToastUtils.showShort(this, content);
         } else if ("企业管理".equalsIgnoreCase(content)) {
-            ZToastUtils.showShort(this, content);
+            MenuActivity.actionStart(this);
         } else if ("农药库管理".equalsIgnoreCase(content)) {
             ZToastUtils.showShort(this, content);
         } else if ("电子处方".equalsIgnoreCase(content)) {

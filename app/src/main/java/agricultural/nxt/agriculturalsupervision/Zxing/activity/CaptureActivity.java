@@ -25,7 +25,6 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -88,20 +87,20 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setContentView(R.layout.activity_capture);
-        letToolBar = (LetToolBar) findViewById(R.id.lettoolbar);
+//        letToolBar = (LetToolBar) findViewById(R.id.lettoolbar);
         scanPreview = (SurfaceView) findViewById(R.id.capture_preview);
         scanContainer = (RelativeLayout) findViewById(R.id.capture_container);
         scanCropView = (RelativeLayout) findViewById(R.id.capture_crop_view);
         scanLine = (ImageView) findViewById(R.id.capture_scan_line);
 
-        letToolBar.setTitle("二维码扫描");
-        letToolBar.setLeftButtonIcon(getResources().getDrawable(R.mipmap.icon_arrow_02));
-        letToolBar.setLeftButtonOnClickLinster(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+//        letToolBar.setTitle("二维码扫描");
+//        letToolBar.setLeftButtonIcon(getResources().getDrawable(R.mipmap.icon_arrow_02));
+//        letToolBar.setLeftButtonOnClickLinster(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                finish();
+//            }
+//        });
         inactivityTimer = new InactivityTimer(this);
         beepManager = new BeepManager(this);
 

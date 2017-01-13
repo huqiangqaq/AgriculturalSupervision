@@ -252,7 +252,7 @@
                     style="@style/commontext"
                     android:layout_width="90dp"
                     android:layout_height="wrap_content"
-                    android:text="产品唯一编号:"/>
+                    android:text="唯一编号:"/>
                 <EditText
                     android:id="@+id/vcuniquecode"
                     android:layout_marginLeft="5dp"

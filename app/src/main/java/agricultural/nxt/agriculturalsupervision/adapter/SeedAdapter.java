@@ -102,7 +102,7 @@ public class SeedAdapter extends BaseAdapter {
         seed = list.get(position);
         holder.tv_vcvarietyname.setText(seed.getVcvarietyname());
         holder.tv_vccategory.setText(seed.getVccategory());
-        holder.tv_icheckstatus.setText(seed.getIcheckstatus());
+        holder.tv_icheckstatus.setText("-1".equalsIgnoreCase(seed.getIcheckstatus())?"未审核":"已审核");
         holder.tv_vcorgname.setText(seed.getOwner().getVcorgname());
         String status = list.get(position).getIcheckstatus();
         map.put(position,status);
@@ -142,7 +142,7 @@ public class SeedAdapter extends BaseAdapter {
         //详情
         holder.btn_detail.setOnClickListener(v -> detail(position,finalConvertView));
         //修改
-        holder.btn_update.setOnClickListener(v ->update(finalConvertView));
+        holder.btn_update.setOnClickListener(v ->update(position,finalConvertView));
 
         //审核
         holder.btn_check.setOnClickListener(v -> swipeCheck.onCheck(position,finalConvertView));
@@ -157,8 +157,9 @@ public class SeedAdapter extends BaseAdapter {
         mContext.startActivity(intent);
     }
 
-    private void update(SwipeMenuLayout finalConvertView) {
+    private void update(int postion,SwipeMenuLayout finalConvertView) {
         finalConvertView.quickClose();
+        Seed.ListBean seed =list.get(postion);
         Intent intent = new Intent(mContext, SeedUpdateAddActivity.class);
         intent.putExtra("type","update");
         intent.putExtra("id",seed.getId());

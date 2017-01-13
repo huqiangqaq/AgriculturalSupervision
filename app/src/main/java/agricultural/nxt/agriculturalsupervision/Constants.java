@@ -7,6 +7,7 @@ package agricultural.nxt.agriculturalsupervision;
 public interface Constants {
     String BASE_URL = "http://zs.yxag.gov.cn:8081/nzgl/a";
     String URL = "http://zs.yxag.gov.cn:8081/nzgl";
+    String IMG_HEAD = "http://zs.yxag.gov.cn:8081";
     //登陆http://zs.yxag.gov.cn:8081/nzgl
     String LOGIN_URL = BASE_URL + "/login";
     //退出登陆
@@ -24,6 +25,10 @@ public interface Constants {
     String INTEGRITY_ADD = URL + "/credit/appIllegalinfo/save";
     String INTEGRITY_CHECK = URL + "/credit/appIllegalinfo/check";
     String INTEGRITY_SEARCH = URL + "/credit/appIllegalinfo/list";
+
+    /**
+     * 种子
+     */
     //种子备案
     String SEED_RECODE = URL + "/product/appSeed/list?pageNo=1&pageSize=";
     //查看种子备案
@@ -39,6 +44,9 @@ public interface Constants {
     //审核
     String SEED_RECODE_CHECK = URL+"/product/appSeed/checkOK?id=";
 
+    /**
+     * 农药
+     */
     //农药备案
     String PESTICIDE_RECODE = URL+ "/product/appPesticide/list?pageNo=1&pageSize=";
     //查看农药备案
@@ -54,6 +62,9 @@ public interface Constants {
     //审核
     String PESTICIDE_CHECK = URL+"/product/appPesticide/checkOK?id=";
 
+    /**
+     * 化肥
+     */
     //化肥备案
     String FERTILIZER_RECODE = URL+"/product/appFertilizer/list?pageNo=1&pageSize=";
     //查看化肥备案
@@ -68,4 +79,17 @@ public interface Constants {
     String FERTILIZER_UPDATE = URL+"/product/appFertilizer/save";
     //添加
     String FERTILIZER_ADD = URL+"/product/appFertilizer/save";
+
+
+
+    //企业管理
+    String COMPANY_MANAGER = URL+"/company/appOwner/ownerdetail";
+    String COMPANY_SAVE = URL+"/company/appOwner/save";
+    String COMPANY_UPTOCHECK = URL+"/company/appOwner/upTocheck";
+    String COMPANY_VIEW = URL+"/company/appOwner/list?pageNo=1&pageSize=";
+    String COMPANY_VIEWFORCHECK = URL+"/company/appOwner/listForCheck?pageNo=1&pageSize=";
+    String COMPANY_DEL = URL+"/company/appOwner/delete?id=";
+    String COMPANY_CHECK = URL+"/company/appOwner/checkOwner?id=";
+    //农药库
+    String APPPESTICIDELIB = URL+"/product/appPesticidelib/form?id=";
 }

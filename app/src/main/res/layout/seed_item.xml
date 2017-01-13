@@ -128,7 +128,6 @@
         android:text="审核"
         android:textColor="@android:color/white"/>
     <Button
-        android:visibility="gone"
         android:id="@+id/btn_del"
         android:layout_width="60dp"
         android:layout_height="match_parent"

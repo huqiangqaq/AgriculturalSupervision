@@ -25,6 +25,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import agricultural.nxt.agriculturalsupervision.Activity.company.CompanyAddActivity;
 import agricultural.nxt.agriculturalsupervision.Application.MyApplication;
 import agricultural.nxt.agriculturalsupervision.Constants;
 import agricultural.nxt.agriculturalsupervision.R;
@@ -118,6 +119,11 @@ public class LoginActivity extends BaseActivity {
                     LoginReturn loginReturn = new Gson().fromJson(response, LoginReturn.class);
                     application.setUserInfo(loginReturn.getUserInfo());
                     application.setMenuList(loginReturn.getMenuList());
+                    if ("true".equalsIgnoreCase(loginReturn.getCheckstatus())){
+                        ZPreferenceUtils.setPrefBoolean("usercheck",false);
+                    }else {
+                        ZPreferenceUtils.setPrefBoolean("usercheck",true);
+                    }
                     //保存id信息
                     for (int i = 0; i < application.getMenuList().size(); i++) {
                         String name = application.getMenuList().get(i).getName();
@@ -140,10 +146,15 @@ public class LoginActivity extends BaseActivity {
                             ZPreferenceUtils.setPrefString("销售员管理", id);
                         }
                     }
+                    if (ZPreferenceUtils.getPrefBoolean("usercheck",false)){
+                        startActivity(new Intent(LoginActivity.this, CompanyAddActivity.class));
+                        return;
+                    }
                     ZToastUtils.showShort(LoginActivity.this, "登陆成功");
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                         startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(LoginActivity.this).toBundle());
+
                     } else {
                         startActivity(intent);
                     }
