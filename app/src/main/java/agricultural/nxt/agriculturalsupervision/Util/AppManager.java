@@ -33,7 +33,7 @@ public class AppManager {
      */
     public void addActivity(Activity activity) {
         if (activityStack == null) {
-            activityStack = new Stack<Activity>();
+            activityStack = new Stack<>();
         }
         activityStack.add(activity);
     }
@@ -42,8 +42,7 @@ public class AppManager {
      * 获取当前Activity（堆栈中最后一个压入的）
      */
     public Activity currentActivity() {
-        Activity activity = activityStack.lastElement();
-        return activity;
+        return activityStack.lastElement();
     }
 
     /**
@@ -57,7 +56,7 @@ public class AppManager {
     /**
      * 结束指定的Activity
      */
-    public void finishActivity(Activity activity) {
+    private void finishActivity(Activity activity) {
         if (activity != null && !activity.isFinishing()) {
             activityStack.remove(activity);
             activity.finish();
@@ -80,7 +79,7 @@ public class AppManager {
     /**
      * 结束所有Activity
      */
-    public void finishAllActivity() {
+    private void finishAllActivity() {
         for (int i = 0, size = activityStack.size(); i < size; i++) {
             if (null != activityStack.get(i)) {
                 //finishActivity方法中的activity.isFinishing()方法会导致某些activity无法销毁

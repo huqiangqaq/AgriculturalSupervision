@@ -1,1 +1,1 @@
-include ':app', ':zlibrary', ':citypickerview', ':LRecyclerview_library', ':cptr', ':PhotoPicker'
+include ':app', ':zlibrary', ':citypickerview', ':cptr', ':PhotoPicker'

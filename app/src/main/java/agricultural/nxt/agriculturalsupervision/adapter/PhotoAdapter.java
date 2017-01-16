@@ -18,7 +18,7 @@ import me.iwf.photopicker.utils.AndroidLifecycleUtils;
  */
 public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.PhotoViewHolder> {
 
-  private ArrayList<String> photoPaths = new ArrayList<String>();
+  private ArrayList<String> photoPaths = new ArrayList<>();
   private LayoutInflater inflater;
 
   private Context mContext;

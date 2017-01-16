@@ -3,6 +3,7 @@ package agricultural.nxt.agriculturalsupervision.Activity.company;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -136,7 +137,7 @@ public class CompanyActivity extends BaseActivity implements BaiduMap.OnMapTouch
     protected void initView() {
         application = MyApplication.getInstance();
         toolBar.setTitle("企业备案");
-        toolBar.setLeftButtonIcon(getResources().getDrawable(R.mipmap.icon_arrow_02));
+        toolBar.setLeftButtonIcon(ContextCompat.getDrawable(this,R.mipmap.icon_arrow_02));
         toolBar.setLeftButtonOnClickLinster(v -> finish());
         mBaiduMap = mapview.getMap();
         MapStatusUpdate msu = MapStatusUpdateFactory.zoomTo(15.0f);
@@ -176,7 +177,7 @@ public class CompanyActivity extends BaseActivity implements BaiduMap.OnMapTouch
 
                     @Override
                     public void onGetReverseGeoCodeResult(ReverseGeoCodeResult reverseGeoCodeResult) {
-                        String result = reverseGeoCodeResult.getAddress();
+                        String ss = reverseGeoCodeResult.getAddress();
                         vcaddress.setText(reverseGeoCodeResult.getAddress());
                     }
                 });

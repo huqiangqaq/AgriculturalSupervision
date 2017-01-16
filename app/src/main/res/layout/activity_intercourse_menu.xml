@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_product_recode"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="agricultural.nxt.agriculturalsupervision.Activity.ProductRecodeActivity">
+
+    <include layout="@layout/main_toolbar"/>
+
+    <RelativeLayout
+        android:visibility="visible"
+        android:background="@drawable/selector_common_layout"
+        android:id="@+id/rl_product_seed"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <ImageView
+            android:layout_centerVertical="true"
+            android:id="@+id/image_one"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:src="@mipmap/product_recode"/>
+        <TextView
+            android:layout_marginLeft="25dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/image_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="往来客户管理"/>
+        <ImageView
+            android:layout_marginRight="15dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:src="@mipmap/icon_arrow"/>
+    </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/line"/>
+
+    <RelativeLayout
+        android:visibility="visible"
+        android:background="@drawable/selector_common_layout"
+        android:id="@+id/rl_product_pesticide"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <ImageView
+            android:layout_centerVertical="true"
+            android:id="@+id/image_two"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:src="@mipmap/batch_code"/>
+        <TextView
+            android:layout_marginLeft="25dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/image_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="往来供应商管理"/>
+        <ImageView
+            android:layout_marginRight="15dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:src="@mipmap/icon_arrow"/>
+    </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/line"/>
+
+</LinearLayout>

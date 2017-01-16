@@ -12,7 +12,6 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -268,7 +267,6 @@ public class OkhttpHelper {
     //异步post请求
     public static void post(Map<String, String> params,Object obj,final GetCallBack back,final int tag,final Object listen){
 
-         final Map<String,Boolean> map = new HashMap<>();
         OkGo.post(Constants.BASE_URL)
                 .tag(obj)
                 .cacheKey(params.get("service"))
@@ -276,10 +274,8 @@ public class OkhttpHelper {
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(String s, Call call, Response response) {
-                        if (map.get("s")){
 
-                        }
-                        map.put("s",false);
+
                     }
 
                     @Override
@@ -292,7 +288,6 @@ public class OkhttpHelper {
                     @Override
                     public void onCacheSuccess(String s, Call call) {
                         super.onCacheSuccess(s, call);
-                        map.put("s",true);
 
                     }
 

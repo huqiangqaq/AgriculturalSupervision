@@ -2,6 +2,7 @@ package agricultural.nxt.agriculturalsupervision.Activity.Integrity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -14,6 +15,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import agricultural.nxt.agriculturalsupervision.Constants;
@@ -58,7 +60,7 @@ public class IntegrityCheckActivity extends BaseActivity {
     @Override
     protected void initView() {
         toolBar.setTitle("诚信审核");
-        toolBar.setLeftButtonIcon(getResources().getDrawable(R.mipmap.icon_arrow_02));
+        toolBar.setLeftButtonIcon(ContextCompat.getDrawable(this,R.mipmap.icon_arrow_02));
         toolBar.setLeftButtonOnClickLinster(v -> finish());
         Intent intent = getIntent();
         id = intent.getStringExtra("id");
@@ -88,7 +90,7 @@ public class IntegrityCheckActivity extends BaseActivity {
     }
 
     private String getCurrentTime() {
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINA);//设置日期格式
         return  df.format(new Date());
     }
 

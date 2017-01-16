@@ -2,6 +2,7 @@ package agricultural.nxt.agriculturalsupervision.Activity.fertilizer;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
@@ -57,7 +58,7 @@ public class FertilizerUpdateAddActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        toolBar.setLeftButtonIcon(getResources().getDrawable(R.mipmap.icon_arrow_02));
+        toolBar.setLeftButtonIcon(ContextCompat.getDrawable(this,R.mipmap.icon_arrow_02));
         toolBar.setLeftButtonOnClickLinster(v -> finish());
         Intent intent = getIntent();
         String type = intent.getStringExtra("type");
@@ -143,7 +144,6 @@ public class FertilizerUpdateAddActivity extends BaseActivity {
             }
             @Override
             public void onFailed(String error, int tag) {
-                String ss = error;
             }
 
             @Override

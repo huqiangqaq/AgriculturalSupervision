@@ -3,6 +3,7 @@ package agricultural.nxt.agriculturalsupervision.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.RelativeLayout;
 
@@ -45,13 +46,8 @@ public class ProductRecodeActivity extends BaseActivity {
     @Override
     protected void initView() {
         toolBar.setTitle("产品备案");
-        toolBar.setLeftButtonIcon(getResources().getDrawable(R.mipmap.icon_arrow_02));
-        toolBar.setLeftButtonOnClickLinster(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        toolBar.setLeftButtonIcon(ContextCompat.getDrawable(this,R.mipmap.icon_arrow_02));
+        toolBar.setLeftButtonOnClickLinster(v -> finish());
         id = ZPreferenceUtils.getPrefString("产品备案", "");
         Map<String, String> idMap = new HashMap<>();
         idMap.put("id", id);

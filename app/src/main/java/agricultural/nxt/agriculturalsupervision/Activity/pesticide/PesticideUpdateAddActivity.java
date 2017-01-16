@@ -2,13 +2,11 @@ package agricultural.nxt.agriculturalsupervision.Activity.pesticide;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
-import android.view.KeyEvent;
-import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.lzy.okgo.OkGo;
@@ -71,7 +69,7 @@ public class PesticideUpdateAddActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        toolBar.setLeftButtonIcon(getResources().getDrawable(R.mipmap.icon_arrow_02));
+        toolBar.setLeftButtonIcon(ContextCompat.getDrawable(this,R.mipmap.icon_arrow_02));
         toolBar.setLeftButtonOnClickLinster(v -> finish());
         Intent intent = getIntent();
         String type = intent.getStringExtra("type");
@@ -95,23 +93,17 @@ public class PesticideUpdateAddActivity extends BaseActivity {
             vcuniquecode.setText(intent.getStringExtra("vcuniquecode"));
         } else {
             grantNo = vcgrantno.getText().toString().trim();
-            vcgrantno.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-                @Override
-                public void onFocusChange(View v, boolean hasFocus) {
-                    if (!hasFocus){ //失去焦点
-                        search();
-                    }
+            vcgrantno.setOnFocusChangeListener((v, hasFocus) -> {
+                if (!hasFocus){ //失去焦点
+                    search();
                 }
             });
             //点击键盘完成
-            vcgrantno.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-                @Override
-                public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                    if (actionId== EditorInfo.IME_ACTION_DONE){
-                        search();
-                    }
-                    return false;
+            vcgrantno.setOnEditorActionListener((v, actionId, event) -> {
+                if (actionId== EditorInfo.IME_ACTION_DONE){
+                    search();
                 }
+                return false;
             });
 
         }

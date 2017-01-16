@@ -37,7 +37,7 @@ public class SwipeMenuView extends ViewGroup {
     private PointF mLastP = new PointF();
 
     //存储的是当前正在展开的View
-    private static SwipeMenuView mViewCache;
+    private  SwipeMenuView mViewCache;
 
     //防止多只手指一起滑我的flag 在每次down里判断， touch事件结束清空
     private static boolean isTouching;
@@ -389,12 +389,7 @@ public class SwipeMenuView extends ViewGroup {
             mCloseAnim.cancel();
         }
         mExpandAnim = ValueAnimator.ofInt(getScrollX(), isLeftSwipe ? mRightMenuWidths : -mRightMenuWidths);
-        mExpandAnim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                scrollTo((Integer) animation.getAnimatedValue(), 0);
-            }
-        });
+        mExpandAnim.addUpdateListener(animation -> scrollTo((Integer) animation.getAnimatedValue(), 0));
         mExpandAnim.setInterpolator(new OvershootInterpolator());
         mExpandAnim.addListener(new AnimatorListenerAdapter() {
             @Override
@@ -420,12 +415,7 @@ public class SwipeMenuView extends ViewGroup {
             mExpandAnim.cancel();
         }
         mCloseAnim = ValueAnimator.ofInt(getScrollX(), 0);
-        mCloseAnim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                scrollTo((Integer) animation.getAnimatedValue(), 0);
-            }
-        });
+        mCloseAnim.addUpdateListener(animation -> scrollTo((Integer) animation.getAnimatedValue(), 0));
         mCloseAnim.setInterpolator(new AccelerateInterpolator());
         mCloseAnim.addListener(new AnimatorListenerAdapter() {
             @Override

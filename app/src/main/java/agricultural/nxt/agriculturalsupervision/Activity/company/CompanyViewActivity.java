@@ -2,16 +2,15 @@ package agricultural.nxt.agriculturalsupervision.Activity.company;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.widget.ListView;
 
 import com.chanven.lib.cptr.PtrClassicFrameLayout;
 import com.chanven.lib.cptr.PtrDefaultHandler;
 import com.chanven.lib.cptr.PtrFrameLayout;
-import com.chanven.lib.cptr.loadmore.OnLoadMoreListener;
 import com.google.gson.Gson;
 import com.mcxtzhang.swipemenulib.SwipeMenuLayout;
 
@@ -50,7 +49,7 @@ public class CompanyViewActivity extends BaseActivity {
      */
     private static int mCurrentCounter = 0;
     private List<CompanyView.ListBean> dataList = new ArrayList<>();
-    private static CompanyAdapter adapter = null;
+    private  CompanyAdapter adapter = null;
     private PtrClassicFrameLayout ptrClassicFrameLayout = null;
     private static boolean canCheck = false;
     private static String CheckOrViewurl = null;
@@ -63,7 +62,7 @@ public class CompanyViewActivity extends BaseActivity {
     @Override
     protected void initView() {
         toolBar.setTitle("企业备案列表");
-        toolBar.setLeftButtonIcon(getResources().getDrawable(R.mipmap.icon_arrow_02));
+        toolBar.setLeftButtonIcon(ContextCompat.getDrawable(this,R.mipmap.icon_arrow_02));
         toolBar.setLeftButtonOnClickLinster(v -> finish());
         ptrClassicFrameLayout = (PtrClassicFrameLayout) this.findViewById(R.id.test_list_view_frame);
         ptrClassicFrameLayout.setLastUpdateTimeRelateObject(this);
@@ -96,33 +95,30 @@ public class CompanyViewActivity extends BaseActivity {
             }
         });
 
-        ptrClassicFrameLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
-            @Override
-            public void loadMore() {
-                REQUEST_COUNT += 10;
-                if (mCurrentCounter + 10 < TOTAL_COUNTER) {
-                    OkhttpHelper.Get(CheckOrViewurl + REQUEST_COUNT, new OkhttpHelper.GetCallBack() {
-                        @Override
-                        public void onSuccess(String response, int tag) {
-                            if (response != null) {
-                                CompanyView seed = new Gson().fromJson(response, CompanyView.class);
-                                dataList.clear();
-                                dataList.addAll(seed.getList());
-                                adapter.notifyDataSetChanged();
-                                ptrClassicFrameLayout.loadMoreComplete(true);
-                                mCurrentCounter = dataList.size();
-                            }
+        ptrClassicFrameLayout.setOnLoadMoreListener(() -> {
+            REQUEST_COUNT += 10;
+            if (mCurrentCounter + 10 < TOTAL_COUNTER) {
+                OkhttpHelper.Get(CheckOrViewurl + REQUEST_COUNT, new OkhttpHelper.GetCallBack() {
+                    @Override
+                    public void onSuccess(String response, int tag) {
+                        if (response != null) {
+                            CompanyView seed = new Gson().fromJson(response, CompanyView.class);
+                            dataList.clear();
+                            dataList.addAll(seed.getList());
+                            adapter.notifyDataSetChanged();
+                            ptrClassicFrameLayout.loadMoreComplete(true);
+                            mCurrentCounter = dataList.size();
                         }
+                    }
 
-                        @Override
-                        public void onFailed(String error, int tag) {
+                    @Override
+                    public void onFailed(String error, int tag) {
 
-                        }
-                    }, 2);
-                } else {
-                    ptrClassicFrameLayout.loadMoreComplete(true);
-                    ptrClassicFrameLayout.setNoMoreData();
-                }
+                    }
+                }, 2);
+            } else {
+                ptrClassicFrameLayout.loadMoreComplete(true);
+                ptrClassicFrameLayout.setNoMoreData();
             }
         });
     }
@@ -137,9 +133,7 @@ public class CompanyViewActivity extends BaseActivity {
                adapter = new CompanyAdapter(CompanyViewActivity.this,dataList,canCheck);
                 lv_integrity.setAdapter(adapter);
                 TOTAL_COUNTER = view.getCount();
-                adapter.setSwipeCheck((postion, finalConvertView, status) -> {
-                    check(postion,finalConvertView,status);
-                });
+                adapter.setSwipeCheck((postion, finalConvertView, status) -> check(postion,finalConvertView,status));
                 ptrClassicFrameLayout.autoRefresh(true);
             }
 
@@ -172,35 +166,32 @@ public class CompanyViewActivity extends BaseActivity {
         new AlertDialog.Builder(CompanyViewActivity.this)
                 .setTitle("系统提示")
                 .setMessage("确定审批该企业备案吗?")
-                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String companyId = dataList.get(postion).getId();
-                        showLoadingDialog(R.string.checking);
-                        String url = Constants.COMPANY_CHECK+companyId+"&icheckstatus="+status;
-                        OkhttpHelper.Get(url, new OkhttpHelper.GetCallBack() {
-                            @Override
-                            public void onSuccess(String response, int tag) {
-                                dismissLoadingDialog();
-                                if (TextUtils.equals(JsonUtil.PareJson(response), "true")) {
-                                    new SweetAlertDialog(CompanyViewActivity.this, SweetAlertDialog.SUCCESS_TYPE)
-                                            .setConfirmText("操作成功")
-                                            .show();
-                                    finalConvertView.quickClose();
-                                    refresh();
-                                } else {
-                                    new SweetAlertDialog(CompanyViewActivity.this, SweetAlertDialog.ERROR_TYPE)
-                                            .setConfirmText("操作失败," + JsonUtil.ParseMsg(response))
-                                            .show();
-                                }
+                .setPositiveButton("确定", (dialog, which) -> {
+                    String companyId = dataList.get(postion).getId();
+                    showLoadingDialog(R.string.checking);
+                    String url = Constants.COMPANY_CHECK+companyId+"&icheckstatus="+status;
+                    OkhttpHelper.Get(url, new OkhttpHelper.GetCallBack() {
+                        @Override
+                        public void onSuccess(String response, int tag) {
+                            dismissLoadingDialog();
+                            if (TextUtils.equals(JsonUtil.PareJson(response), "true")) {
+                                new SweetAlertDialog(CompanyViewActivity.this, SweetAlertDialog.SUCCESS_TYPE)
+                                        .setConfirmText("操作成功")
+                                        .show();
+                                finalConvertView.quickClose();
+                                refresh();
+                            } else {
+                                new SweetAlertDialog(CompanyViewActivity.this, SweetAlertDialog.ERROR_TYPE)
+                                        .setConfirmText("操作失败," + JsonUtil.ParseMsg(response))
+                                        .show();
                             }
+                        }
 
-                            @Override
-                            public void onFailed(String error, int tag) {
+                        @Override
+                        public void onFailed(String error, int tag) {
 
-                            }
-                        }, 2);
-                    }
+                        }
+                    }, 2);
                 }).setNegativeButton("取消", (dialog, which) -> dialog.dismiss()).show();
 
     }

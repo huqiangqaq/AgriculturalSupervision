@@ -2,6 +2,7 @@ package agricultural.nxt.agriculturalsupervision.Activity.Seed;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -59,7 +60,7 @@ public class SeedUpdateAddActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        toolBar.setLeftButtonIcon(getResources().getDrawable(R.mipmap.icon_arrow_02));
+        toolBar.setLeftButtonIcon(ContextCompat.getDrawable(this,R.mipmap.icon_arrow_02));
         toolBar.setLeftButtonOnClickLinster(v -> finish());
 
         sp_btransgene.attachDataSource(dataset);

@@ -3,7 +3,6 @@ package agricultural.nxt.agriculturalsupervision.adapter;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -93,39 +92,28 @@ public class IntegrityMoreAdapter extends BaseAdapter {
             holder.btn_check.setVisibility(View.VISIBLE);
         }
         final SwipeMenuLayout finalConvertView = (SwipeMenuLayout) convertView;
-        holder.btn_check.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finalConvertView.quickClose();
-                Integrity.ListBean listBean = list.get(position);
-                Intent intent = new Intent(mContext, IntegrityCheckActivity.class);
-                intent.putExtra("id", listBean.getId());
-                intent.putExtra("dtarosedate", listBean.getDtarosedate());
-                intent.putExtra("vcillegalcomp", listBean.getVcillegalcomp());
-                intent.putExtra("iproducttype", listBean.getIproducttype());
-                intent.putExtra("vcillegalprod", listBean.getVcillegalprod());
-                intent.putExtra("vcdesc", listBean.getVcdesc());
-                mContext.startActivity(intent);
-            }
+        holder.btn_check.setOnClickListener(v -> {
+            finalConvertView.quickClose();
+            Integrity.ListBean listBean = list.get(position);
+            Intent intent = new Intent(mContext, IntegrityCheckActivity.class);
+            intent.putExtra("id", listBean.getId());
+            intent.putExtra("dtarosedate", listBean.getDtarosedate());
+            intent.putExtra("vcillegalcomp", listBean.getVcillegalcomp());
+            intent.putExtra("iproducttype", listBean.getIproducttype());
+            intent.putExtra("vcillegalprod", listBean.getVcillegalprod());
+            intent.putExtra("vcdesc", listBean.getVcdesc());
+            mContext.startActivity(intent);
         });
 
-        holder.btn_detail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finalConvertView.quickClose();
-                String id = list.get(position).getId();
-                Intent intent = new Intent(mContext, IntegrityDetailActivity.class);
-                intent.putExtra("id", id);
-                mContext.startActivity(intent);
-            }
+        holder.btn_detail.setOnClickListener(v -> {
+            finalConvertView.quickClose();
+            String id = list.get(position).getId();
+            Intent intent = new Intent(mContext, IntegrityDetailActivity.class);
+            intent.putExtra("id", id);
+            mContext.startActivity(intent);
         });
         final ViewHolder finalHolder = holder;
-        holder.btn_del.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                delete(finalHolder, position);
-            }
-        });
+        holder.btn_del.setOnClickListener(v -> delete(finalHolder, position));
         return convertView;
     }
 
@@ -134,41 +122,33 @@ public class IntegrityMoreAdapter extends BaseAdapter {
         new AlertDialog.Builder(mContext)
                 .setTitle("提示")
                 .setMessage("确定删除此条记录吗?")
-                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String id = list.get(pos).getId();
-                        showLoadingDialog("删除中...");
-                        OkhttpHelper.Get(Constants.INTEGRITY_DEL + id, new OkhttpHelper.GetCallBack() {
-                            @Override
-                            public void onSuccess(String response, int tag) {
-                                dismissLoadingDialog();
-                                if (TextUtils.equals(JsonUtil.PareJson(response), "true")) {
-                                    new SweetAlertDialog(mContext, SweetAlertDialog.SUCCESS_TYPE)
-                                            .setConfirmText("删除成功")
-                                            .show();
-                                    holder.swipe_content.quickClose();
-                                    list.remove(pos);
-                                    notifyDataSetChanged();
-                                } else {
-                                    new SweetAlertDialog(mContext, SweetAlertDialog.ERROR_TYPE)
-                                            .setConfirmText("删除失败," + JsonUtil.ParseMsg(response))
-                                            .show();
-                                }
+                .setPositiveButton("确定", (dialog, which) -> {
+                    String id = list.get(pos).getId();
+                    showLoadingDialog("删除中...");
+                    OkhttpHelper.Get(Constants.INTEGRITY_DEL + id, new OkhttpHelper.GetCallBack() {
+                        @Override
+                        public void onSuccess(String response, int tag) {
+                            dismissLoadingDialog();
+                            if (TextUtils.equals(JsonUtil.PareJson(response), "true")) {
+                                new SweetAlertDialog(mContext, SweetAlertDialog.SUCCESS_TYPE)
+                                        .setConfirmText("删除成功")
+                                        .show();
+                                holder.swipe_content.quickClose();
+                                list.remove(pos);
+                                notifyDataSetChanged();
+                            } else {
+                                new SweetAlertDialog(mContext, SweetAlertDialog.ERROR_TYPE)
+                                        .setConfirmText("删除失败," + JsonUtil.ParseMsg(response))
+                                        .show();
                             }
+                        }
 
-                            @Override
-                            public void onFailed(String error, int tag) {
+                        @Override
+                        public void onFailed(String error, int tag) {
 
-                            }
-                        }, 1);
-                    }
-                }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        }).show();
+                        }
+                    }, 1);
+                }).setNegativeButton("取消", (dialog, which) -> dialog.dismiss()).show();
     }
 
 

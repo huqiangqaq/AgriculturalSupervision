@@ -89,7 +89,21 @@ public interface Constants {
     String COMPANY_VIEW = URL+"/company/appOwner/list?pageNo=1&pageSize=";
     String COMPANY_VIEWFORCHECK = URL+"/company/appOwner/listForCheck?pageNo=1&pageSize=";
     String COMPANY_DEL = URL+"/company/appOwner/delete?id=";
-    String COMPANY_CHECK = URL+"/company/appOwner/checkOwner?id=";
+    String COMPANY_CHECK   = URL+"/company/appOwner/checkOwner?id=";
     //农药库
     String APPPESTICIDELIB = URL+"/product/appPesticidelib/form?id=";
+    //查询
+    String PESTICIDELIB_LIST = URL+"/product/appPesticidelib/list?pageSize=20&pageNo=";
+    //查看标签
+    String LABEL = "http://www.chinapesticide.gov.cn/myquery/tagdetail?pdno=";
+
+
+
+    //往来管理
+    String CLIENT = URL+"/contact/appMyCustomer/list?pageSize=20&pageNo=";
+    String CLIENT_DEL = URL+"/contact/appMyCustomer/delete?id=";
+    String CLIENT_SAVE = URL+"/contact/appMyCustomer/save";
+    String SUPPLIER = URL+"/contact/appMySupplier/list?pageSize=20&pageNo=";
+    //个人信息
+    String MYINFO = URL+"/sys/appUser/infoData";
 }

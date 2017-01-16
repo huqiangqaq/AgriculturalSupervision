@@ -1,10 +1,10 @@
 package agricultural.nxt.agriculturalsupervision.Activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -71,12 +71,7 @@ public class RegisterActivity extends BaseActivity {
     @Override
     protected void initView() {
         toolBar.setTitle("注册");
-        toolBar.setLeftButtonOnClickLinster(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        toolBar.setLeftButtonOnClickLinster(v -> finish());
         tv_login.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
     }
 
@@ -161,15 +156,12 @@ public class RegisterActivity extends BaseActivity {
                 .itemPadding(10)
                 .build();
         cityPicker.show();
-        cityPicker.setOnCityItemClickListener(new CityPicker.OnCityItemClickListener() {
-            @Override
-            public void onSelected(String... citySelected) {
-                province = citySelected[0];
-                city = citySelected[1];
-                district = citySelected[2];
-                code = citySelected[3];
-                et_dit.setText(province + city + district);
-            }
+        cityPicker.setOnCityItemClickListener(citySelected -> {
+            province = citySelected[0];
+            city = citySelected[1];
+            district = citySelected[2];
+            code = citySelected[3];
+            et_dit.setText(province + city + district);
         });
     }
 
@@ -178,5 +170,9 @@ public class RegisterActivity extends BaseActivity {
         return R.layout.activity_register;
     }
 
+    @OnClick(R.id.tv_login)  void gotoLogin(){
+        startActivity(new Intent(this,LoginActivity.class));
+        finish();
+    }
 
 }

@@ -4,7 +4,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.design.widget.AppBarLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.webkit.WebChromeClient;
@@ -33,8 +32,8 @@ public class WebActivity extends BaseActivity {
     SwipeRefreshLayout swipeRefreshLayout;
     @BindView(R.id.lettoolbar)
     LetToolBar toolBar;
-    @BindView(R.id.appbarlayout)
-    AppBarLayout appBarLayout;
+//    @BindView(R.id.appbarlayout)
+//    AppBarLayout appBarLayout;
     private PreviewHandler handler = new PreviewHandler(this);
 
     @Override
@@ -45,32 +44,21 @@ public class WebActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        toolBar.setTitle("标题");
-        toolBar.setLeftButtonOnClickLinster(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (webView.canGoBack()) {
-                    webView.goBack();
-                } else {
-                    WebActivity.super.onBackPressed();
-                }
+        toolBar.setTitle("农药标签");
+        toolBar.setLeftButtonOnClickLinster(v -> {
+            if (webView.canGoBack()) {
+                webView.goBack();
+            } else {
+                WebActivity.super.onBackPressed();
             }
         });
-        loadUrl = getIntent().getStringExtra("url");
+        loadUrl = getIntent().getStringExtra("label");
         initWebView();
         swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_light, android.R.color.holo_red_light, android.R.color.holo_orange_light, android.R.color.holo_green_light);
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                webView.reload();
-            }
-        });
-        swipeRefreshLayout.post(new Runnable() {
-            @Override
-            public void run() {
-                swipeRefreshLayout.setRefreshing(true);
-                handler.sendEmptyMessageDelayed(0, 500);
-            }
+        swipeRefreshLayout.setOnRefreshListener(() -> webView.reload());
+        swipeRefreshLayout.post(() -> {
+            swipeRefreshLayout.setRefreshing(true);
+            handler.sendEmptyMessageDelayed(0, 500);
         });
 
 //        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {

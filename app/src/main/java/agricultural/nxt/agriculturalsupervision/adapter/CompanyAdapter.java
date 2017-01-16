@@ -3,7 +3,6 @@ package agricultural.nxt.agriculturalsupervision.adapter;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,9 +14,7 @@ import android.widget.TextView;
 import com.mcxtzhang.swipemenulib.SwipeMenuLayout;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import agricultural.nxt.agriculturalsupervision.Constants;
 import agricultural.nxt.agriculturalsupervision.R;
@@ -35,7 +32,6 @@ public class CompanyAdapter extends BaseAdapter {
     private List<CompanyView.ListBean> list = new ArrayList<>();
     protected ProgressDialog loadingDialog;
     private CompanyAdapter.ViewHolder holder;
-    private Map<Integer,String> map = new HashMap<>();
     private CompanyAdapter.onSwipeCheck swipeCheck;
     private CompanyView.ListBean company;
     private boolean canCheck;
@@ -125,35 +121,32 @@ public class CompanyAdapter extends BaseAdapter {
         new AlertDialog.Builder(mContext)
                 .setTitle("提示")
                 .setMessage("确定删除此条记录吗?")
-                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String id = list.get(pos).getId();
-                        showLoadingDialog("删除中...");
-                        OkhttpHelper.Get(Constants.COMPANY_DEL + id, new OkhttpHelper.GetCallBack() {
-                            @Override
-                            public void onSuccess(String response, int tag) {
-                                dismissLoadingDialog();
-                                if (TextUtils.equals(JsonUtil.PareJson(response), "true")) {
-                                    new SweetAlertDialog(mContext, SweetAlertDialog.SUCCESS_TYPE)
-                                            .setConfirmText("删除成功")
-                                            .show();
-                                    holder.swipe_content.quickClose();
-                                    list.remove(pos);
-                                    notifyDataSetChanged();
-                                } else {
-                                    new SweetAlertDialog(mContext, SweetAlertDialog.ERROR_TYPE)
-                                            .setConfirmText("删除失败," + JsonUtil.ParseMsg(response))
-                                            .show();
-                                }
+                .setPositiveButton("确定", (dialog, which) -> {
+                    String id = list.get(pos).getId();
+                    showLoadingDialog("删除中...");
+                    OkhttpHelper.Get(Constants.COMPANY_DEL + id, new OkhttpHelper.GetCallBack() {
+                        @Override
+                        public void onSuccess(String response, int tag) {
+                            dismissLoadingDialog();
+                            if (TextUtils.equals(JsonUtil.PareJson(response), "true")) {
+                                new SweetAlertDialog(mContext, SweetAlertDialog.SUCCESS_TYPE)
+                                        .setConfirmText("删除成功")
+                                        .show();
+                                holder.swipe_content.quickClose();
+                                list.remove(pos);
+                                notifyDataSetChanged();
+                            } else {
+                                new SweetAlertDialog(mContext, SweetAlertDialog.ERROR_TYPE)
+                                        .setConfirmText("删除失败," + JsonUtil.ParseMsg(response))
+                                        .show();
                             }
+                        }
 
-                            @Override
-                            public void onFailed(String error, int tag) {
+                        @Override
+                        public void onFailed(String error, int tag) {
 
-                            }
-                        }, 1);
-                    }
+                        }
+                    }, 1);
                 }).setNegativeButton("取消",(dialog, which) -> dialog.dismiss()).show();
 
     }

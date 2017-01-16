@@ -2,6 +2,7 @@ package agricultural.nxt.agriculturalsupervision.Activity.company;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -11,7 +12,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -40,7 +40,6 @@ import com.baidu.mapapi.search.geocode.ReverseGeoCodeResult;
 import com.google.gson.Gson;
 import com.jzxiang.pickerview.TimePickerDialog;
 import com.jzxiang.pickerview.data.Type;
-import com.jzxiang.pickerview.listener.OnDateSetListener;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 
@@ -51,6 +50,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import agricultural.nxt.agriculturalsupervision.Constants;
@@ -158,17 +158,12 @@ public class CompanyAddActivity extends BaseActivity implements BaiduMap.OnMapTo
      * 当前定位的模式
      */
     private MyLocationConfiguration.LocationMode mCurrentMode = MyLocationConfiguration.LocationMode.NORMAL;
-    /**
-     * 当前的精度
-     */
-    private float mCurrentAccracy;
     /***
      * 是否是第一次定位
      */
     private volatile boolean isFristLocation = true;
     private String companyId = null;  //企业ID
-    private SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    private long tenYears = 10L * 365 * 1000 * 60 * 60 * 24L;
+    private SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINA);
     private String bizlicepic,prodlicenpic;
     private DoubleClickExitHelper doubleClickExitHelper;
     @Override
@@ -183,7 +178,7 @@ public class CompanyAddActivity extends BaseActivity implements BaiduMap.OnMapTo
         // 第一次定位
         isFristLocation = true;
         toolBar.setTitle("企业备案");
-        toolBar.setLeftButtonIcon(getResources().getDrawable(R.mipmap.icon_arrow_02));
+        toolBar.setLeftButtonIcon(ContextCompat.getDrawable(this,R.mipmap.icon_arrow_02));
         toolBar.setLeftButtonOnClickLinster(v -> finish());
         sp_ikind.attachDataSource(Arrays.asList(mSpData));
         sp_ikind.setSelectedIndex(0);
@@ -212,28 +207,19 @@ public class CompanyAddActivity extends BaseActivity implements BaiduMap.OnMapTo
 
             }
         });
-        cb_seed.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
-                    sb.append("0"+",");
-                }
+        cb_seed.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked){
+                sb.append("0"+",");
             }
         });
-        cb_pesticide.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
-                    sb.append("1"+",");
-                }
+        cb_pesticide.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked){
+                sb.append("1"+",");
             }
         });
-        cb_fertilizer.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
-                    sb.append("2"+",");
-                }
+        cb_fertilizer.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked){
+                sb.append("2"+",");
             }
         });
         //给地图添加监听
@@ -270,7 +256,6 @@ public class CompanyAddActivity extends BaseActivity implements BaiduMap.OnMapTo
 
                     @Override
                     public void onGetReverseGeoCodeResult(ReverseGeoCodeResult reverseGeoCodeResult) {
-                        String result = reverseGeoCodeResult.getAddress();
                         et_vcaddress.setText(reverseGeoCodeResult.getAddress());
                     }
                 });
@@ -345,6 +330,7 @@ public class CompanyAddActivity extends BaseActivity implements BaiduMap.OnMapTo
 
     }
     private void showTimePickDialog(TextView tv) {
+        long tenYears = 10L * 365 * 1000 * 60 * 60 * 24L;
         TimePickerDialog mDialogAll = new TimePickerDialog.Builder()
                 .setCancelStringId("取消")
                 .setSureStringId("确定")
@@ -358,17 +344,12 @@ public class CompanyAddActivity extends BaseActivity implements BaiduMap.OnMapTo
                 .setMinMillseconds(System.currentTimeMillis() - tenYears / 2)
                 .setMaxMillseconds(System.currentTimeMillis() + tenYears)
                 .setCurrentMillseconds(System.currentTimeMillis())
-                .setThemeColor(getResources().getColor(R.color.timepicker_toolbar_bg))
+                .setThemeColor(ContextCompat.getColor(this,R.color.timepicker_toolbar_bg))
                 .setType(Type.ALL)
-                .setWheelItemTextNormalColor(getResources().getColor(R.color.timetimepicker_default_text_color))
-                .setWheelItemTextSelectorColor(getResources().getColor(R.color.timepicker_toolbar_bg))
+                .setWheelItemTextNormalColor(ContextCompat.getColor(this,R.color.timetimepicker_default_text_color))
+                .setWheelItemTextSelectorColor(ContextCompat.getColor(this,R.color.timepicker_toolbar_bg))
                 .setWheelItemTextSize(18)
-                .setCallBack(new OnDateSetListener() {
-                    @Override
-                    public void onDateSet(TimePickerDialog timePickerView, long millseconds) {
-                        tv.setText(getDateToString(millseconds));
-                    }
-                })
+                .setCallBack((timePickerView, millseconds) -> tv.setText(getDateToString(millseconds)))
                 .build();
         mDialogAll.show(getSupportFragmentManager(), "all");
     }
@@ -464,7 +445,11 @@ public class CompanyAddActivity extends BaseActivity implements BaiduMap.OnMapTo
     @OnClick(R.id.btnSave) void CompanySave(){
         showLoadingDialog(R.string.LOADING);
         //经营范围
-        type = sb.toString().substring(0,sb.toString().length()-1);
+        if (sb.length()>0){
+            type = sb.toString().substring(0,sb.toString().length()-1);
+        }else {
+            type = "";
+        }
         vccorporation = et_vccorporation.getText().toString().trim();
         vcphone = et_vcphone.getText().toString().trim();
         vcaddress = et_vcaddress.getText().toString().trim();
@@ -508,7 +493,6 @@ public class CompanyAddActivity extends BaseActivity implements BaiduMap.OnMapTo
                 .params("bizlicepic",new File(bizlicepic))
                 .params("prodlicenpic",new File(prodlicenpic))
                 .execute(new StringCallback(){
-
                     @Override
                     public void onSuccess(String s, Call call, Response response) {
                         dismissLoadingDialog();
@@ -553,15 +537,12 @@ public class CompanyAddActivity extends BaseActivity implements BaiduMap.OnMapTo
             if (location == null || mapview == null)
                 return;
             // 构造定位数据
-            String city = location.getCity();
-            String dis = location.getDistrict();
             String add = location.getAddrStr();
             MyLocationData locData = new MyLocationData.Builder()
                     .accuracy(location.getRadius())
                     // 此处设置开发者获取到的方向信息，顺时针0-360
                     .latitude(location.getLatitude())
                     .longitude(location.getLongitude()).build();
-            mCurrentAccracy = location.getRadius();
             // 设置定位数据
             mBaiduMap.setMyLocationData(locData);
             mGpsX = location.getLatitude();

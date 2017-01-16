@@ -2,6 +2,7 @@ package agricultural.nxt.agriculturalsupervision.Activity.Seed;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -41,7 +42,7 @@ public class SeedDetailActivity extends BaseActivity {
     @Override
     protected void initView() {
         toolBar.setTitle("种子备案详情");
-        toolBar.setLeftButtonIcon(getResources().getDrawable(R.mipmap.icon_arrow_02));
+        toolBar.setLeftButtonIcon(ContextCompat.getDrawable(this,R.mipmap.icon_arrow_02));
         toolBar.setLeftButtonOnClickLinster(v -> finish());
         getData();
     }

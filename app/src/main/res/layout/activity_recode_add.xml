@@ -1,231 +1,243 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_recode"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/whitesmoke"
     tools:context="agricultural.nxt.agriculturalsupervision.Activity.RecodeActivity">
-    <ScrollView
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include layout="@layout/main_toolbar" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginTop="30dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
 
-            <include layout="@layout/main_toolbar"/>
+            <TextView
+                style="@style/commontext"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="品种名称"
+                android:textColor="@color/black" />
 
-            <LinearLayout
-                android:gravity="center_horizontal"
-                android:layout_marginTop="30dp"
+            <EditText
+                android:id="@+id/vcvarietyname"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:gravity="right"
-                    android:textColor="@color/black"
-                    style="@style/commontext"
-                    android:layout_width="90dp"
-                    android:layout_height="wrap_content"
-                    android:text="品种名称"/>
-                <EditText
-                    android:id="@+id/vcvarietyname"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:background="@drawable/bg_commonet"/>
-            </LinearLayout>
-            <LinearLayout
-                android:gravity="center_horizontal"
-                android:layout_marginTop="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:gravity="right"
-                    android:textColor="@color/black"
-                    style="@style/commontext"
-                    android:layout_width="90dp"
-                    android:layout_height="wrap_content"
-                    android:text="种子类别:"/>
-                <EditText
-                    android:id="@+id/vccategory"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:background="@drawable/bg_commonet"/>
-            </LinearLayout>
-            <LinearLayout
-                android:gravity="center_horizontal"
-                android:layout_marginTop="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:gravity="right"
-                    android:textColor="@color/black"
-                    style="@style/commontext"
-                    android:layout_width="90dp"
-                    android:layout_height="wrap_content"
-                    android:text="生产单位:"/>
-                <EditText
-                    android:id="@+id/vcproductionunit"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:background="@drawable/bg_commonet"/>
-            </LinearLayout>
-            <LinearLayout
-                android:gravity="center_horizontal"
-                android:layout_marginTop="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:gravity="right"
-                    android:textColor="@color/black"
-                    style="@style/commontext"
-                    android:layout_width="90dp"
-                    android:layout_height="wrap_content"
-                    android:text="许可证号:"/>
-                <EditText
-                    android:id="@+id/vcbusinesslicense"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:background="@drawable/bg_commonet"/>
-            </LinearLayout>
-            <LinearLayout
-                android:gravity="center_horizontal"
-                android:layout_marginTop="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:textColor="@color/black"
-                    style="@style/commontext"
-                    android:layout_width="90dp"
-                    android:gravity="right"
-                    android:layout_height="wrap_content"
-                    android:text="检疫证书号:"/>
-                <EditText
-                    android:id="@+id/vcquarantineno"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:background="@drawable/bg_commonet"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:gravity="center_horizontal"
-                android:layout_marginTop="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:gravity="right"
-                    android:textColor="@color/black"
-                    style="@style/commontext"
-                    android:layout_width="90dp"
-                    android:layout_height="wrap_content"
-                    android:text="是否转基因:"/>
-                <agricultural.nxt.agriculturalsupervision.Widget.NiceSpinner
-                    android:id="@+id/sp_isTransgenic"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:background="@drawable/bg_commonet"/>
-            </LinearLayout>
-            <LinearLayout
-                android:gravity="center_horizontal"
-                android:layout_marginTop="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:gravity="right"
-                    android:textColor="@color/black"
-                    style="@style/commontext"
-                    android:layout_width="90dp"
-                    android:layout_height="wrap_content"
-                    android:text="种子评价:"/>
-                <EditText
-                    android:id="@+id/vcappraisal"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:background="@drawable/bg_commonet"/>
-            </LinearLayout>
-            <LinearLayout
-                android:gravity="center_horizontal"
-                android:layout_marginTop="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:gravity="right"
-                    android:textColor="@color/black"
-                    style="@style/commontext"
-                    android:layout_width="90dp"
-                    android:layout_height="wrap_content"
-                    android:text="产品条码:"/>
-                <EditText
-                    android:id="@+id/vcuniquecode"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:background="@drawable/bg_commonet"/>
-            </LinearLayout>
-            <LinearLayout
-                android:gravity="center_horizontal"
-                android:layout_marginTop="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:gravity="right"
-                    android:textColor="@color/black"
-                    style="@style/commontext"
-                    android:layout_width="90dp"
-                    android:layout_height="wrap_content"
-                    android:text="备注信息:"/>
-                <EditText
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:background="@drawable/bg_commonet"/>
-            </LinearLayout>
-            <Button
-                android:id="@+id/btnUpdateAdd"
-                android:layout_marginTop="15dp"
-                android:layout_gravity="center_horizontal"
-                android:text="保存"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/selector_common_btn"/>
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/bg_commonet" />
         </LinearLayout>
 
-    </ScrollView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
 
+            <TextView
+                style="@style/commontext"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="种子类别:"
+                android:textColor="@color/black" />
 
-</RelativeLayout>
+            <EditText
+                android:id="@+id/vccategory"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/bg_commonet" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/commontext"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="生产单位:"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/vcproductionunit"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/bg_commonet" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/commontext"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="许可证号:"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/vcbusinesslicense"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/bg_commonet" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/commontext"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="检疫证书号:"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/vcquarantineno"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/bg_commonet" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/commontext"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="是否转基因:"
+                android:textColor="@color/black" />
+
+            <agricultural.nxt.agriculturalsupervision.Widget.NiceSpinner
+                android:id="@+id/sp_isTransgenic"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/bg_commonet" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/commontext"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="种子评价:"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/vcappraisal"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/bg_commonet" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/commontext"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="产品条码:"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/vcuniquecode"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/bg_commonet" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/commontext"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="备注信息:"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/bg_commonet" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnUpdateAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/selector_common_btn"
+            android:text="保存" />
+    </LinearLayout>
+
+</ScrollView>
+

@@ -37,10 +37,7 @@ public class NetworkUtils {
      * @return
      */
     public static boolean isNetAvailable(Context paramContext) {
-        if ("1".equals(getNetType(paramContext)[0]) || "2".equals(getNetType(paramContext)[0])) {
-            return true;
-        }
-        return false;
+        return "1".equals(getNetType(paramContext)[0]) || "2".equals(getNetType(paramContext)[0]);
     }
 
     /**

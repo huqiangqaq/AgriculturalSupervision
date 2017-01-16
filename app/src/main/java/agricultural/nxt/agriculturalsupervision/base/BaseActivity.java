@@ -125,18 +125,15 @@ public abstract class BaseActivity extends AppCompatActivity implements DatePick
      */
     public void setTouchDelegate(final View view, final int expandTouchWidth) {
         final View parentView = (View) view.getParent();
-        parentView.post(new Runnable() {
-            @Override
-            public void run() {
-                final Rect rect = new Rect();
-                view.getHitRect(rect);
-                rect.top -= expandTouchWidth;
-                rect.bottom += expandTouchWidth;
-                rect.left -= expandTouchWidth;
-                rect.right += expandTouchWidth;
-                TouchDelegate touchDelegate = new TouchDelegate(rect, view);
-                parentView.setTouchDelegate(touchDelegate);
-            }
+        parentView.post(() -> {
+            final Rect rect = new Rect();
+            view.getHitRect(rect);
+            rect.top -= expandTouchWidth;
+            rect.bottom += expandTouchWidth;
+            rect.left -= expandTouchWidth;
+            rect.right += expandTouchWidth;
+            TouchDelegate touchDelegate = new TouchDelegate(rect, view);
+            parentView.setTouchDelegate(touchDelegate);
         });
     }
 }

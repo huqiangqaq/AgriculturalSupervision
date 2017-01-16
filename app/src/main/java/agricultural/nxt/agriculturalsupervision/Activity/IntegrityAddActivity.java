@@ -22,6 +22,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import agricultural.nxt.agriculturalsupervision.Constants;
@@ -52,7 +53,7 @@ public class IntegrityAddActivity extends BaseActivity implements OnDateSetListe
     EditText et_vcdesc;
     private String dtarosedate, vcillegalcomp, vcillegalprod, vcdesc, iproducttype;
     private List<String> dataset = new LinkedList<>(Arrays.asList("农药", "化肥", "种子"));
-    private SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINA);
     private long tenYears = 10L * 365 * 1000 * 60 * 60 * 24L;
 
     @Override
@@ -105,10 +106,10 @@ public class IntegrityAddActivity extends BaseActivity implements OnDateSetListe
                 .setMinMillseconds(System.currentTimeMillis() - tenYears / 2)
                 .setMaxMillseconds(System.currentTimeMillis() + tenYears)
                 .setCurrentMillseconds(System.currentTimeMillis())
-                .setThemeColor(getResources().getColor(R.color.timepicker_toolbar_bg))
+                .setThemeColor(ContextCompat.getColor(this,R.color.timepicker_toolbar_bg))
                 .setType(Type.ALL)
-                .setWheelItemTextNormalColor(getResources().getColor(R.color.timetimepicker_default_text_color))
-                .setWheelItemTextSelectorColor(getResources().getColor(R.color.timepicker_toolbar_bg))
+                .setWheelItemTextNormalColor(ContextCompat.getColor(this,R.color.timetimepicker_default_text_color))
+                .setWheelItemTextSelectorColor(ContextCompat.getColor(this,R.color.timepicker_toolbar_bg))
                 .setWheelItemTextSize(18)
                 .build();
         mDialogAll.show(getSupportFragmentManager(), "all");

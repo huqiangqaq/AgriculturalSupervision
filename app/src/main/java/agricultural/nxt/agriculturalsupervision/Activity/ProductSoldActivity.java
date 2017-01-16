@@ -3,6 +3,7 @@ package agricultural.nxt.agriculturalsupervision.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -42,13 +43,8 @@ public class ProductSoldActivity extends BaseActivity {
     @Override
     protected void initView() {
         toolBar.setTitle("产品信息查询");
-        toolBar.setLeftButtonIcon(getResources().getDrawable(R.mipmap.icon_arrow_02));
-        toolBar.setLeftButtonOnClickLinster(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        toolBar.setLeftButtonIcon(ContextCompat.getDrawable(this,R.mipmap.icon_arrow_02));
+        toolBar.setLeftButtonOnClickLinster(v -> finish());
         initData();
         lv_result.setLayoutManager(new LinearLayoutManager(this));
         lv_result.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));

@@ -3,12 +3,12 @@ package agricultural.nxt.agriculturalsupervision.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.widget.ListView;
 
 import com.chanven.lib.cptr.PtrClassicFrameLayout;
 import com.chanven.lib.cptr.PtrDefaultHandler;
 import com.chanven.lib.cptr.PtrFrameLayout;
-import com.chanven.lib.cptr.loadmore.OnLoadMoreListener;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -44,7 +44,7 @@ public class IntegrityMoreActivity extends BaseActivity {
      */
     private static int mCurrentCounter = 0;
     private List<Integrity.ListBean> dataList = new ArrayList<>();
-    private static IntegrityMoreAdapter adapter = null;
+    private  IntegrityMoreAdapter adapter = null;
     private PtrClassicFrameLayout ptrClassicFrameLayout = null;
 
     @Override
@@ -78,33 +78,30 @@ public class IntegrityMoreActivity extends BaseActivity {
             }
         });
 
-        ptrClassicFrameLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
-            @Override
-            public void loadMore() {
-                REQUEST_COUNT += 10;
-                if (mCurrentCounter < TOTAL_COUNTER) {
-                    OkhttpHelper.Get(Constants.INTEGRITY + REQUEST_COUNT, new OkhttpHelper.GetCallBack() {
-                        @Override
-                        public void onSuccess(String response, int tag) {
-                            if (response != null) {
-                                Integrity integrity = new Gson().fromJson(response, Integrity.class);
-                                dataList.clear();
-                                dataList.addAll(integrity.getList());
-                                adapter.notifyDataSetChanged();
-                                ptrClassicFrameLayout.loadMoreComplete(true);
-                                mCurrentCounter = dataList.size();
-                            }
+        ptrClassicFrameLayout.setOnLoadMoreListener(() -> {
+            REQUEST_COUNT += 10;
+            if (mCurrentCounter < TOTAL_COUNTER) {
+                OkhttpHelper.Get(Constants.INTEGRITY + REQUEST_COUNT, new OkhttpHelper.GetCallBack() {
+                    @Override
+                    public void onSuccess(String response, int tag) {
+                        if (response != null) {
+                            Integrity integrity = new Gson().fromJson(response, Integrity.class);
+                            dataList.clear();
+                            dataList.addAll(integrity.getList());
+                            adapter.notifyDataSetChanged();
+                            ptrClassicFrameLayout.loadMoreComplete(true);
+                            mCurrentCounter = dataList.size();
                         }
+                    }
 
-                        @Override
-                        public void onFailed(String error, int tag) {
+                    @Override
+                    public void onFailed(String error, int tag) {
 
-                        }
-                    }, 2);
-                } else {
-                    ptrClassicFrameLayout.loadMoreComplete(true);
-                    ptrClassicFrameLayout.setNoMoreData();
-                }
+                    }
+                }, 2);
+            } else {
+                ptrClassicFrameLayout.loadMoreComplete(true);
+                ptrClassicFrameLayout.setNoMoreData();
             }
         });
     }
@@ -132,7 +129,7 @@ public class IntegrityMoreActivity extends BaseActivity {
     @Override
     protected void initView() {
         toolBar.setTitle("诚信列表");
-        toolBar.setLeftButtonIcon(getResources().getDrawable(R.mipmap.icon_arrow_02));
+        toolBar.setLeftButtonIcon(ContextCompat.getDrawable(this,R.mipmap.icon_arrow_02));
         toolBar.setLeftButtonOnClickLinster(v -> finish());
         ptrClassicFrameLayout = (PtrClassicFrameLayout) this.findViewById(R.id.test_list_view_frame);
         ptrClassicFrameLayout.setLastUpdateTimeRelateObject(this);

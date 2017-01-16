@@ -2,17 +2,16 @@ package agricultural.nxt.agriculturalsupervision.Activity;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.widget.ListView;
 
 import com.chanven.lib.cptr.PtrClassicFrameLayout;
 import com.chanven.lib.cptr.PtrDefaultHandler;
 import com.chanven.lib.cptr.PtrFrameLayout;
-import com.chanven.lib.cptr.loadmore.OnLoadMoreListener;
 import com.google.gson.Gson;
 import com.mcxtzhang.swipemenulib.SwipeMenuLayout;
 import com.nxt.zyl.util.ZPreferenceUtils;
@@ -56,7 +55,7 @@ public class RecodeActivity extends BaseActivity {
      */
     private static int mCurrentCounter = 0;
     private List<Seed.ListBean> dataList = new ArrayList<>();
-    private static SeedAdapter adapter = null;
+    private  SeedAdapter adapter = null;
     private PtrClassicFrameLayout ptrClassicFrameLayout = null;
     private String url = null;
 
@@ -68,7 +67,7 @@ public class RecodeActivity extends BaseActivity {
     @Override
     protected void initView() {
         toolBar.setTitle("种子备案");
-        toolBar.setLeftButtonIcon(getResources().getDrawable(R.mipmap.icon_arrow_02));
+        toolBar.setLeftButtonIcon(ContextCompat.getDrawable(this,R.mipmap.icon_arrow_02));
         toolBar.setLeftButtonOnClickLinster(v -> finish());
         ptrClassicFrameLayout = (PtrClassicFrameLayout) this.findViewById(R.id.test_list_view_frame);
         ptrClassicFrameLayout.setLastUpdateTimeRelateObject(this);
@@ -114,33 +113,30 @@ public class RecodeActivity extends BaseActivity {
             }
         });
 
-        ptrClassicFrameLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
-            @Override
-            public void loadMore() {
-                REQUEST_COUNT += 10;
-                if (mCurrentCounter + 10 < TOTAL_COUNTER) {
-                    OkhttpHelper.Get(url + REQUEST_COUNT, new OkhttpHelper.GetCallBack() {
-                        @Override
-                        public void onSuccess(String response, int tag) {
-                            if (response != null) {
-                                Seed seed = new Gson().fromJson(response, Seed.class);
-                                dataList.clear();
-                                dataList.addAll(seed.getList());
-                                adapter.notifyDataSetChanged();
-                                ptrClassicFrameLayout.loadMoreComplete(true);
-                                mCurrentCounter = dataList.size();
-                            }
+        ptrClassicFrameLayout.setOnLoadMoreListener(() -> {
+            REQUEST_COUNT += 10;
+            if (mCurrentCounter + 10 < TOTAL_COUNTER) {
+                OkhttpHelper.Get(url + REQUEST_COUNT, new OkhttpHelper.GetCallBack() {
+                    @Override
+                    public void onSuccess(String response, int tag) {
+                        if (response != null) {
+                            Seed seed = new Gson().fromJson(response, Seed.class);
+                            dataList.clear();
+                            dataList.addAll(seed.getList());
+                            adapter.notifyDataSetChanged();
+                            ptrClassicFrameLayout.loadMoreComplete(true);
+                            mCurrentCounter = dataList.size();
                         }
+                    }
 
-                        @Override
-                        public void onFailed(String error, int tag) {
+                    @Override
+                    public void onFailed(String error, int tag) {
 
-                        }
-                    }, 2);
-                } else {
-                    ptrClassicFrameLayout.loadMoreComplete(true);
-                    ptrClassicFrameLayout.setNoMoreData();
-                }
+                    }
+                }, 2);
+            } else {
+                ptrClassicFrameLayout.loadMoreComplete(true);
+                ptrClassicFrameLayout.setNoMoreData();
             }
         });
     }
@@ -153,12 +149,7 @@ public class RecodeActivity extends BaseActivity {
                 dataList = seed.getList();
                 TOTAL_COUNTER = seed.getCount();
                 adapter = new SeedAdapter(RecodeActivity.this, dataList);
-                adapter.setSwipeCheck(new SeedAdapter.onSwipeCheck() {
-                    @Override
-                    public void onCheck(int postion, SwipeMenuLayout finalConvertView) {
-                        check(postion, finalConvertView);
-                    }
-                });
+                adapter.setSwipeCheck((postion, finalConvertView) -> check(postion, finalConvertView));
                 lv_integrity.setAdapter(adapter);
                 ptrClassicFrameLayout.autoRefresh(true);
             }
@@ -191,34 +182,31 @@ public class RecodeActivity extends BaseActivity {
         new AlertDialog.Builder(RecodeActivity.this)
                 .setTitle("系统提示")
                 .setMessage("确定审批该种子备案吗?")
-                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String id = dataList.get(postion).getId();
-                        showLoadingDialog(R.string.checking);
-                        OkhttpHelper.Get(Constants.SEED_RECODE_CHECK + id, new OkhttpHelper.GetCallBack() {
-                            @Override
-                            public void onSuccess(String response, int tag) {
-                                dismissLoadingDialog();
-                                if (TextUtils.equals(JsonUtil.PareJson(response), "true")) {
-                                    new SweetAlertDialog(RecodeActivity.this, SweetAlertDialog.SUCCESS_TYPE)
-                                            .setConfirmText("审核成功")
-                                            .show();
-                                    finalConvertView.quickClose();
-                                    refresh();
-                                } else {
-                                    new SweetAlertDialog(RecodeActivity.this, SweetAlertDialog.ERROR_TYPE)
-                                            .setConfirmText("审核失败," + JsonUtil.ParseMsg(response))
-                                            .show();
-                                }
+                .setPositiveButton("确定", (dialog, which) -> {
+                    String id = dataList.get(postion).getId();
+                    showLoadingDialog(R.string.checking);
+                    OkhttpHelper.Get(Constants.SEED_RECODE_CHECK + id, new OkhttpHelper.GetCallBack() {
+                        @Override
+                        public void onSuccess(String response, int tag) {
+                            dismissLoadingDialog();
+                            if (TextUtils.equals(JsonUtil.PareJson(response), "true")) {
+                                new SweetAlertDialog(RecodeActivity.this, SweetAlertDialog.SUCCESS_TYPE)
+                                        .setConfirmText("审核成功")
+                                        .show();
+                                finalConvertView.quickClose();
+                                refresh();
+                            } else {
+                                new SweetAlertDialog(RecodeActivity.this, SweetAlertDialog.ERROR_TYPE)
+                                        .setConfirmText("审核失败," + JsonUtil.ParseMsg(response))
+                                        .show();
                             }
+                        }
 
-                            @Override
-                            public void onFailed(String error, int tag) {
+                        @Override
+                        public void onFailed(String error, int tag) {
 
-                            }
-                        }, 2);
-                    }
+                        }
+                    }, 2);
                 }).setNegativeButton("取消", (dialog, which) -> dialog.dismiss()).show();
 
     }

@@ -3,7 +3,7 @@ package agricultural.nxt.agriculturalsupervision.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.support.v4.content.ContextCompat;
 
 import agricultural.nxt.agriculturalsupervision.R;
 import agricultural.nxt.agriculturalsupervision.Widget.LetToolBar;
@@ -22,13 +22,8 @@ public class RecodeSearchActivity extends BaseActivity {
     @Override
     protected void initView() {
         toolBar.setTitle("备案信息查询");
-        toolBar.setLeftButtonIcon(getResources().getDrawable(R.mipmap.icon_arrow_02));
-        toolBar.setLeftButtonOnClickLinster(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        toolBar.setLeftButtonIcon(ContextCompat.getDrawable(this,R.mipmap.icon_arrow_02));
+        toolBar.setLeftButtonOnClickLinster(v -> finish());
 
     }
 

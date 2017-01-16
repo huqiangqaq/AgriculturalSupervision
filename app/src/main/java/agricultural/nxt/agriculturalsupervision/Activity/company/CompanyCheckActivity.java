@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
 import android.widget.ListView;
 
 import com.chanven.lib.cptr.PtrClassicFrameLayout;
@@ -42,7 +43,7 @@ public class CompanyCheckActivity extends BaseActivity {
      */
     private static int mCurrentCounter = 0;
     private List<Seed.ListBean> dataList = new ArrayList<>();
-    private static SeedAdapter adapter = null;
+    private SeedAdapter adapter = null;
     private PtrClassicFrameLayout ptrClassicFrameLayout = null;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,7 +53,7 @@ public class CompanyCheckActivity extends BaseActivity {
     @Override
     protected void initView() {
         toolBar.setTitle("企业备案列表");
-        toolBar.setLeftButtonIcon(getResources().getDrawable(R.mipmap.icon_arrow_02));
+        toolBar.setLeftButtonIcon(ContextCompat.getDrawable(this,R.mipmap.icon_arrow_02));
         toolBar.setLeftButtonOnClickLinster(v -> finish());
         ptrClassicFrameLayout = (PtrClassicFrameLayout) this.findViewById(R.id.test_list_view_frame);
         ptrClassicFrameLayout.setLastUpdateTimeRelateObject(this);

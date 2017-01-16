@@ -1,6 +1,7 @@
 package agricultural.nxt.agriculturalsupervision;
 
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.AdapterView;
 
@@ -33,13 +34,8 @@ public class AllActivity extends BaseActivity implements AdapterView.OnItemClick
     @Override
     protected void initView() {
         toolBar.setTitle("全部");
-        toolBar.setLeftButtonIcon(getResources().getDrawable(R.mipmap.icon_arrow_02));
-        toolBar.setLeftButtonOnClickLinster(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        toolBar.setLeftButtonIcon(ContextCompat.getDrawable(this,R.mipmap.icon_arrow_02));
+        toolBar.setLeftButtonOnClickLinster(v -> finish());
         menus = getIntent().getStringArrayListExtra("menu");
         ids = getIntent().getIntegerArrayListExtra("ids");
         adapter = new GridAdapter(this, menus, ids);

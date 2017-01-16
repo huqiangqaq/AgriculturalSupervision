@@ -23,6 +23,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import agricultural.nxt.agriculturalsupervision.Activity.company.MenuActivity;
+import agricultural.nxt.agriculturalsupervision.Activity.intercourse.IntercourseMenuActivity;
+import agricultural.nxt.agriculturalsupervision.Activity.pesticideLib.PesticideLibActivity;
 import agricultural.nxt.agriculturalsupervision.AllActivity;
 import agricultural.nxt.agriculturalsupervision.Constants;
 import agricultural.nxt.agriculturalsupervision.R;
@@ -32,6 +34,7 @@ import agricultural.nxt.agriculturalsupervision.Zxing.activity.CaptureActivity;
 import agricultural.nxt.agriculturalsupervision.base.BaseActivity;
 import agricultural.nxt.agriculturalsupervision.entity.Integrity;
 import agricultural.nxt.agriculturalsupervision.entity.LoginReturn;
+import agricultural.nxt.agriculturalsupervision.my.MyActivity;
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -177,9 +180,9 @@ public class MainActivity extends BaseActivity implements OkhttpHelper.GetCallBa
     private void getMenuList() {
 
         for (int i = 0; i < menuList.size(); i++) {
-            for (int j = 0; j < menuText.length; j++) {
-                if (menuList.get(i).getName().contains(menuText[j])) {
-                    list.add(menuText[j]);
+            for (String aMenuText : menuText) {
+                if (menuList.get(i).getName().contains(aMenuText)) {
+                    list.add(aMenuText);
                 }
             }
         }
@@ -313,7 +316,7 @@ public class MainActivity extends BaseActivity implements OkhttpHelper.GetCallBa
      */
     @OnClick(R.id.userinfo)
     void UserInfo() {
-        ZToastUtils.showShort(this, "用户信息");
+        MyActivity.actionStart(this);
 
     }
 
@@ -323,7 +326,6 @@ public class MainActivity extends BaseActivity implements OkhttpHelper.GetCallBa
      */
     @OnClick(R.id.tv_more)
     void More() {
-        AnnounceActivity.actionStart(this);
     }
 
     /**
@@ -350,7 +352,6 @@ public class MainActivity extends BaseActivity implements OkhttpHelper.GetCallBa
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             Bundle bundle = data.getExtras();
-            String scanResult = bundle.getString("result");
 
         }
     }
@@ -445,13 +446,13 @@ public class MainActivity extends BaseActivity implements OkhttpHelper.GetCallBa
         } else if ("农资产品销售".equalsIgnoreCase(content)) {
             ProductSoldActivity.actionStart(this);
         } else if ("往来管理".equalsIgnoreCase(content)) {
-            ZToastUtils.showShort(this, content);
+            IntercourseMenuActivity.ActionStart(this);
         } else if ("农资产品购进".equalsIgnoreCase(content)) {
             ZToastUtils.showShort(this, content);
         } else if ("企业管理".equalsIgnoreCase(content)) {
             MenuActivity.actionStart(this);
         } else if ("农药库管理".equalsIgnoreCase(content)) {
-            ZToastUtils.showShort(this, content);
+            PesticideLibActivity.actionStart(this);
         } else if ("电子处方".equalsIgnoreCase(content)) {
             ZToastUtils.showShort(this, content);
         } else if ("销售员管理".equalsIgnoreCase(content)) {

@@ -143,7 +143,7 @@ public class AppUtil {
      * 获取App信息的一个封装类(包名、版本号、应用信息、图标、名称等)
      */
     public static List<AppInfo> getAppInfos(Context context) {
-        List<AppInfo> list = new ArrayList<AppInfo>();
+        List<AppInfo> list = new ArrayList<>();
         //获取应用程序信息
         //包的管理者
         PackageManager pm = context.getPackageManager();
@@ -165,22 +165,12 @@ public class AppUtil {
             //获取应用程序中相关信息,是否是系统程序和是否安装到SD卡
             boolean isUser;
             int flags = applicationInfo.flags;
-            if ((applicationInfo.FLAG_SYSTEM & flags) == applicationInfo.FLAG_SYSTEM) {
-                //系统程序
-                isUser = false;
-            } else {
-                //用户程序
-                isUser = true;
-            }
+            isUser = (ApplicationInfo.FLAG_SYSTEM & flags) != ApplicationInfo.FLAG_SYSTEM;
             //是否安装到SD卡
             boolean isSD;
-            if ((applicationInfo.FLAG_EXTERNAL_STORAGE & flags) == applicationInfo.FLAG_EXTERNAL_STORAGE) {
-                //安装到了SD卡
-                isSD = true;
-            } else {
-                //安装到手机中
-                isSD = false;
-            }
+            //安装到了SD卡
+//安装到手机中
+            isSD = (ApplicationInfo.FLAG_EXTERNAL_STORAGE & flags) == ApplicationInfo.FLAG_EXTERNAL_STORAGE;
             //添加到bean中
             AppInfo appInfo = new AppInfo(name, icon, packageName, versionName, isSD, isUser);
             //将bean存放到list集合

@@ -49,34 +49,25 @@ public class RecodeAdapter extends ListBaseAdapter<RecodeReturn> {
         //隐藏控件
 //        viewHolder.btnUnRead.setVisibility(position % 3 == 0 ? View.GONE : View.VISIBLE);
 
-        viewHolder.btndel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (null != mOnSwipeListener) {
-                    //如果删除时，不使用mAdapter.notifyItemRemoved(pos)，则删除没有动画效果，
-                    //且如果想让侧滑菜单同时关闭，需要同时调用 ((CstSwipeDelMenu) holder.itemView).quickClose();
-                    //((CstSwipeDelMenu) holder.itemView).quickClose();
-                    mOnSwipeListener.onDel(position);
-                }
+        viewHolder.btndel.setOnClickListener(v -> {
+            if (null != mOnSwipeListener) {
+                //如果删除时，不使用mAdapter.notifyItemRemoved(pos)，则删除没有动画效果，
+                //且如果想让侧滑菜单同时关闭，需要同时调用 ((CstSwipeDelMenu) holder.itemView).quickClose();
+                //((CstSwipeDelMenu) holder.itemView).quickClose();
+                mOnSwipeListener.onDel(position);
             }
         });
         //注意事项，设置item点击，不能对整个holder.itemView设置咯，只能对第一个子View，即原来的content设置，这算是局限性吧。
-        (viewHolder.contentView).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ZToastUtils.showShort(mContext, getDataList().get(position).getCount());
-                Log.d("TAG", "onClick() called with: v = [" + v + "]");
-            }
+        (viewHolder.contentView).setOnClickListener(v -> {
+            ZToastUtils.showShort(mContext, getDataList().get(position).getCount());
+            Log.d("TAG", "onClick() called with: v = [" + v + "]");
         });
         //置顶：
-        viewHolder.btn_update.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (null != mOnSwipeListener) {
-                    mOnSwipeListener.onUpdate(position);
-                }
-
+        viewHolder.btn_update.setOnClickListener(v -> {
+            if (null != mOnSwipeListener) {
+                mOnSwipeListener.onUpdate(position);
             }
+
         });
     }
 
