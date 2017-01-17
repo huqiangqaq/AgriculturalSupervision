@@ -14,13 +14,13 @@ public class Supplier {
     /**
      * pageNo : 1
      * pageSize : 20
-     * count : 2
-     * list : [{"id":"557f825c12db4437bf75f38db0cf5aca","isNewRecord":false,"createBy":{"id":"刘建设","isNewRecord":false,"loginFlag":"1","admin":false,"roleNames":""},"createDate":"2017-01-16 16:10:54","updateBy":{"id":"刘建设","isNewRecord":false,"loginFlag":"1","admin":false,"roleNames":""},"updateDate":"2017-01-16 16:10:54","vcmycustomername":"新的一年","vccorporation":"沐浴液","vcidnumber":"360121199302233513","vcphone":"13131","vcaddress":"南昌市","vcemail":"51323","townerId":"71d53e9e3ec94472a1dd427c01c0a2b1"},{"id":"6a30f387f21c46e6ac2290f54f750997","isNewRecord":false,"createBy":{"id":"刘建设","isNewRecord":false,"loginFlag":"1","admin":false,"roleNames":""},"createDate":"2017-01-16 16:06:59","updateBy":{"id":"刘建设","isNewRecord":false,"loginFlag":"1","admin":false,"roleNames":""},"updateDate":"2017-01-16 16:06:59","vcmycustomername":"胡强01","vccorporation":"胡强","vcidnumber":"360121199302233513","vcphone":"13131","vcaddress":"南昌市","vcemail":"51323","townerId":"71d53e9e3ec94472a1dd427c01c0a2b1"}]
+     * count : 12
+     * list : [{"id":"9ceef6d6a8b94607a6ca90dc04176a69","isNewRecord":false,"createBy":{"id":"刘建设","isNewRecord":false,"loginFlag":"1","admin":false,"roleNames":""},"createDate":"2017-01-17 13:06:31","updateBy":{"id":"刘建设","isNewRecord":false,"loginFlag":"1","admin":false,"roleNames":""},"updateDate":"2017-01-17 13:06:31","vcmyorgno":"71d53e9e3ec94472a1dd427c01c0a2b1","vcmysuppliername":"谢许鑫","vccorporation":"谢许鑫","vcphone":"123","vcbizlicedate":"2017-01-17 00:00:00","vcproductlicense":"81414","dtprodlicendate":"2019-01-17 00:00:00"},{"id":"2b0cdc07a6114b3f83d61af7cae255bf","isNewRecord":false,"createBy":{"id":"刘建设","isNewRecord":false,"loginFlag":"1","admin":false,"roleNames":""},"createDate":"2017-01-16 16:32:03","updateBy":{"id":"刘建设","isNewRecord":false,"loginFlag":"1","admin":false,"roleNames":""},"updateDate":"2017-01-16 16:32:03","vcmyorgno":"71d53e9e3ec94472a1dd427c01c0a2b1","vcmysuppliername":"我","vccorporation":"你","vcphone":"15846464","vcbizlicedate":"2017-01-09 00:00:00","vcbizlicepic":"|/nzgl/userfiles/124342ec97ae400ab942ecafca20547a/files/contact/mySupplier/2017/01/logo.png","dtprodlicendate":"2017-05-05 00:00:00"},{"id":"5e968a7c6fd94f438cec1f2a8fb2eca6","isNewRecord":false,"createBy":{"id":"刘建设","isNewRecord":false,"loginFlag":"1","admin":false,"roleNames":""},"createDate":"2017-01-09 15:18:24","updateBy":{"id":"刘建设","isNewRecord":false,"loginFlag":"1","admin":false,"roleNames":""},"updateDate":"2017-01-09 15:18:24","vcmyorgno":"71d53e9e3ec94472a1dd427c01c0a2b1","vcmysuppliername":"我","vccorporation":"你","vcphone":"15846464","vcbizlicedate":"2017-01-09 00:00:00","dtprodlicendate":"2017-05-05 00:00:00"},{"id":"2432ecad962e4fbfa0a50447a1f50c0c","isNewRecord":false,"createBy":{"id":"刘建设","isNewRecord":false,"loginFlag":"1","admin":false,"roleNames":""},"createDate":"2017-01-09 15:18:06","updateBy":{"id":"刘建设","isNewRecord":false,"loginFlag":"1","admin":false,"roleNames":""},"updateDate":"2017-01-09 15:18:06","vcmyorgno":"71d53e9e3ec94472a1dd427c01c0a2b1","vcmysuppliername":"我","vccorporation":"你","vcphone":"15846464","vcbizlicedate":"2017-01-09 00:00:00","dtprodlicendate":"2017-05-05 00:00:00"},{"id":"73623d7fd90c471db31604adc1eb79a3","isNewRecord":false,"createBy":{"id":"刘建设","isNewRecord":false,"loginFlag":"1","admin":false,"roleNames":""},"createDate":"2017-01-09 15:09:34","updateBy":{"id":"刘建设","isNewRecord":false,"loginFlag":"1","admin":false,"roleNames":""},"updateDate":"2017-01-09 15:09:34","vcmyorgno":"71d53e9e3ec94472a1dd427c01c0a2b1","vcmysuppliername":"水稻种子公司0002","vcbizlicedate":"2016-12-09 00:00:00"},{"id":"3e7c0db0981543b4a28e0fb6a94a15e5","isNewRecord":false,"createBy":{"id":"刘建设","isNewRecord":false,"loginFlag":"1","admin":false,"roleNames":""},"createDate":"2017-01-09 15:01:18","updateBy":{"id":"刘建设","isNewRecord":false,"loginFlag":"1","admin":false,"roleNames":""},"updateDate":"2017-01-09 15:01:18","vcmyorgno":"71d53e9e3ec94472a1dd427c01c0a2b1","vcmysuppliername":"水稻种子公司","vcbizlicedate":"2016-12-09 00:00:00"},{"id":"09b70df0102b4a8fb6f8ded5875782c5","isNewRecord":false,"createBy":{"id":"刘建设","isNewRecord":false,"loginFlag":"1","admin":false,"roleNames":""},"createDate":"2017-01-03 21:28:15","updateBy":{"id":"刘建设","isNewRecord":false,"loginFlag":"1","admin":false,"roleNames":""},"updateDate":"2017-01-03 21:28:15","vcmyorgno":"71d53e9e3ec94472a1dd427c01c0a2b1","vcmysuppliername":"bbb","vcbizlicedate":"2020-11-20 05:14:41"},{"id":"b0c56c1eea084b32ad82c64009ca0353","isNewRecord":false,"createBy":{"id":"刘建设","isNewRecord":false,"loginFlag":"1","admin":false,"roleNames":""},"createDate":"2017-01-03 17:13:40","updateBy":{"id":"刘建设","isNewRecord":false,"loginFlag":"1","admin":false,"roleNames":""},"updateDate":"2017-01-03 17:13:40","vcmyorgno":"71d53e9e3ec94472a1dd427c01c0a2b1","vcmysuppliername":"梁咏琪","vcaddress":"13344445555","vcbizlicedate":"2017-07-08 17:26:51","dtprodlicendate":"2017-02-11 17:27:00"},{"id":"7a2bffe975ff447689a3ce240b31828a","isNewRecord":false,"createBy":{"id":"刘建设","isNewRecord":false,"loginFlag":"1","admin":false,"roleNames":""},"createDate":"2017-01-03 17:08:22","updateBy":{"id":"刘建设","isNewRecord":false,"loginFlag":"1","admin":false,"roleNames":""},"updateDate":"2017-01-03 17:08:22","vcmyorgno":"71d53e9e3ec94472a1dd427c01c0a2b1","vcmysuppliername":"刘某某","vcphone":"13366668888","dtprodlicendate":"2017-01-03 17:21:17"},{"id":"1e506fd809624e6d952a5a750c40aa30","isNewRecord":false,"createBy":{"id":"刘建设","isNewRecord":false,"loginFlag":"1","admin":false,"roleNames":""},"createDate":"2017-01-03 15:08:55","updateBy":{"id":"刘建设","isNewRecord":false,"loginFlag":"1","admin":false,"roleNames":""},"updateDate":"2017-01-03 15:08:55","vcmyorgno":"71d53e9e3ec94472a1dd427c01c0a2b1","vcmysuppliername":"江西制药","vccorporation":"刘明","vcphone":"123","vcaddress":"江西","vcemail":"111","vcbizlicense":"111111","vcproductlicense":"1111"},{"id":"d463db91e9c242cca726071914d5ae71","isNewRecord":false,"createBy":{"id":"刘建设","isNewRecord":false,"loginFlag":"1","admin":false,"roleNames":""},"createDate":"2017-01-03 15:08:43","updateBy":{"id":"刘建设","isNewRecord":false,"loginFlag":"1","admin":false,"roleNames":""},"updateDate":"2017-01-03 15:08:43","vcmyorgno":"71d53e9e3ec94472a1dd427c01c0a2b1","vcmysuppliername":"江西制药","vccorporation":"刘明","vcphone":"123","vcaddress":"江西","vcemail":"111"},{"id":"f4b31e3acf784b718b771e222fff0d2a","isNewRecord":false,"remarks":"小飞","createBy":{"id":"刘建设","isNewRecord":false,"loginFlag":"1","admin":false,"roleNames":""},"createDate":"2017-01-03 10:37:02","updateBy":{"id":"刘建设","isNewRecord":false,"loginFlag":"1","admin":false,"roleNames":""},"updateDate":"2017-01-03 10:37:02","vcmyorgno":"71d53e9e3ec94472a1dd427c01c0a2b1","vcmysuppliername":"小飞哥农产品生产企业","vccorporation":"曾小贤","vcphone":"1234567890234","vcaddress":"湖南长沙","vcemail":"zhengxx@163.com","vcbizlicense":"zz-3878585863","vcbizlicedate":"2020-11-25 15:14:15","vcproductlicense":"sc-75687236587","dtprodlicendate":"2020-11-19 15:14:41"}]
      * html : <ul>
      <li class="disabled"><a href="javascript:">« 上一页</a></li>
      <li class="active"><a href="javascript:">1</a></li>
      <li class="disabled"><a href="javascript:">下一页 »</a></li>
-     <li class="disabled controls"><a href="javascript:">当前 <input type="text" value="1" onkeypress="var e=window.event||event;var c=e.keyCode||e.which;if(c==13)page(this.value,20,'');" onclick="this.select();"/> / <input type="text" value="20" onkeypress="var e=window.event||event;var c=e.keyCode||e.which;if(c==13)page(1,this.value,'');" onclick="this.select();"/> 条，共 2 条</a></li>
+     <li class="disabled controls"><a href="javascript:">当前 <input type="text" value="1" onkeypress="var e=window.event||event;var c=e.keyCode||e.which;if(c==13)page(this.value,20,'');" onclick="this.select();"/> / <input type="text" value="20" onkeypress="var e=window.event||event;var c=e.keyCode||e.which;if(c==13)page(1,this.value,'');" onclick="this.select();"/> 条，共 12 条</a></li>
      </ul>
      <div style="clear:both;"></div>
      * firstResult : 0
@@ -94,19 +94,24 @@ public class Supplier {
     public static class ListBean implements Parcelable {
 
         /**
-         * id : 557f825c12db4437bf75f38db0cf5aca
+         * id : 9ceef6d6a8b94607a6ca90dc04176a69
          * isNewRecord : false
          * createBy : {"id":"刘建设","isNewRecord":false,"loginFlag":"1","admin":false,"roleNames":""}
-         * createDate : 2017-01-16 16:10:54
+         * createDate : 2017-01-17 13:06:31
          * updateBy : {"id":"刘建设","isNewRecord":false,"loginFlag":"1","admin":false,"roleNames":""}
-         * updateDate : 2017-01-16 16:10:54
-         * vcmycustomername : 新的一年
-         * vccorporation : 沐浴液
-         * vcidnumber : 360121199302233513
-         * vcphone : 13131
-         * vcaddress : 南昌市
-         * vcemail : 51323
-         * townerId : 71d53e9e3ec94472a1dd427c01c0a2b1
+         * updateDate : 2017-01-17 13:06:31
+         * vcmyorgno : 71d53e9e3ec94472a1dd427c01c0a2b1
+         * vcmysuppliername : 谢许鑫
+         * vccorporation : 谢许鑫
+         * vcphone : 123
+         * vcbizlicedate : 2017-01-17 00:00:00
+         * vcproductlicense : 81414
+         * dtprodlicendate : 2019-01-17 00:00:00
+         * vcbizlicepic : |/nzgl/userfiles/124342ec97ae400ab942ecafca20547a/files/contact/mySupplier/2017/01/logo.png
+         * vcaddress : 13344445555
+         * vcemail : 111
+         * vcbizlicense : 111111
+         * remarks : 小飞
          */
 
         private String id;
@@ -115,13 +120,27 @@ public class Supplier {
         private String createDate;
         private UpdateByBean updateBy;
         private String updateDate;
-        private String vcmycustomername;
+        private String vcmyorgno;
+        private String vcmysuppliername;
         private String vccorporation;
-        private String vcidnumber;
         private String vcphone;
+        private String vcbizlicedate;
+        private String vcproductlicense;
+        private String dtprodlicendate;
+        private String vcbizlicepic;
         private String vcaddress;
         private String vcemail;
-        private String townerId;
+        private String vcbizlicense;
+        private String remarks;
+        private String vcprodlicenpic;
+
+        public String getVcprodlicenpic() {
+            return vcprodlicenpic;
+        }
+
+        public void setVcprodlicenpic(String vcprodlicenpic) {
+            this.vcprodlicenpic = vcprodlicenpic;
+        }
 
         public String getId() {
             return id;
@@ -171,12 +190,20 @@ public class Supplier {
             this.updateDate = updateDate;
         }
 
-        public String getVcmycustomername() {
-            return vcmycustomername;
+        public String getVcmyorgno() {
+            return vcmyorgno;
         }
 
-        public void setVcmycustomername(String vcmycustomername) {
-            this.vcmycustomername = vcmycustomername;
+        public void setVcmyorgno(String vcmyorgno) {
+            this.vcmyorgno = vcmyorgno;
+        }
+
+        public String getVcmysuppliername() {
+            return vcmysuppliername;
+        }
+
+        public void setVcmysuppliername(String vcmysuppliername) {
+            this.vcmysuppliername = vcmysuppliername;
         }
 
         public String getVccorporation() {
@@ -187,20 +214,44 @@ public class Supplier {
             this.vccorporation = vccorporation;
         }
 
-        public String getVcidnumber() {
-            return vcidnumber;
-        }
-
-        public void setVcidnumber(String vcidnumber) {
-            this.vcidnumber = vcidnumber;
-        }
-
         public String getVcphone() {
             return vcphone;
         }
 
         public void setVcphone(String vcphone) {
             this.vcphone = vcphone;
+        }
+
+        public String getVcbizlicedate() {
+            return vcbizlicedate;
+        }
+
+        public void setVcbizlicedate(String vcbizlicedate) {
+            this.vcbizlicedate = vcbizlicedate;
+        }
+
+        public String getVcproductlicense() {
+            return vcproductlicense;
+        }
+
+        public void setVcproductlicense(String vcproductlicense) {
+            this.vcproductlicense = vcproductlicense;
+        }
+
+        public String getDtprodlicendate() {
+            return dtprodlicendate;
+        }
+
+        public void setDtprodlicendate(String dtprodlicendate) {
+            this.dtprodlicendate = dtprodlicendate;
+        }
+
+        public String getVcbizlicepic() {
+            return vcbizlicepic;
+        }
+
+        public void setVcbizlicepic(String vcbizlicepic) {
+            this.vcbizlicepic = vcbizlicepic;
         }
 
         public String getVcaddress() {
@@ -219,12 +270,20 @@ public class Supplier {
             this.vcemail = vcemail;
         }
 
-        public String getTownerId() {
-            return townerId;
+        public String getVcbizlicense() {
+            return vcbizlicense;
         }
 
-        public void setTownerId(String townerId) {
-            this.townerId = townerId;
+        public void setVcbizlicense(String vcbizlicense) {
+            this.vcbizlicense = vcbizlicense;
+        }
+
+        public String getRemarks() {
+            return remarks;
+        }
+
+        public void setRemarks(String remarks) {
+            this.remarks = remarks;
         }
 
         public static class CreateByBean implements Parcelable {
@@ -428,13 +487,18 @@ public class Supplier {
             dest.writeString(this.createDate);
             dest.writeParcelable(this.updateBy, flags);
             dest.writeString(this.updateDate);
-            dest.writeString(this.vcmycustomername);
+            dest.writeString(this.vcmyorgno);
+            dest.writeString(this.vcmysuppliername);
             dest.writeString(this.vccorporation);
-            dest.writeString(this.vcidnumber);
             dest.writeString(this.vcphone);
+            dest.writeString(this.vcbizlicedate);
+            dest.writeString(this.vcproductlicense);
+            dest.writeString(this.dtprodlicendate);
+            dest.writeString(this.vcbizlicepic);
             dest.writeString(this.vcaddress);
             dest.writeString(this.vcemail);
-            dest.writeString(this.townerId);
+            dest.writeString(this.vcbizlicense);
+            dest.writeString(this.remarks);
         }
 
         public ListBean() {
@@ -447,13 +511,18 @@ public class Supplier {
             this.createDate = in.readString();
             this.updateBy = in.readParcelable(UpdateByBean.class.getClassLoader());
             this.updateDate = in.readString();
-            this.vcmycustomername = in.readString();
+            this.vcmyorgno = in.readString();
+            this.vcmysuppliername = in.readString();
             this.vccorporation = in.readString();
-            this.vcidnumber = in.readString();
             this.vcphone = in.readString();
+            this.vcbizlicedate = in.readString();
+            this.vcproductlicense = in.readString();
+            this.dtprodlicendate = in.readString();
+            this.vcbizlicepic = in.readString();
             this.vcaddress = in.readString();
             this.vcemail = in.readString();
-            this.townerId = in.readString();
+            this.vcbizlicense = in.readString();
+            this.remarks = in.readString();
         }
 
         public static final Parcelable.Creator<ListBean> CREATOR = new Parcelable.Creator<ListBean>() {

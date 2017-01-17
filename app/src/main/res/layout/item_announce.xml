@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/selector_common_layout"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/swipe_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/commontext"
+                android:text="公告标题:"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_marginLeft="15dp"
+                android:id="@+id/vctitle"
+                style="@style/commontext"
+                android:text="22" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+            <TextView
+                style="@style/commontext"
+                android:text="重要等级:"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_marginLeft="15dp"
+                android:id="@+id/ilevel"
+                style="@style/commontext"
+                android:text="22" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/commontext"
+                android:text="自动下线时间:"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_marginLeft="15dp"
+                android:id="@+id/dtcloseddate"
+                style="@style/commontext"
+                android:text="22" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/commontext"
+                android:text="是否有效:"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_marginLeft="15dp"
+                android:id="@+id/Iactiveflag"
+                style="@style/commontext"
+                android:text="22" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/commontext"
+                android:text="查阅状态:"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_marginLeft="15dp"
+                android:id="@+id/ireadFlag"
+                style="@style/commontext"
+                android:text="22" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/commontext"
+                android:text="创建时间:"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_marginLeft="15dp"
+                android:id="@+id/createDate"
+                style="@style/commontext"
+                android:text="22" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

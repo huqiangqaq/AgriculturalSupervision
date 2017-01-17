@@ -17,9 +17,10 @@ public interface Constants {
     //获取用户菜单列表
     String GETMENULIST = BASE_URL + "/sys/menu/getMenuList";
     //公告
-    String ANNOUNCEMENT = BASE_URL + "/login?username=%s&password=%s";
+    String ANNOUNCEMENT = URL + "/appNotify/notice/selfData";
+    String ANNOUNCEMENT_DETAIL =URL+"/appNotify/notice/form?id=";
     //诚信
-    String INTEGRITY = URL + "/credit/appIllegalinfo/list?pageNo=1&pageSize=";
+    String INTEGRITY = URL + "/credit/appIllegalinfo/list?pageNo=1&pageSize=3";
     String INTEGRITY_DEL = URL + "/credit/appIllegalinfo/delete?id=";
     String INTEGRITY_DETAIL = URL + "/credit/appIllegalinfo/form?id=";
     String INTEGRITY_ADD = URL + "/credit/appIllegalinfo/save";
@@ -104,6 +105,8 @@ public interface Constants {
     String CLIENT_DEL = URL+"/contact/appMyCustomer/delete?id=";
     String CLIENT_SAVE = URL+"/contact/appMyCustomer/save";
     String SUPPLIER = URL+"/contact/appMySupplier/list?pageSize=20&pageNo=";
+    String SUPPLIER_DEL = URL+"/contact/appMySupplier/delete?id=";
+    String SUPPLIER_SAVE = URL+"/contact/appMySupplier/save";
     //个人信息
     String MYINFO = URL+"/sys/appUser/infoData";
 }

@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.transition.Transition;
 import android.transition.TransitionInflater;
+import android.util.SparseArray;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
@@ -22,6 +23,7 @@ import com.nxt.zyl.util.ZToastUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import agricultural.nxt.agriculturalsupervision.Activity.announce.AnnounceDetailActivity;
 import agricultural.nxt.agriculturalsupervision.Activity.company.MenuActivity;
 import agricultural.nxt.agriculturalsupervision.Activity.intercourse.IntercourseMenuActivity;
 import agricultural.nxt.agriculturalsupervision.Activity.pesticideLib.PesticideLibActivity;
@@ -32,6 +34,7 @@ import agricultural.nxt.agriculturalsupervision.Util.DoubleClickExitHelper;
 import agricultural.nxt.agriculturalsupervision.Util.OkhttpHelper;
 import agricultural.nxt.agriculturalsupervision.Zxing.activity.CaptureActivity;
 import agricultural.nxt.agriculturalsupervision.base.BaseActivity;
+import agricultural.nxt.agriculturalsupervision.entity.Announce;
 import agricultural.nxt.agriculturalsupervision.entity.Integrity;
 import agricultural.nxt.agriculturalsupervision.entity.LoginReturn;
 import agricultural.nxt.agriculturalsupervision.my.MyActivity;
@@ -39,7 +42,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 
-public class MainActivity extends BaseActivity implements OkhttpHelper.GetCallBack {
+public class MainActivity extends BaseActivity implements OkhttpHelper.GetCallBack, View.OnClickListener {
     @BindView(R.id.layout_left)
     RelativeLayout rl_left;
     @BindView(R.id.tv_title)
@@ -52,6 +55,14 @@ public class MainActivity extends BaseActivity implements OkhttpHelper.GetCallBa
     /**
      * 通知专栏
      */
+    @BindView(R.id.tv_anounce1)
+    TextView tv_anounce1;
+    @BindView(R.id.tv_anounce2)
+    TextView tv_anounce2;
+    @BindView(R.id.tv_anounce3)
+    TextView tv_anounce3;
+    @BindView(R.id.pb_announce)
+    ProgressBar pb_announce;
     @BindView(R.id.tv_more)
     TextView tv_more;
 
@@ -102,6 +113,7 @@ public class MainActivity extends BaseActivity implements OkhttpHelper.GetCallBa
     private static final int INTEGRITY = 2;
     public String[] menuText = {"产品备案", "往来管理", "农资产品购进", "企业管理", "农资产品销售", "农药库管理",
             "电子处方", "销售员管理"};
+    private SparseArray<String> asa = new SparseArray<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -130,6 +142,9 @@ public class MainActivity extends BaseActivity implements OkhttpHelper.GetCallBa
         //添加对应的模块
         addImgResource(list);
         initRes(list, views, ids);
+        tv_anounce1.setOnClickListener(this);
+        tv_anounce2.setOnClickListener(this);
+        tv_anounce3.setOnClickListener(this);
 //        /**
 //         * 通知专栏
 //         */
@@ -141,40 +156,6 @@ public class MainActivity extends BaseActivity implements OkhttpHelper.GetCallBa
 //        Drawable drawable = getResources().getDrawable(R.mipmap.icon_sc);
 //        drawable.setBounds(0,0,drawable.getMinimumHeight(),drawable.getMinimumHeight());
 //        tv_product_recode.setCompoundDrawables(null,drawable,null,null);
-    }
-
-    private void getIntegrity() {
-        String url = String.format(Constants.INTEGRITY, 1, 3);
-        OkhttpHelper.Get(url, new OkhttpHelper.GetCallBack() {
-            @Override
-            public void onSuccess(String response, int tag) {
-                if (pb_integrity.isShown()) {
-                    pb_integrity.setVisibility(View.GONE);
-                }
-                Integrity integrity = new Gson().fromJson(response, Integrity.class);
-                List<Integrity.ListBean> listBeen = integrity.getList();
-                if (!listBeen.isEmpty()) {
-                    if (listBeen.size() >= 3) {
-                        tv_LatestNews_1.setText(integrity.getList().get(0).getVcdesc());
-                        tv_LatestNews_2.setText(integrity.getList().get(1).getVcdesc());
-                        tv_LatestNews_3.setText(integrity.getList().get(2).getVcdesc());
-                    } else if (listBeen.size() >= 2) {
-                        tv_LatestNews_1.setText(integrity.getList().get(0).getVcdesc());
-                        tv_LatestNews_2.setText(integrity.getList().get(1).getVcdesc());
-                        tv_LatestNews_3.setText("");
-                    } else if (listBeen.size() >= 1) {
-                        tv_LatestNews_1.setText(integrity.getList().get(0).getVcdesc());
-                        tv_LatestNews_2.setText("");
-                        tv_LatestNews_3.setText("");
-                    }
-                }
-            }
-
-            @Override
-            public void onFailed(String error, int tag) {
-
-            }
-        }, 1);
     }
 
     private void getMenuList() {
@@ -326,6 +307,7 @@ public class MainActivity extends BaseActivity implements OkhttpHelper.GetCallBa
      */
     @OnClick(R.id.tv_more)
     void More() {
+        AnnounceActivity.actionStart(this);
     }
 
     /**
@@ -480,5 +462,93 @@ public class MainActivity extends BaseActivity implements OkhttpHelper.GetCallBa
     protected void onResume() {
         super.onResume();
         getIntegrity();
+        getAnnounce();
+    }
+    private void getIntegrity() {
+        OkhttpHelper.Get(Constants.INTEGRITY, new OkhttpHelper.GetCallBack() {
+            @Override
+            public void onSuccess(String response, int tag) {
+                if (pb_integrity.isShown()) {
+                    pb_integrity.setVisibility(View.GONE);
+                }
+                Integrity integrity = new Gson().fromJson(response, Integrity.class);
+                List<Integrity.ListBean> listBeen = integrity.getList();
+                if (!listBeen.isEmpty()) {
+                    if (listBeen.size() >= 3) {
+                        tv_LatestNews_1.setText(integrity.getList().get(0).getVcdesc());
+                        tv_LatestNews_2.setText(integrity.getList().get(1).getVcdesc());
+                        tv_LatestNews_3.setText(integrity.getList().get(2).getVcdesc());
+                    } else if (listBeen.size() >= 2) {
+                        tv_LatestNews_1.setText(integrity.getList().get(0).getVcdesc());
+                        tv_LatestNews_2.setText(integrity.getList().get(1).getVcdesc());
+                        tv_LatestNews_3.setText("");
+                    } else if (listBeen.size() >= 1) {
+                        tv_LatestNews_1.setText(integrity.getList().get(0).getVcdesc());
+                        tv_LatestNews_2.setText("");
+                        tv_LatestNews_3.setText("");
+                    }
+                }
+            }
+
+            @Override
+            public void onFailed(String error, int tag) {
+
+            }
+        }, 1);
+    }
+    private void getAnnounce(){
+        OkhttpHelper.Get(Constants.ANNOUNCEMENT, new OkhttpHelper.GetCallBack() {
+            @Override
+            public void onSuccess(String response, int tag) {
+                if (pb_announce.isShown()) {
+                    pb_announce.setVisibility(View.GONE);
+                }
+                Announce announce = new Gson().fromJson(response, Announce.class);
+                List<Announce.ListBean> listBeen = announce.getList();
+                if (listBeen!=null) {
+                    if (listBeen.size() >= 3) {
+                        tv_anounce1.setText(announce.getList().get(0).getVccontent());
+                        tv_anounce2.setText(announce.getList().get(1).getVccontent());
+                        tv_anounce3.setText(announce.getList().get(2).getVccontent());
+                        asa.put(1,announce.getList().get(0).getId());
+                        asa.put(2,announce.getList().get(1).getId());
+                        asa.put(3,announce.getList().get(2).getId());
+                    } else if (listBeen.size() >= 2) {
+                        tv_anounce1.setText(announce.getList().get(0).getVccontent());
+                        tv_anounce2.setText(announce.getList().get(1).getVccontent());
+                        tv_anounce3.setText("");
+                        asa.put(1,announce.getList().get(0).getId());
+                        asa.put(2,announce.getList().get(1).getId());
+                        asa.put(3,"");
+                    } else if (listBeen.size() >= 1) {
+                        tv_anounce1.setText(announce.getList().get(0).getVccontent());
+                        tv_anounce2.setText("");
+                        tv_anounce3.setText("");
+                        asa.put(1,announce.getList().get(0).getId());
+                        asa.put(2,"");
+                        asa.put(3,"");
+                    }
+                }
+            }
+
+            @Override
+            public void onFailed(String error, int tag) {
+            }
+        }, 1);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.tv_anounce1:
+                startActivity(new Intent(this, AnnounceDetailActivity.class).putExtra("id",asa.get(1)));
+                break;
+            case R.id.tv_anounce2:
+                startActivity(new Intent(this, AnnounceDetailActivity.class).putExtra("id",asa.get(2)));
+                break;
+            case R.id.tv_anounce3:
+                startActivity(new Intent(this, AnnounceDetailActivity.class).putExtra("id",asa.get(3)));
+                break;
+        }
     }
 }

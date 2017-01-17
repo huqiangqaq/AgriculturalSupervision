@@ -42,6 +42,7 @@ import com.jzxiang.pickerview.TimePickerDialog;
 import com.jzxiang.pickerview.data.Type;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
+import com.nxt.zyl.util.ZToastUtils;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -55,7 +56,6 @@ import java.util.Map;
 
 import agricultural.nxt.agriculturalsupervision.Constants;
 import agricultural.nxt.agriculturalsupervision.R;
-import agricultural.nxt.agriculturalsupervision.Util.DoubleClickExitHelper;
 import agricultural.nxt.agriculturalsupervision.Util.JsonUtil;
 import agricultural.nxt.agriculturalsupervision.Widget.LetToolBar;
 import agricultural.nxt.agriculturalsupervision.Widget.NiceSpinner;
@@ -165,7 +165,6 @@ public class CompanyAddActivity extends BaseActivity implements BaiduMap.OnMapTo
     private String companyId = null;  //企业ID
     private SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINA);
     private String bizlicepic,prodlicenpic;
-    private DoubleClickExitHelper doubleClickExitHelper;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         // 注意该方法要再setContentView方法之前实现
@@ -443,7 +442,7 @@ public class CompanyAddActivity extends BaseActivity implements BaiduMap.OnMapTo
     }
 
     @OnClick(R.id.btnSave) void CompanySave(){
-        showLoadingDialog(R.string.LOADING);
+
         //经营范围
         if (sb.length()>0){
             type = sb.toString().substring(0,sb.toString().length()-1);
@@ -473,6 +472,14 @@ public class CompanyAddActivity extends BaseActivity implements BaiduMap.OnMapTo
         fgpsy = tv_fgpsy.getText().toString().trim();
         vcidnumber =et_vcidnumber.getText().toString().trim();
         Map<String,String> map =new HashMap<>();
+        if ("".equals(bizlicepic)){
+            ZToastUtils.showShort(CompanyAddActivity.this,"请选择图片");
+            return;
+        }
+        if ("".equals(prodlicenpic)){
+            ZToastUtils.showShort(CompanyAddActivity.this,"请选择图片");
+            return;
+        }
         map.put("id",companyId);
         map.put("vccorporation",vccorporation);
         map.put("vcphone",vcphone);
@@ -487,6 +494,7 @@ public class CompanyAddActivity extends BaseActivity implements BaiduMap.OnMapTo
         map.put("ikind",kind);
         map.put("vcidnumber",vcidnumber);
         map.put("ownerscopeTypes",type);
+        showLoadingDialog(R.string.LOADING);
         OkGo.post(Constants.COMPANY_UPTOCHECK)
                 .tag(this)
                 .params(map)

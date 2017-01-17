@@ -64,7 +64,6 @@ public class ClientActivity extends BaseActivity {
         xRecyclerView = (XRecyclerView) findViewById(R.id.xrecyclerview);
         LinearLayoutManager manager = new LinearLayoutManager(this);
         xRecyclerView.setLayoutManager(manager);
-
         xRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
         xRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
         xRecyclerView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));

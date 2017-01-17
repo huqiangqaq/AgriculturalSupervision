@@ -122,12 +122,12 @@ public class IntegritySearchActivity extends BaseActivity {
 
 
     private void search() {
-        showLoadingDialog(R.string.searching);
-        vcillegalcomp = et_search.getText().toString().trim();
         if (TextUtils.isEmpty(vcillegalcomp)) {
             ZToastUtils.showShort(IntegritySearchActivity.this, "请先填写搜索内容");
             return;
         }
+        showLoadingDialog(R.string.searching);
+        vcillegalcomp = et_search.getText().toString().trim();
         initData();
 
     }
