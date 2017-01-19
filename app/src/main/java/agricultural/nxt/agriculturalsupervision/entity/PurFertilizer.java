@@ -1,5 +1,8 @@
 package agricultural.nxt.agriculturalsupervision.entity;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
 /**
@@ -88,7 +91,8 @@ public class PurFertilizer {
         this.list = list;
     }
 
-    public static class ListBean {
+    public static class ListBean implements Parcelable {
+
         /**
          * id : 5573120cf0464d2e8133648fe33d965e
          * isNewRecord : false
@@ -253,7 +257,8 @@ public class PurFertilizer {
             this.tfertilizerId = tfertilizerId;
         }
 
-        public static class CreateByBean {
+        public static class CreateByBean implements Parcelable {
+
             /**
              * id : 刘建设
              * isNewRecord : false
@@ -307,9 +312,47 @@ public class PurFertilizer {
             public void setAdmin(boolean admin) {
                 this.admin = admin;
             }
+
+            @Override
+            public int describeContents() {
+                return 0;
+            }
+
+            @Override
+            public void writeToParcel(Parcel dest, int flags) {
+                dest.writeString(this.id);
+                dest.writeByte(this.isNewRecord ? (byte) 1 : (byte) 0);
+                dest.writeString(this.loginFlag);
+                dest.writeString(this.roleNames);
+                dest.writeByte(this.admin ? (byte) 1 : (byte) 0);
+            }
+
+            public CreateByBean() {
+            }
+
+            protected CreateByBean(Parcel in) {
+                this.id = in.readString();
+                this.isNewRecord = in.readByte() != 0;
+                this.loginFlag = in.readString();
+                this.roleNames = in.readString();
+                this.admin = in.readByte() != 0;
+            }
+
+            public static final Creator<CreateByBean> CREATOR = new Creator<CreateByBean>() {
+                @Override
+                public CreateByBean createFromParcel(Parcel source) {
+                    return new CreateByBean(source);
+                }
+
+                @Override
+                public CreateByBean[] newArray(int size) {
+                    return new CreateByBean[size];
+                }
+            };
         }
 
-        public static class UpdateByBean {
+        public static class UpdateByBean implements Parcelable {
+
             /**
              * id : 刘建设
              * isNewRecord : false
@@ -363,9 +406,47 @@ public class PurFertilizer {
             public void setAdmin(boolean admin) {
                 this.admin = admin;
             }
+
+            @Override
+            public int describeContents() {
+                return 0;
+            }
+
+            @Override
+            public void writeToParcel(Parcel dest, int flags) {
+                dest.writeString(this.id);
+                dest.writeByte(this.isNewRecord ? (byte) 1 : (byte) 0);
+                dest.writeString(this.loginFlag);
+                dest.writeString(this.roleNames);
+                dest.writeByte(this.admin ? (byte) 1 : (byte) 0);
+            }
+
+            public UpdateByBean() {
+            }
+
+            protected UpdateByBean(Parcel in) {
+                this.id = in.readString();
+                this.isNewRecord = in.readByte() != 0;
+                this.loginFlag = in.readString();
+                this.roleNames = in.readString();
+                this.admin = in.readByte() != 0;
+            }
+
+            public static final Creator<UpdateByBean> CREATOR = new Creator<UpdateByBean>() {
+                @Override
+                public UpdateByBean createFromParcel(Parcel source) {
+                    return new UpdateByBean(source);
+                }
+
+                @Override
+                public UpdateByBean[] newArray(int size) {
+                    return new UpdateByBean[size];
+                }
+            };
         }
 
-        public static class PohBean {
+        public static class PohBean implements Parcelable {
+
             /**
              * id : 20161115152448737
              * isNewRecord : false
@@ -409,9 +490,45 @@ public class PurFertilizer {
             public void setTmysupplierId(String tmysupplierId) {
                 this.tmysupplierId = tmysupplierId;
             }
+
+            @Override
+            public int describeContents() {
+                return 0;
+            }
+
+            @Override
+            public void writeToParcel(Parcel dest, int flags) {
+                dest.writeString(this.id);
+                dest.writeByte(this.isNewRecord ? (byte) 1 : (byte) 0);
+                dest.writeString(this.tMysupplierName);
+                dest.writeString(this.tmysupplierId);
+            }
+
+            public PohBean() {
+            }
+
+            protected PohBean(Parcel in) {
+                this.id = in.readString();
+                this.isNewRecord = in.readByte() != 0;
+                this.tMysupplierName = in.readString();
+                this.tmysupplierId = in.readString();
+            }
+
+            public static final Creator<PohBean> CREATOR = new Creator<PohBean>() {
+                @Override
+                public PohBean createFromParcel(Parcel source) {
+                    return new PohBean(source);
+                }
+
+                @Override
+                public PohBean[] newArray(int size) {
+                    return new PohBean[size];
+                }
+            };
         }
 
-        public static class FertilizerBean {
+        public static class FertilizerBean implements Parcelable {
+
             /**
              * id : e128df0b829e4fd6874faadf87084b4a
              * isNewRecord : false
@@ -445,9 +562,43 @@ public class PurFertilizer {
             public void setVcfertilizename(String vcfertilizename) {
                 this.vcfertilizename = vcfertilizename;
             }
+
+            @Override
+            public int describeContents() {
+                return 0;
+            }
+
+            @Override
+            public void writeToParcel(Parcel dest, int flags) {
+                dest.writeString(this.id);
+                dest.writeByte(this.isNewRecord ? (byte) 1 : (byte) 0);
+                dest.writeString(this.vcfertilizename);
+            }
+
+            public FertilizerBean() {
+            }
+
+            protected FertilizerBean(Parcel in) {
+                this.id = in.readString();
+                this.isNewRecord = in.readByte() != 0;
+                this.vcfertilizename = in.readString();
+            }
+
+            public static final Creator<FertilizerBean> CREATOR = new Creator<FertilizerBean>() {
+                @Override
+                public FertilizerBean createFromParcel(Parcel source) {
+                    return new FertilizerBean(source);
+                }
+
+                @Override
+                public FertilizerBean[] newArray(int size) {
+                    return new FertilizerBean[size];
+                }
+            };
         }
 
-        public static class OwnerBean {
+        public static class OwnerBean implements Parcelable {
+
             /**
              * isNewRecord : true
              * vcorgname : 省建设公司
@@ -491,6 +642,100 @@ public class PurFertilizer {
             public void setOwnerscopeTypes(List<String> ownerscopeTypes) {
                 this.ownerscopeTypes = ownerscopeTypes;
             }
+
+            @Override
+            public int describeContents() {
+                return 0;
+            }
+
+            @Override
+            public void writeToParcel(Parcel dest, int flags) {
+                dest.writeByte(this.isNewRecord ? (byte) 1 : (byte) 0);
+                dest.writeString(this.vcorgname);
+                dest.writeString(this.ownerscopes);
+                dest.writeStringList(this.ownerscopeTypes);
+            }
+
+            public OwnerBean() {
+            }
+
+            protected OwnerBean(Parcel in) {
+                this.isNewRecord = in.readByte() != 0;
+                this.vcorgname = in.readString();
+                this.ownerscopes = in.readString();
+                this.ownerscopeTypes = in.createStringArrayList();
+            }
+
+            public static final Creator<OwnerBean> CREATOR = new Creator<OwnerBean>() {
+                @Override
+                public OwnerBean createFromParcel(Parcel source) {
+                    return new OwnerBean(source);
+                }
+
+                @Override
+                public OwnerBean[] newArray(int size) {
+                    return new OwnerBean[size];
+                }
+            };
         }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeString(this.id);
+            dest.writeByte(this.isNewRecord ? (byte) 1 : (byte) 0);
+            dest.writeString(this.remarks);
+            dest.writeParcelable(this.createBy, flags);
+            dest.writeString(this.createDate);
+            dest.writeParcelable(this.updateBy, flags);
+            dest.writeString(this.updateDate);
+            dest.writeString(this.fponumber);
+            dest.writeString(this.fprice);
+            dest.writeString(this.vcunit);
+            dest.writeLong(this.dtpodate);
+            dest.writeParcelable(this.poh, flags);
+            dest.writeParcelable(this.fertilizer, flags);
+            dest.writeParcelable(this.owner, flags);
+            dest.writeString(this.tpohId);
+            dest.writeString(this.tfertilizerId);
+        }
+
+        public ListBean() {
+        }
+
+        protected ListBean(Parcel in) {
+            this.id = in.readString();
+            this.isNewRecord = in.readByte() != 0;
+            this.remarks = in.readString();
+            this.createBy = in.readParcelable(CreateByBean.class.getClassLoader());
+            this.createDate = in.readString();
+            this.updateBy = in.readParcelable(UpdateByBean.class.getClassLoader());
+            this.updateDate = in.readString();
+            this.fponumber = in.readString();
+            this.fprice = in.readString();
+            this.vcunit = in.readString();
+            this.dtpodate = in.readLong();
+            this.poh = in.readParcelable(PohBean.class.getClassLoader());
+            this.fertilizer = in.readParcelable(FertilizerBean.class.getClassLoader());
+            this.owner = in.readParcelable(OwnerBean.class.getClassLoader());
+            this.tpohId = in.readString();
+            this.tfertilizerId = in.readString();
+        }
+
+        public static final Parcelable.Creator<ListBean> CREATOR = new Parcelable.Creator<ListBean>() {
+            @Override
+            public ListBean createFromParcel(Parcel source) {
+                return new ListBean(source);
+            }
+
+            @Override
+            public ListBean[] newArray(int size) {
+                return new ListBean[size];
+            }
+        };
     }
 }

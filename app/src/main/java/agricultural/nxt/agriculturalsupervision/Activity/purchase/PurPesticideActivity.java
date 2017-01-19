@@ -76,8 +76,7 @@ public class PurPesticideActivity extends BaseActivity {
         xRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         xRecyclerView.setHasFixedSize(true);
         xRecyclerView.setLoadingMoreEnabled(true);
-        fab.setOnClickListener(v -> startActivity(new Intent(this, PurchaseAddActivity.class).putExtra("type", "Add")));
-//        xRecyclerView.setArrowImageView(R.drawable.iconfont_downgrey);
+        fab.setOnClickListener(v -> startActivity(new Intent(this, PurPestAddActivity.class).putExtra("type", "Add")));
         initData();
     }
     private void initData() {

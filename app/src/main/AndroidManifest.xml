@@ -111,7 +111,8 @@
         <activity android:name=".Activity.sales.SaleActivity" />
         <activity android:name=".Activity.purchase.PurPesticideActivity" />
         <activity android:name=".Activity.purchase.PurFertilizerActivity" />
-        <activity android:name=".Activity.purchase.PurPestAddActivity"></activity>
+        <activity android:name=".Activity.purchase.PurPestAddActivity" />
+        <activity android:name=".Activity.purchase.PurFerAddActivity"></activity>
     </application>
 
 </manifest>

@@ -9,8 +9,12 @@ import com.nxt.zyl.util.ZToastUtils;
 
 import java.util.ArrayList;
 
-import agricultural.nxt.agriculturalsupervision.Activity.ProductRecodeActivity;
-import agricultural.nxt.agriculturalsupervision.Activity.ProductSoldActivity;
+import agricultural.nxt.agriculturalsupervision.Activity.RecodeActivity;
+import agricultural.nxt.agriculturalsupervision.Activity.company.CompanyActivity;
+import agricultural.nxt.agriculturalsupervision.Activity.intercourse.ClientActivity;
+import agricultural.nxt.agriculturalsupervision.Activity.pesticideLib.PesticideLibActivity;
+import agricultural.nxt.agriculturalsupervision.Activity.purchase.PurchaseActivity;
+import agricultural.nxt.agriculturalsupervision.Activity.sales.SaleActivity;
 import agricultural.nxt.agriculturalsupervision.Widget.LetToolBar;
 import agricultural.nxt.agriculturalsupervision.Widget.MyGridView;
 import agricultural.nxt.agriculturalsupervision.adapter.GridAdapter;
@@ -62,17 +66,17 @@ public class AllActivity extends BaseActivity implements AdapterView.OnItemClick
     private void StartAction(ArrayList<String> menus, int position) {
         String content = menus.get(position);
         if ("产品备案".equalsIgnoreCase(content)) {
-            ProductRecodeActivity.actionStart(this);
+            RecodeActivity.actionStart(this);
         } else if ("农资产品销售".equalsIgnoreCase(content)) {
-            ProductSoldActivity.actionStart(this);
+            SaleActivity.actionStart(this);
         } else if ("往来管理".equalsIgnoreCase(content)) {
-            ZToastUtils.showShort(this, content);
+            ClientActivity.actionStart(this);
         } else if ("农资产品购进".equalsIgnoreCase(content)) {
-            ZToastUtils.showShort(this, content);
+            PurchaseActivity.actionStart(this);
         } else if ("企业管理".equalsIgnoreCase(content)) {
-            ZToastUtils.showShort(this, content);
+            CompanyActivity.actionStart(this);
         } else if ("农药库管理".equalsIgnoreCase(content)) {
-            ZToastUtils.showShort(this, content);
+            PesticideLibActivity.actionStart(this);
         } else if ("电子处方".equalsIgnoreCase(content)) {
             ZToastUtils.showShort(this, content);
         } else if ("销售员管理".equalsIgnoreCase(content)) {

@@ -129,8 +129,10 @@ public interface Constants {
     //化肥
     String PUR_FERTILIZER = URL+"/purchase/appPofertilizerd/list?pageSize=20&pageNo=";
     String PUR_FERTILIZER_VIEW = URL+"/purchase/appPofertilizerd/selectList?pageSize=20&pageNo=";
-
-
+    String PUR_FER_DEL = URL+"/purchase/appPofertilizerd/delete?id=";
+    String PUR_FER_GETFERT = URL+"/purchase/appPofertilizerd/selectFertilizerList";
+    String PUR_FERT_DETAIL = URL+"/purchase/appPofertilizerd/form?id=";
+    String PUR_FERT_SAVE = URL+"/purchase/appPofertilizerd/save";
 
     //农资产品销售
     String SALE = URL+"/market/appSoseedd/list?pageSize=20&pageNo=";
