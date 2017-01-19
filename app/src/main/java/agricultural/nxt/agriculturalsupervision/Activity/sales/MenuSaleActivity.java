@@ -1,4 +1,4 @@
-package agricultural.nxt.agriculturalsupervision.Activity;
+package agricultural.nxt.agriculturalsupervision.Activity.sales;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,8 +14,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import agricultural.nxt.agriculturalsupervision.Activity.fertilizer.FertilizerActivity;
-import agricultural.nxt.agriculturalsupervision.Activity.pesticide.PesticideActivity;
 import agricultural.nxt.agriculturalsupervision.Constants;
 import agricultural.nxt.agriculturalsupervision.R;
 import agricultural.nxt.agriculturalsupervision.Util.OkhttpHelper;
@@ -25,7 +23,9 @@ import agricultural.nxt.agriculturalsupervision.entity.Menu;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class ProductRecodeActivity extends BaseActivity {
+
+
+public class MenuSaleActivity extends BaseActivity {
     @BindView(R.id.lettoolbar)
     LetToolBar toolBar;
     @BindView(R.id.rl_product_seed)
@@ -34,10 +34,8 @@ public class ProductRecodeActivity extends BaseActivity {
     RelativeLayout rl_product_pesticide;
     @BindView(R.id.rl_product_fertilizer)
     RelativeLayout rl_product_fertilizer;
-    private static final String cacheKey = "ProductRecodeActivity";
     private String id;
     private Map<String, Boolean> map = new HashMap<>();
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,10 +43,10 @@ public class ProductRecodeActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        toolBar.setTitle("产品备案");
+        toolBar.setTitle("农资产品销售");
         toolBar.setLeftButtonIcon(ContextCompat.getDrawable(this,R.mipmap.icon_arrow_02));
         toolBar.setLeftButtonOnClickLinster(v -> finish());
-        id = ZPreferenceUtils.getPrefString("产品备案", "");
+        id = ZPreferenceUtils.getPrefString("农资产品销售", "");
         Map<String, String> idMap = new HashMap<>();
         idMap.put("id", id);
         showLoadingDialog(R.string.loading);
@@ -76,70 +74,58 @@ public class ProductRecodeActivity extends BaseActivity {
         Menu menu = new Gson().fromJson(response, Menu.class);
         dismissLoadingDialog();
         List<Menu.MenuListBean> list = menu.getMenuList();
-        map.put("种子备案", false);
-        map.put("农药备案", false);
-        map.put("化肥备案", false);
-        ZPreferenceUtils.setPrefBoolean("备案", false);
-        ZPreferenceUtils.setPrefBoolean("审核", false);
-        ZPreferenceUtils.setPrefBoolean("查看", false);
+        map.put("种子销售", false);
+        map.put("农药销售", false);
+        map.put("化肥销售", false);
         for (int i = 0; i < list.size(); i++) {
             String name = list.get(i).getName();
-            if (name.contains("种子备案")) {
-                map.put("种子备案", true);
-            } else if (name.contains("农药备案")) {
-                map.put("农药备案", true);
-            } else if (name.contains("化肥备案")) {
-                map.put("化肥备案", true);
-            } else if (name.contains("审核")) {
-                ZPreferenceUtils.setPrefBoolean("审核", true);
-            } else if (name.contains("查看")) {
-                ZPreferenceUtils.setPrefBoolean("查看", true);
-            } else if (name.equalsIgnoreCase("产品备案")) {
-                ZPreferenceUtils.setPrefBoolean("备案", true);
+            if (name.contains("种子销售")) {
+                map.put("种子销售", true);
+            } else if (name.contains("农药销售")) {
+                map.put("农药销售", true);
+            } else if (name.contains("化肥销售")) {
+                map.put("化肥销售", true);
             }
         }
-        if (map.get("种子备案")) {
+        if (map.get("种子销售")) {
             rl_product_seed.setVisibility(View.VISIBLE);
         }
-        if (map.get("农药备案")) {
+        if (map.get("农药销售")) {
             rl_product_pesticide.setVisibility(View.VISIBLE);
         }
-        if (map.get("化肥备案")) {
+        if (map.get("化肥销售")) {
             rl_product_fertilizer.setVisibility(View.VISIBLE);
         }
     }
 
     /**
-     * 种子备案
+     * 种子销售
      */
     @OnClick(R.id.rl_product_seed)
     void recode() {
-        RecodeActivity.actionStart(this);
+        SaleActivity.actionStart(this);
     }
 
     /**
-     * 农药备案
+     * 农药销售
      */
     @OnClick(R.id.rl_product_pesticide)
     void pesticide() {
-        PesticideActivity.actionStart(this);
     }
 
     /**
-     * 化肥备案
+     * 化肥销售
      */
     @OnClick(R.id.rl_product_fertilizer)
     void fertilizer() {
-        FertilizerActivity.actionStart(this);
+
     }
 
+    public static void actionStart(Context context){
+        context.startActivity(new Intent(context,MenuSaleActivity.class));
+    }
     @Override
     protected int getLayoutResId() {
-        return R.layout.activity_product_recode;
-    }
-
-    public static void actionStart(Context context) {
-        Intent intent = new Intent(context, ProductRecodeActivity.class);
-        context.startActivity(intent);
+        return R.layout.activity_menu_sale;
     }
 }

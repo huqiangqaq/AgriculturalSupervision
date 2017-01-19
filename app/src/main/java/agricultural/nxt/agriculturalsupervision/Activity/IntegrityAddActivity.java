@@ -9,11 +9,13 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.jzxiang.pickerview.TimePickerDialog;
 import com.jzxiang.pickerview.data.Type;
 import com.jzxiang.pickerview.listener.OnDateSetListener;
+import com.nxt.zyl.util.ZPreferenceUtils;
 import com.nxt.zyl.util.ZToastUtils;
 
 import java.text.SimpleDateFormat;
@@ -51,10 +53,15 @@ public class IntegrityAddActivity extends BaseActivity implements OnDateSetListe
     EditText et_vcillegalprod;
     @BindView(R.id.vcdesc)
     EditText et_vcdesc;
+    @BindView(R.id.ll_punishment)
+    LinearLayout ll_punishment;
+    @BindView(R.id.vcpunishment)
+    EditText vcpunishment;
     private String dtarosedate, vcillegalcomp, vcillegalprod, vcdesc, iproducttype;
     private List<String> dataset = new LinkedList<>(Arrays.asList("农药", "化肥", "种子"));
     private SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINA);
     private long tenYears = 10L * 365 * 1000 * 60 * 60 * 24L;
+    private boolean isCheck = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -63,6 +70,10 @@ public class IntegrityAddActivity extends BaseActivity implements OnDateSetListe
 
     @Override
     protected void initView() {
+        if (ZPreferenceUtils.getPrefBoolean("isCheck",false)){
+            ll_punishment.setVisibility(View.VISIBLE);
+            isCheck = true;
+        }
         toolBar.setTitle("我要举报");
         toolBar.setLeftButtonIcon(ContextCompat.getDrawable(this, R.mipmap.icon_arrow_02));
         toolBar.setLeftButtonOnClickLinster(v -> finish());
@@ -137,6 +148,10 @@ public class IntegrityAddActivity extends BaseActivity implements OnDateSetListe
             return;
         }
         Map<String, String> map = new HashMap<>();
+        if (isCheck){
+            map.put("vcpunishment",vcpunishment.getText().toString().trim());
+            map.put("icheckstatus","1");
+        }
         map.put("dtarosedate", dtarosedate);
         map.put("vcillegalcomp", vcillegalcomp);
         map.put("vcillegalprod", vcillegalprod);

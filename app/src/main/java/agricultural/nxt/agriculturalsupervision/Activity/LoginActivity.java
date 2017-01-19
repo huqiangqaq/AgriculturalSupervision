@@ -107,10 +107,17 @@ public class LoginActivity extends BaseActivity {
                 dismissLoadingDialog();
                 String result = null;
                 String msg = null;
+                String roleNames =null;
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     result = jsonObject.getString("success");
                     msg = jsonObject.getString("msg");
+                    roleNames = jsonObject.getString("roleNames");
+                    if (roleNames.contains("政府审核员")){
+                        ZPreferenceUtils.setPrefBoolean("isCheck",true);
+                    }else {
+                        ZPreferenceUtils.setPrefBoolean("isCheck",false);
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

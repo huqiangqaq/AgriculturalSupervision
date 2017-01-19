@@ -27,6 +27,8 @@ import agricultural.nxt.agriculturalsupervision.Activity.announce.AnnounceDetail
 import agricultural.nxt.agriculturalsupervision.Activity.company.MenuActivity;
 import agricultural.nxt.agriculturalsupervision.Activity.intercourse.IntercourseMenuActivity;
 import agricultural.nxt.agriculturalsupervision.Activity.pesticideLib.PesticideLibActivity;
+import agricultural.nxt.agriculturalsupervision.Activity.purchase.MenuPurchaseActivity;
+import agricultural.nxt.agriculturalsupervision.Activity.sales.MenuSaleActivity;
 import agricultural.nxt.agriculturalsupervision.AllActivity;
 import agricultural.nxt.agriculturalsupervision.Constants;
 import agricultural.nxt.agriculturalsupervision.R;
@@ -426,11 +428,11 @@ public class MainActivity extends BaseActivity implements OkhttpHelper.GetCallBa
         if ("产品备案".equalsIgnoreCase(content)) {
             ProductRecodeActivity.actionStart(this);
         } else if ("农资产品销售".equalsIgnoreCase(content)) {
-            ProductSoldActivity.actionStart(this);
+            MenuSaleActivity.actionStart(this);
         } else if ("往来管理".equalsIgnoreCase(content)) {
             IntercourseMenuActivity.ActionStart(this);
         } else if ("农资产品购进".equalsIgnoreCase(content)) {
-            ZToastUtils.showShort(this, content);
+            MenuPurchaseActivity.actionStart(this);
         } else if ("企业管理".equalsIgnoreCase(content)) {
             MenuActivity.actionStart(this);
         } else if ("农药库管理".equalsIgnoreCase(content)) {

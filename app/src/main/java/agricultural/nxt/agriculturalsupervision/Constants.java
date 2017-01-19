@@ -109,4 +109,31 @@ public interface Constants {
     String SUPPLIER_SAVE = URL+"/contact/appMySupplier/save";
     //个人信息
     String MYINFO = URL+"/sys/appUser/infoData";
+
+
+    //农资产品购进
+    String PURCHASE = URL+"/purchase/appPoseedd/list?pageSize=20&pageNo=";
+    String PURCHASE_VIEW = URL+"/purchase/appPoseedd/selectList?pageSize=20&pageNo=";
+    String PURCHASE_DEL = URL+"/purchase/appPoseedd/delete?id=";
+    String PURCHASE_GETSUPPLIER = URL+"/purchase/appPoseedd/selectMysupplier";
+    String PURCHASE_GETSEED = URL+"/purchase/appPoseedd/selectSeedList";
+    String PURCHASE_DETAIL = URL+"/purchase/appPoseedd/form?id=";
+    String PURCHASE_SAVE = URL+"/purchase/appPoseedd/save";
+    //农药
+    String PUR_PESTICIDE = URL+"/purchase/appPopesticided/list?pageSize=20&pageNo=";
+    String PUR_PESTICIDE_VIEW = URL+"/purchase/appPopesticided/selectList?pageSize=20&pageNo=";
+    String PUR_PESTICIDE_DEL = URL+"/purchase/appPopesticided/delete?id=";
+    String PUR_PESTICIDE_GETPEST = URL+"/purchase/appPopesticided/selectPesticideList";
+    String PUR_PESTICIDE_SAVE = URL+"/purchase/appPopesticided/save";
+    String PUR_PESTICIDE_DETAIL = URL+"/purchase/appPopesticided/form?id=";
+    //化肥
+    String PUR_FERTILIZER = URL+"/purchase/appPofertilizerd/list?pageSize=20&pageNo=";
+    String PUR_FERTILIZER_VIEW = URL+"/purchase/appPofertilizerd/selectList?pageSize=20&pageNo=";
+
+
+
+    //农资产品销售
+    String SALE = URL+"/market/appSoseedd/list?pageSize=20&pageNo=";
+    String SALE_VIEW = URL+"/market/appSoseedd/selectList?pageSize=20&pageNo=";
+    String SALE_DEL = URL+"/market/appSoseedd/delete?id=";
 }

@@ -103,7 +103,15 @@
         <activity android:name=".Activity.intercourse.ClientAddUpdateActivity" />
         <activity android:name=".Activity.intercourse.supplierActivity" />
         <activity android:name=".Activity.announce.AnnounceDetailActivity" />
-        <activity android:name=".Activity.intercourse.SupplierAddUpdateActivity"></activity>
+        <activity android:name=".Activity.intercourse.SupplierAddUpdateActivity" />
+        <activity android:name=".Activity.purchase.MenuPurchaseActivity" />
+        <activity android:name=".Activity.purchase.PurchaseActivity" />
+        <activity android:name=".Activity.purchase.PurchaseAddActivity" />
+        <activity android:name=".Activity.sales.MenuSaleActivity" />
+        <activity android:name=".Activity.sales.SaleActivity" />
+        <activity android:name=".Activity.purchase.PurPesticideActivity" />
+        <activity android:name=".Activity.purchase.PurFertilizerActivity" />
+        <activity android:name=".Activity.purchase.PurPestAddActivity"></activity>
     </application>
 
 </manifest>

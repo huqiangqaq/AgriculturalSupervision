@@ -134,6 +134,32 @@
                 android:background="@drawable/bg_commonet"
                 android:gravity="start" />
         </LinearLayout>
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/ll_punishment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/commontext"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="处罚意见:"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/vcpunishment"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/bg_commonet"
+                android:gravity="start" />
+        </LinearLayout>
 
         <!--不可填，直接获取当前系统时间-->
         <!--<LinearLayout-->
