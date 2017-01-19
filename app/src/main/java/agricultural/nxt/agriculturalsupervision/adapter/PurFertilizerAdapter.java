@@ -59,10 +59,10 @@ public class PurFertilizerAdapter extends RecyclerView.Adapter<PurFertilizerAdap
         holder.fprice.setText(purchase.getFprice());
         holder.vcunit.setText(purchase.getVcunit());
         holder.type.setText(type);
-        Date date = new Date(purchase.getDtpodate());
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        String sb = format.format(date);
-        holder.dtpodate.setText(sb);
+//        Date date = new Date(purchase.getDtpodate());
+//        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+//        String sb = format.format(date);
+        holder.dtpodate.setText(purchase.getDtpodate());
         holder.btnDel.setOnClickListener(v -> delete(holder,position));
         holder.btnUpdate.setOnClickListener(v -> update(holder,position));
     }

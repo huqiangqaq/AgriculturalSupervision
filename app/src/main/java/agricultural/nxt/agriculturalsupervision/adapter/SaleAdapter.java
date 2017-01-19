@@ -52,7 +52,7 @@ public class SaleAdapter extends RecyclerView.Adapter<SaleAdapter.ViewHolder> {
         holder.fponumber.setText(sale.getFnumber());
         holder.fprice.setText(sale.getFprice());
         holder.vcunit.setText(sale.getVcunit());
-        holder.dtpodate.setText(sale.getCreateDate());
+        holder.dtpodate.setText(sale.getDtsodate());
         holder.btnDel.setOnClickListener(v -> delete(holder,position));
     }
 

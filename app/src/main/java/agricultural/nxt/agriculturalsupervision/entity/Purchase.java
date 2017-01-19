@@ -121,7 +121,7 @@ public class Purchase {
         private String fponumber;
         private String fprice;
         private String vcunit;
-        private long dtpodate;
+        private String dtpodate;
         private PohdIdBean pohdId;
         private SeedIdBean seedId;
         private OwnerBean owner;
@@ -200,11 +200,11 @@ public class Purchase {
             this.vcunit = vcunit;
         }
 
-        public long getDtpodate() {
+        public String getDtpodate() {
             return dtpodate;
         }
 
-        public void setDtpodate(long dtpodate) {
+        public void setDtpodate(String dtpodate) {
             this.dtpodate = dtpodate;
         }
 
@@ -685,7 +685,7 @@ public class Purchase {
             dest.writeString(this.fponumber);
             dest.writeString(this.fprice);
             dest.writeString(this.vcunit);
-            dest.writeLong(this.dtpodate);
+            dest.writeString(this.dtpodate);
             dest.writeParcelable(this.pohdId, flags);
             dest.writeParcelable(this.seedId, flags);
             dest.writeParcelable(this.owner, flags);
@@ -706,7 +706,7 @@ public class Purchase {
             this.fponumber = in.readString();
             this.fprice = in.readString();
             this.vcunit = in.readString();
-            this.dtpodate = in.readLong();
+            this.dtpodate = in.readString();
             this.pohdId = in.readParcelable(PohdIdBean.class.getClassLoader());
             this.seedId = in.readParcelable(SeedIdBean.class.getClassLoader());
             this.owner = in.readParcelable(OwnerBean.class.getClassLoader());

@@ -116,7 +116,7 @@ public class Sale {
         private String fprice;
         private String fnumber;
         private String vcunit;
-        private long dtsodate;
+        private String dtsodate;
         private SohBean soh;
         private SeedbatchBean seedbatch;
         private OwnerBean owner;
@@ -194,11 +194,11 @@ public class Sale {
             this.vcunit = vcunit;
         }
 
-        public long getDtsodate() {
+        public String getDtsodate() {
             return dtsodate;
         }
 
-        public void setDtsodate(long dtsodate) {
+        public void setDtsodate(String dtsodate) {
             this.dtsodate = dtsodate;
         }
 

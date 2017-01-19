@@ -49,7 +49,6 @@ public class PurchaseActivity extends BaseActivity {
     private PurchaseAdapter adapter;
     private Map<String, String> map = new HashMap<>();
     private XRecyclerView xRecyclerView;
-    private static final int REQUESTCODE = 1;
     private String url = null;
     @BindView(R.id.fab)
     FloatingActionButton fab;

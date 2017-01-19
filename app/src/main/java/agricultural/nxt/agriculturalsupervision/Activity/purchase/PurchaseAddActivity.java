@@ -222,21 +222,21 @@ public class PurchaseAddActivity extends BaseActivity {
         Date d = new Date(time);
         return sf.format(d);
     }
-    @OnClick(R.id.btnUpdateAdd) void updataAdd(){
+    @OnClick(R.id.btnUpdateAdd) void updataAdd() {
         Map<String, String> map = new HashMap<>();
         if (isUpdate) {
             map.put("id", purchase.getId());
         }
-        map.put("tMysupplierId",supplierId.get(tMysupplierId.getSelectedIndex()));
-//        map.put("dtpodate",dtpodate.getText().toString().trim());
-        map.put("ftotalmoney",Double.valueOf(fponumber.getText().toString().trim())*Double.valueOf(fprice.getText().toString().trim())+"");
-        map.put("pohremarks",pohremarks.getText().toString().trim());
-        map.put("tSeedId",seedId.get(tSeedId.getSelectedIndex()));
-        map.put("fponumber",fponumber.getText().toString().trim());
-        map.put("fprice",fprice.getText().toString().trim());
-        map.put("vcunit",dataSet[vcunit.getSelectedIndex()]);
-        map.put("remarks",remarks.getText().toString().trim());
-        map.put("tPohId",purchase.getTpohId());
+        map.put("tMysupplierId", supplierId.get(tMysupplierId.getSelectedIndex()));
+//        map.put("dtpodate", time+"");
+        map.put("ftotalmoney", Double.valueOf(fponumber.getText().toString().trim()) * Double.valueOf(fprice.getText().toString().trim()) + "");
+        map.put("pohremarks", pohremarks.getText().toString().trim());
+        map.put("tSeedId", seedId.get(tSeedId.getSelectedIndex()));
+        map.put("fponumber", fponumber.getText().toString().trim());
+        map.put("fprice", fprice.getText().toString().trim());
+        map.put("vcunit", dataSet[vcunit.getSelectedIndex()]);
+        map.put("remarks", remarks.getText().toString().trim());
+        map.put("tPohId", purchase.getTpohId());
         showLoadingDialog(R.string.LOADING);
         OkhttpHelper.Post(Constants.PURCHASE_SAVE, map, new OkhttpHelper.PostCallBack() {
             @Override
@@ -271,11 +271,12 @@ public class PurchaseAddActivity extends BaseActivity {
             public void onFailed(String error, int tag) {
 
             }
+
             @Override
             public void onProgress(long currentSize, long totalSize, float progress, long networkSpeed) {
 
             }
-        },5);
+        }, 5);
     }
 
     @Override

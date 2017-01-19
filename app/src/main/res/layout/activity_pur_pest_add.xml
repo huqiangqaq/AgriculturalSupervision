@@ -4,8 +4,7 @@
     android:id="@+id/activity_recode"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/whitesmoke"
-    tools:context="agricultural.nxt.agriculturalsupervision.Activity.RecodeActivity">
+    android:background="@color/whitesmoke">
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -14,8 +14,6 @@ import android.widget.TextView;
 
 import com.mcxtzhang.swipemenulib.SwipeMenuLayout;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import agricultural.nxt.agriculturalsupervision.Activity.purchase.PurchaseAddActivity;
@@ -58,10 +56,10 @@ public class PurchaseAdapter extends RecyclerView.Adapter<PurchaseAdapter.ViewHo
         holder.fprice.setText(purchase.getFprice());
         holder.vcunit.setText(purchase.getVcunit());
         holder.type.setText(type);
-        Date date = new Date(purchase.getDtpodate());
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        String sb = format.format(date);
-        holder.dtpodate.setText(sb);
+//        Date date = new Date(purchase.getDtpodate());
+//        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+//        String sb = format.format(date);
+        holder.dtpodate.setText(purchase.getDtpodate());
         holder.btnDel.setOnClickListener(v -> delete(holder,position));
         holder.btnUpdate.setOnClickListener(v -> update(holder,position));
     }
@@ -76,7 +74,6 @@ public class PurchaseAdapter extends RecyclerView.Adapter<PurchaseAdapter.ViewHo
     }
 
     private void delete(ViewHolder holder, int position) {
-
             new AlertDialog.Builder(mContext)
                     .setTitle("提示")
                     .setMessage("确定删除此条记录吗?")

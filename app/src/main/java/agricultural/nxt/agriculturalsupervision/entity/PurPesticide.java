@@ -123,7 +123,7 @@ public class PurPesticide {
         private String fponumber;
         private String fprice;
         private String vcunit;
-        private long dtpodate;
+        private String dtpodate;
         private PohBean poh;
         private PesticideBean pesticide;
         private OwnerBean owner;
@@ -210,11 +210,11 @@ public class PurPesticide {
             this.vcunit = vcunit;
         }
 
-        public long getDtpodate() {
+        public String getDtpodate() {
             return dtpodate;
         }
 
-        public void setDtpodate(long dtpodate) {
+        public void setDtpodate(String dtpodate) {
             this.dtpodate = dtpodate;
         }
 
@@ -697,7 +697,7 @@ public class PurPesticide {
             dest.writeString(this.fponumber);
             dest.writeString(this.fprice);
             dest.writeString(this.vcunit);
-            dest.writeLong(this.dtpodate);
+            dest.writeString(this.dtpodate);
             dest.writeParcelable(this.poh, flags);
             dest.writeParcelable(this.pesticide, flags);
             dest.writeParcelable(this.owner, flags);
@@ -719,7 +719,7 @@ public class PurPesticide {
             this.fponumber = in.readString();
             this.fprice = in.readString();
             this.vcunit = in.readString();
-            this.dtpodate = in.readLong();
+            this.dtpodate = in.readString();
             this.poh = in.readParcelable(PohBean.class.getClassLoader());
             this.pesticide = in.readParcelable(PesticideBean.class.getClassLoader());
             this.owner = in.readParcelable(OwnerBean.class.getClassLoader());
