@@ -14,8 +14,9 @@
             android:orientation="vertical">
 
             <include layout="@layout/main_toolbar"/>
-
             <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/llphoto"
                 android:gravity="center_horizontal"
                 android:layout_marginTop="30dp"
                 android:layout_width="match_parent"
@@ -28,9 +29,31 @@
                     style="@style/commontext"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:text="归属公司:"/>
+                    android:text="头像:"/>
+                <ImageView
+                    android:id="@+id/photo"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:background="@drawable/bg_commonet"/>
+            </LinearLayout>
+            <LinearLayout
+                android:gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
                 <TextView
-                    android:id="@+id/dtarosedate"
+                    android:gravity="right"
+                    android:textColor="@color/black"
+                    style="@style/commontext"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="姓名:"/>
+                <TextView
+                    android:id="@+id/name"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="20dp"
                     android:layout_width="match_parent"
@@ -50,9 +73,9 @@
                     style="@style/commontext"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:text="违法企业名称:"/>
+                    android:text="邮箱:"/>
                 <EditText
-                    android:id="@+id/vcillegalcomp"
+                    android:id="@+id/email"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="20dp"
                     android:layout_width="match_parent"
@@ -72,31 +95,9 @@
                     style="@style/commontext"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:text="产品类别:"/>
-                <agricultural.nxt.agriculturalsupervision.Widget.NiceSpinner
-                    android:id="@+id/iproducttype"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:background="@drawable/bg_commonet"/>
-            </LinearLayout>
-            <LinearLayout
-                android:gravity="center_horizontal"
-                android:layout_marginTop="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:gravity="right"
-                    android:textColor="@color/black"
-                    style="@style/commontext"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:text="产品名称:"/>
+                    android:text="电话:"/>
                 <EditText
-                    android:id="@+id/vcillegalprod"
+                    android:id="@+id/phone"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="20dp"
                     android:layout_width="match_parent"
@@ -111,67 +112,21 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:gravity="right"
                     android:textColor="@color/black"
                     style="@style/commontext"
                     android:layout_width="100dp"
-                    android:gravity="right"
                     android:layout_height="wrap_content"
-                    android:text="违法事件描述:"/>
+                    android:text="手机:"/>
                 <EditText
-                    android:id="@+id/vcdesc"
-                    android:gravity="start"
+                    android:id="@+id/mobilephone"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="20dp"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="40dp"
                     android:background="@drawable/bg_commonet"/>
             </LinearLayout>
 
-            <!--不可填，直接获取当前系统时间-->
-            <!--<LinearLayout-->
-            <!--android:gravity="center_horizontal"-->
-            <!--android:layout_marginTop="5dp"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:orientation="horizontal">-->
-
-            <!--<TextView-->
-            <!--android:gravity="right"-->
-            <!--android:textColor="@color/black"-->
-            <!--style="@style/commontext"-->
-            <!--android:layout_width="100dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="审核时间:"/>-->
-            <!--<EditText-->
-            <!--android:layout_marginLeft="5dp"-->
-            <!--android:layout_marginRight="20dp"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="40dp"-->
-            <!--android:background="@drawable/bg_commonet"/>-->
-            <!--</LinearLayout>-->
-            <!--<LinearLayout-->
-            <!--android:gravity="center_horizontal"-->
-            <!--android:layout_marginTop="5dp"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:orientation="horizontal">-->
-
-            <!--<TextView-->
-            <!--android:gravity="right"-->
-            <!--android:textColor="@color/black"-->
-            <!--style="@style/commontext"-->
-            <!--android:layout_width="100dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="处罚意见:"/>-->
-            <!--<EditText-->
-            <!--android:textSize="14sp"-->
-            <!--android:gravity="start"-->
-            <!--android:layout_marginLeft="5dp"-->
-            <!--android:layout_marginRight="20dp"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="100dp"-->
-            <!--android:background="@drawable/bg_commonet"/>-->
-            <!--</LinearLayout>-->
             <LinearLayout
                 android:gravity="center_horizontal"
                 android:layout_marginTop="5dp"
@@ -186,7 +141,74 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:text="备注信息:"/>
-                <EditText
+                <TextView
+                    android:id="@+id/remark"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:background="@drawable/bg_commonet"/>
+            </LinearLayout>
+            <LinearLayout
+                android:gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:gravity="right"
+                    android:textColor="@color/black"
+                    style="@style/commontext"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="用户类型:"/>
+                <TextView
+                    android:id="@+id/type"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/bg_commonet"/>
+            </LinearLayout>
+            <LinearLayout
+                android:gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:gravity="right"
+                    android:textColor="@color/black"
+                    style="@style/commontext"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="用户角色:"/>
+                <TextView
+                    android:id="@+id/rolename"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/bg_commonet"/>
+            </LinearLayout>
+            <LinearLayout
+                android:gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:gravity="right"
+                    android:textColor="@color/black"
+                    style="@style/commontext"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="时间:"/>
+                <TextView
+                    android:id="@+id/time"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="20dp"
                     android:layout_width="match_parent"

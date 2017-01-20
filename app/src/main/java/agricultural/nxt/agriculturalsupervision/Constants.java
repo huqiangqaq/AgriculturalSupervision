@@ -14,6 +14,7 @@ public interface Constants {
     String LOGOUT = BASE_URL + "/mobileLogout";
     //注册
     String REGISTER_URL = BASE_URL + "/sys/appUser/register";
+    String CheckCompanyName = BASE_URL+"/sys/appUser/checkCompanyName";
     //获取用户菜单列表
     String GETMENULIST = BASE_URL + "/sys/menu/getMenuList";
     //公告
@@ -108,7 +109,7 @@ public interface Constants {
     String SUPPLIER_DEL = URL+"/contact/appMySupplier/delete?id=";
     String SUPPLIER_SAVE = URL+"/contact/appMySupplier/save";
     //个人信息
-    String MYINFO = URL+"/sys/appUser/infoData";
+    String MYINFO = BASE_URL+"/sys/appUser/infoData";
 
 
     //农资产品购进

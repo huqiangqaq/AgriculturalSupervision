@@ -164,7 +164,7 @@ public class PurchaseAddActivity extends BaseActivity {
         toolBar.setTitle("update".equalsIgnoreCase(type) ? "种子购进修改" : "种子购进添加");
         if (isUpdate) {
             btnUpdateAdd.setText("修改");
-            dtpodate.setText(purchase.getCreateDate());
+            dtpodate.setText(purchase.getDtpodate());
             fponumber.setText(purchase.getFponumber());
             fprice.setText(purchase.getFprice());
             ftotalmoney.setText(Double.valueOf(purchase.getFponumber()) * Double.valueOf(purchase.getFprice()) + "元");
@@ -228,7 +228,7 @@ public class PurchaseAddActivity extends BaseActivity {
             map.put("id", purchase.getId());
         }
         map.put("tMysupplierId", supplierId.get(tMysupplierId.getSelectedIndex()));
-//        map.put("dtpodate", time+"");
+        map.put("dtpodate", dtpodate.getText().toString().trim());
         map.put("ftotalmoney", Double.valueOf(fponumber.getText().toString().trim()) * Double.valueOf(fprice.getText().toString().trim()) + "");
         map.put("pohremarks", pohremarks.getText().toString().trim());
         map.put("tSeedId", seedId.get(tSeedId.getSelectedIndex()));
@@ -237,7 +237,7 @@ public class PurchaseAddActivity extends BaseActivity {
         map.put("vcunit", dataSet[vcunit.getSelectedIndex()]);
         map.put("remarks", remarks.getText().toString().trim());
         map.put("tPohId", purchase.getTpohId());
-        showLoadingDialog(R.string.LOADING);
+        showLoadingDialog(R.string.loading);
         OkhttpHelper.Post(Constants.PURCHASE_SAVE, map, new OkhttpHelper.PostCallBack() {
             @Override
             public void onSuccess(String response, int tag) {

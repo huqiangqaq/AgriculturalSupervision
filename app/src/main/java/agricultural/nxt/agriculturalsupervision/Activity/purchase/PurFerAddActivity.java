@@ -162,7 +162,7 @@ public class PurFerAddActivity extends BaseActivity {
         toolBar.setTitle("update".equalsIgnoreCase(type) ? "化肥购进修改" : "化肥购进添加");
         if (isUpdate) {
             btnUpdateAdd.setText("修改");
-            dtpodate.setText(purchase.getCreateDate());
+            dtpodate.setText(purchase.getDtpodate());
             fponumber.setText(purchase.getFponumber());
             fprice.setText(purchase.getFprice());
             ftotalmoney.setText(Double.valueOf(purchase.getFponumber()) * Double.valueOf(purchase.getFprice()) + "元");
@@ -224,7 +224,7 @@ public class PurFerAddActivity extends BaseActivity {
             map.put("id", purchase.getId());
         }
         map.put("tMysupplierId",supplierId.get(tMysupplierId.getSelectedIndex()));
-//        map.put("dtpodate",dtpodate.getText().toString().trim());
+        map.put("dtpodate",dtpodate.getText().toString().trim());
         map.put("ftotalmoney",Double.valueOf(fponumber.getText().toString().trim())*Double.valueOf(fprice.getText().toString().trim())+"");
         map.put("pohremarks",pohremarks.getText().toString().trim());
         map.put("tPesticideId",seedId.get(tSeedId.getSelectedIndex()));
@@ -233,7 +233,7 @@ public class PurFerAddActivity extends BaseActivity {
         map.put("vcunit",dataSet[vcunit.getSelectedIndex()]);
         map.put("remarks",remarks.getText().toString().trim());
         map.put("tPohId",purchase.getTpohId());
-        showLoadingDialog(R.string.LOADING);
+        showLoadingDialog(R.string.loading);
         OkhttpHelper.Post(Constants.PUR_FERT_SAVE, map, new OkhttpHelper.PostCallBack() {
             @Override
             public void onSuccess(String response, int tag) {

@@ -4,13 +4,18 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.lljjcoder.citypickerview.widget.CityPicker;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.callback.StringCallback;
 import com.nxt.zyl.util.ZSnackBarUtils;
+import com.nxt.zyl.util.ZToastUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,6 +31,8 @@ import agricultural.nxt.agriculturalsupervision.base.BaseActivity;
 import butterknife.BindView;
 import butterknife.OnClick;
 import cn.pedant.SweetAlert.SweetAlertDialog;
+import okhttp3.Call;
+import okhttp3.Response;
 
 public class RegisterActivity extends BaseActivity {
     @BindView(R.id.lettoolbar)
@@ -56,23 +63,45 @@ public class RegisterActivity extends BaseActivity {
     EditText et_phone;
 
     private CityPicker cityPicker;
-    private String province;//省份
-    private String city;//城市
-    private String district; //区县（如果设定了两级联动，那么该项返回空）
+    private String province = "";//省份
+    private String city = "";//城市
+    private String district = ""; //区县（如果设定了两级联动，那么该项返回空）
     private String code;//邮编
     private static final int REGISTER = 1;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
     protected void initView() {
         toolBar.setTitle("注册");
+        toolBar.setLeftButtonIcon(ContextCompat.getDrawable(this, R.mipmap.icon_arrow_02));
         toolBar.setLeftButtonOnClickLinster(v -> finish());
         tv_login.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
+        Map<String, String> map = new HashMap<>();
+        map.put("province", province);
+        map.put("city", city);
+        map.put("district", district);
+        et_company.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    OkGo.post(Constants.CheckCompanyName)
+                            .params(map)
+                            .execute(new StringCallback() {
+                                @Override
+                                public void onSuccess(String s, Call call, Response response) {
+                                    if ("true".equals(s)) {
+                                        ZToastUtils.showShort(RegisterActivity.this, "该公司名不可用,请重新填写!");
+                                        return;
+                                    }
+                                }
+                            });
+                }
+            }
+        });
     }
 
     @OnClick(R.id.btn_register)
@@ -170,8 +199,9 @@ public class RegisterActivity extends BaseActivity {
         return R.layout.activity_register;
     }
 
-    @OnClick(R.id.tv_login)  void gotoLogin(){
-        startActivity(new Intent(this,LoginActivity.class));
+    @OnClick(R.id.tv_login)
+    void gotoLogin() {
+        startActivity(new Intent(this, LoginActivity.class));
         finish();
     }
 
