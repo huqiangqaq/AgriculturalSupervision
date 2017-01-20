@@ -54,7 +54,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".Zxing.activity.CaptureActivity" />
-        <activity android:name=".Activity.RegisterActivity" />
+        <activity
+            android:name=".Activity.RegisterActivity">
+        </activity>
         <activity android:name=".Activity.MainActivity" />
         <activity android:name=".Activity.WebActivity" />
         <activity android:name=".Activity.ProductRecodeActivity" />
@@ -112,7 +114,8 @@
         <activity android:name=".Activity.purchase.PurPesticideActivity" />
         <activity android:name=".Activity.purchase.PurFertilizerActivity" />
         <activity android:name=".Activity.purchase.PurPestAddActivity" />
-        <activity android:name=".Activity.purchase.PurFerAddActivity"></activity>
+        <activity android:name=".Activity.purchase.PurFerAddActivity">
+        </activity>
     </application>
 
 </manifest>

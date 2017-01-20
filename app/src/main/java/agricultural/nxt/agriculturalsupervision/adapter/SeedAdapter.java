@@ -36,7 +36,7 @@ public class SeedAdapter extends BaseAdapter {
 
     private Context mContext;
     private List<Seed.ListBean> list = new ArrayList<>();
-    protected ProgressDialog loadingDialog;
+    private ProgressDialog loadingDialog;
     private SeedAdapter.ViewHolder holder;
     private SparseArray<String> map = new SparseArray<>();
     private onSwipeCheck swipeCheck;
@@ -219,7 +219,7 @@ public class SeedAdapter extends BaseAdapter {
      *
      * @param message {@link String} 消息文本
      */
-    protected void showLoadingDialog(String message) {
+    private void showLoadingDialog(String message) {
 
         if (loadingDialog == null) {
             loadingDialog = new ProgressDialog(mContext);
@@ -232,7 +232,7 @@ public class SeedAdapter extends BaseAdapter {
     /**
      * 取消进度对话框
      */
-    protected void dismissLoadingDialog() {
+    private void dismissLoadingDialog() {
         if (loadingDialog != null && loadingDialog.isShowing())
             loadingDialog.dismiss();
     }

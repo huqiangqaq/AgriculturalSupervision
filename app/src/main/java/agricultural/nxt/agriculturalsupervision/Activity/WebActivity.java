@@ -126,7 +126,7 @@ public class WebActivity extends BaseActivity {
 
     }
 
-    public void viewInfo() {
+    private void viewInfo() {
         if (CommonUtils.isNetWorkConnected(WebActivity.this)) {
             setWebViewConfig();
             return;

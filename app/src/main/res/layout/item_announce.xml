@@ -6,6 +6,7 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:baselineAligned="false"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="5dp"
         android:id="@+id/swipe_content"
@@ -49,6 +50,7 @@
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
+        android:baselineAligned="false"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="5dp"
         android:layout_width="match_parent"
@@ -74,6 +76,7 @@
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
+        android:baselineAligned="false"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="5dp"
         android:layout_width="match_parent"
@@ -116,6 +119,7 @@
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
+        android:baselineAligned="false"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="5dp"
         android:layout_width="match_parent"

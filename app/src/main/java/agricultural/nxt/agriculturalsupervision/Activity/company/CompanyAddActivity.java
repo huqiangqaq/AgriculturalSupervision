@@ -126,7 +126,7 @@ public class CompanyAddActivity extends BaseActivity implements BaiduMap.OnMapTo
     Button btnselect1;
     @BindView(R.id.btnselect2)
     Button btnselect2;
-    public static final String TAG= "CompanyAddActivity";
+    private static final String TAG= "CompanyAddActivity";
     private String id;
     private String url = null;
     private double mGpsX;
@@ -153,7 +153,7 @@ public class CompanyAddActivity extends BaseActivity implements BaiduMap.OnMapTo
     /**
      * 定位的监听器
      */
-    public MyLocationListener mMyLocationListener;
+    private MyLocationListener mMyLocationListener;
     /**
      * 当前定位的模式
      */
@@ -352,7 +352,7 @@ public class CompanyAddActivity extends BaseActivity implements BaiduMap.OnMapTo
                 .build();
         mDialogAll.show(getSupportFragmentManager(), "all");
     }
-    public String getDateToString(long time) {
+    private String getDateToString(long time) {
         Date d = new Date(time);
         return sf.format(d);
     }

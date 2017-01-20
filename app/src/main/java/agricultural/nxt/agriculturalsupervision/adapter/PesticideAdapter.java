@@ -38,7 +38,7 @@ import static agricultural.nxt.agriculturalsupervision.R.id.vcpesticidename;
 public class PesticideAdapter extends BaseAdapter {
     private Context mContext;
     private List<Pesticide.ListBean> list = new ArrayList<>();
-    protected ProgressDialog loadingDialog;
+    private ProgressDialog loadingDialog;
     private ViewHolder holder;
     private SparseArray<String> map = new SparseArray<>();
     private Pesticide.ListBean pesticide;
@@ -220,7 +220,7 @@ public class PesticideAdapter extends BaseAdapter {
      *
      * @param message {@link String} 消息文本
      */
-    protected void showLoadingDialog(String message) {
+    private void showLoadingDialog(String message) {
 
         if (loadingDialog == null) {
             loadingDialog = new ProgressDialog(mContext);
@@ -233,7 +233,7 @@ public class PesticideAdapter extends BaseAdapter {
     /**
      * 取消进度对话框
      */
-    protected void dismissLoadingDialog() {
+    private void dismissLoadingDialog() {
         if (loadingDialog != null && loadingDialog.isShowing())
             loadingDialog.dismiss();
     }

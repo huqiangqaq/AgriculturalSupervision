@@ -113,7 +113,7 @@ public class MainActivity extends BaseActivity implements OkhttpHelper.GetCallBa
     private List<TextView> views = new ArrayList<>();
     private static final int ANNOUNCEMENT = 1;
     private static final int INTEGRITY = 2;
-    public String[] menuText = {"产品备案", "往来管理", "农资产品购进", "企业管理", "农资产品销售", "农药库管理",
+    private String[] menuText = {"产品备案", "往来管理", "农资产品购进", "企业管理", "农资产品销售", "农药库管理",
             "电子处方", "销售员管理"};
     private SparseArray<String> asa = new SparseArray<>();
 
@@ -221,7 +221,7 @@ public class MainActivity extends BaseActivity implements OkhttpHelper.GetCallBa
      *
      * @param activity {@link android.app.Activity} 使用Topbar的Activity
      */
-    protected void initTopbar(Activity activity, String titlename) {
+    private void initTopbar(Activity activity, String titlename) {
         rl_left = (RelativeLayout) activity.findViewById(R.id.layout_left);
         tvTopBarText = (TextView) activity.findViewById(R.id.tv_title);
         tvTopBarText.setText(titlename);

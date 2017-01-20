@@ -33,7 +33,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 public class IntegrityMoreAdapter extends BaseAdapter {
     private Context mContext;
     private List<Integrity.ListBean> list = new ArrayList<>();
-    protected ProgressDialog loadingDialog;
+    private ProgressDialog loadingDialog;
     private ViewHolder holder;
 
     public IntegrityMoreAdapter(Context mContext, List<Integrity.ListBean> list) {
@@ -181,7 +181,7 @@ public class IntegrityMoreAdapter extends BaseAdapter {
      *
      * @param message {@link String} 消息文本
      */
-    protected void showLoadingDialog(String message) {
+    private void showLoadingDialog(String message) {
         if (loadingDialog == null) {
             loadingDialog = new ProgressDialog(mContext);
         }
@@ -193,7 +193,7 @@ public class IntegrityMoreAdapter extends BaseAdapter {
     /**
      * 取消进度对话框
      */
-    protected void dismissLoadingDialog() {
+    private void dismissLoadingDialog() {
         if (loadingDialog != null && loadingDialog.isShowing())
             loadingDialog.dismiss();
     }

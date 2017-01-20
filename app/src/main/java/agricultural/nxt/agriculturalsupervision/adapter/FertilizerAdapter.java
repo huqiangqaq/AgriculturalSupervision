@@ -35,7 +35,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 public class FertilizerAdapter extends BaseAdapter {
     private Context mContext;
     private List<Fertilizer.ListBean> list = new ArrayList<>();
-    protected ProgressDialog loadingDialog;
+    private ProgressDialog loadingDialog;
     private ViewHolder holder;
     private SparseArray<String> map = new SparseArray<>();
     private Fertilizer.ListBean fertilizer;
@@ -212,7 +212,7 @@ public class FertilizerAdapter extends BaseAdapter {
      *
      * @param message {@link String} 消息文本
      */
-    protected void showLoadingDialog(String message) {
+    private void showLoadingDialog(String message) {
 
         if (loadingDialog == null) {
             loadingDialog = new ProgressDialog(mContext);
@@ -225,7 +225,7 @@ public class FertilizerAdapter extends BaseAdapter {
     /**
      * 取消进度对话框
      */
-    protected void dismissLoadingDialog() {
+    private void dismissLoadingDialog() {
         if (loadingDialog != null && loadingDialog.isShowing())
             loadingDialog.dismiss();
     }

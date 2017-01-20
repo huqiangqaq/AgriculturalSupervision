@@ -192,7 +192,7 @@ public class IntegrityAddActivity extends BaseActivity implements OnDateSetListe
         tv_dtarosedate.setText(dtarosedate);
     }
 
-    public String getDateToString(long time) {
+    private String getDateToString(long time) {
         Date d = new Date(time);
         return sf.format(d);
     }

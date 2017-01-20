@@ -127,7 +127,7 @@ public class SupplierAdapter extends RecyclerView.Adapter<SupplierAdapter.ViewHo
      *
      * @param message {@link String} 消息文本
      */
-    protected void showLoadingDialog(String message) {
+    private void showLoadingDialog(String message) {
 
         if (loadingDialog == null) {
             loadingDialog = new ProgressDialog(mContext);
@@ -140,7 +140,7 @@ public class SupplierAdapter extends RecyclerView.Adapter<SupplierAdapter.ViewHo
     /**
      * 取消进度对话框
      */
-    protected void dismissLoadingDialog() {
+    private void dismissLoadingDialog() {
         if (loadingDialog != null && loadingDialog.isShowing())
             loadingDialog.dismiss();
     }

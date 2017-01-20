@@ -31,7 +31,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 public class PurchaseAdapter extends RecyclerView.Adapter<PurchaseAdapter.ViewHolder> {
     private List<Purchase.ListBean> list;
     private Context mContext;
-    protected ProgressDialog loadingDialog;
+    private ProgressDialog loadingDialog;
     private String type;
     public PurchaseAdapter(List<Purchase.ListBean> list, Context mContext,String type) {
         this.list = list;
@@ -140,7 +140,7 @@ public class PurchaseAdapter extends RecyclerView.Adapter<PurchaseAdapter.ViewHo
      *
      * @param message {@link String} 消息文本
      */
-    protected void showLoadingDialog(String message) {
+    private void showLoadingDialog(String message) {
 
         if (loadingDialog == null) {
             loadingDialog = new ProgressDialog(mContext);
@@ -153,7 +153,7 @@ public class PurchaseAdapter extends RecyclerView.Adapter<PurchaseAdapter.ViewHo
     /**
      * 取消进度对话框
      */
-    protected void dismissLoadingDialog() {
+    private void dismissLoadingDialog() {
         if (loadingDialog != null && loadingDialog.isShowing())
             loadingDialog.dismiss();
     }

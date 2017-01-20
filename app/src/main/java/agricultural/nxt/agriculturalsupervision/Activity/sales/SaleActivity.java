@@ -21,6 +21,7 @@ import java.util.Map;
 import agricultural.nxt.agriculturalsupervision.Activity.purchase.PurchaseAddActivity;
 import agricultural.nxt.agriculturalsupervision.Constants;
 import agricultural.nxt.agriculturalsupervision.R;
+import agricultural.nxt.agriculturalsupervision.Util.CircularAnimUtil;
 import agricultural.nxt.agriculturalsupervision.Util.OkhttpHelper;
 import agricultural.nxt.agriculturalsupervision.Widget.LetToolBar;
 import agricultural.nxt.agriculturalsupervision.adapter.SaleAdapter;
@@ -83,7 +84,12 @@ public class SaleActivity extends BaseActivity {
 //        xRecyclerView.setArrowImageView(R.drawable.iconfont_downgrey);
         initData();
     }
-
+    private void fabAction() {
+        Intent intent = new Intent(this, PurchaseAddActivity.class);
+        intent.putExtra("type", "add");
+        CircularAnimUtil.startActivity(this, intent, fab,
+                R.color.common_color);
+    }
     private void initData() {
         refresh();
         xRecyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {

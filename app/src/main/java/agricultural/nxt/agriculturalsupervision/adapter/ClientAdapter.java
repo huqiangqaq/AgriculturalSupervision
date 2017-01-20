@@ -31,7 +31,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ViewHolder>  {
     private List<Client.ListBean> list;
     private Context mContext;
-    protected ProgressDialog loadingDialog;
+    private ProgressDialog loadingDialog;
     public ClientAdapter(Context mContext,List<Client.ListBean> list) {
         this.list = list;
         this.mContext = mContext;
@@ -126,7 +126,7 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ViewHolder
      *
      * @param message {@link String} 消息文本
      */
-    protected void showLoadingDialog(String message) {
+    private void showLoadingDialog(String message) {
 
         if (loadingDialog == null) {
             loadingDialog = new ProgressDialog(mContext);
@@ -139,7 +139,7 @@ public class ClientAdapter extends RecyclerView.Adapter<ClientAdapter.ViewHolder
     /**
      * 取消进度对话框
      */
-    protected void dismissLoadingDialog() {
+    private void dismissLoadingDialog() {
         if (loadingDialog != null && loadingDialog.isShowing())
             loadingDialog.dismiss();
     }

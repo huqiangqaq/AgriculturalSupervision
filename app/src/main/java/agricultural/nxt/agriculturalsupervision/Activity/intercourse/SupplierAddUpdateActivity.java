@@ -158,7 +158,7 @@ public class SupplierAddUpdateActivity extends BaseActivity implements View.OnCl
                 .build();
         mDialogAll.show(getSupportFragmentManager(), "all");
     }
-    public String getDateToString(long time) {
+    private String getDateToString(long time) {
         Date d = new Date(time);
         return sf.format(d);
     }

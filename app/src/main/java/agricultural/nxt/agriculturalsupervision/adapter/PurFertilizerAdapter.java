@@ -14,8 +14,6 @@ import android.widget.TextView;
 
 import com.mcxtzhang.swipemenulib.SwipeMenuLayout;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import agricultural.nxt.agriculturalsupervision.Activity.purchase.PurFerAddActivity;
@@ -33,7 +31,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 public class PurFertilizerAdapter extends RecyclerView.Adapter<PurFertilizerAdapter.ViewHolder>{
     private List<PurFertilizer.ListBean> list;
     private Context mContext;
-    protected ProgressDialog loadingDialog;
+    private ProgressDialog loadingDialog;
     private String type;
 
     public PurFertilizerAdapter(List<PurFertilizer.ListBean> list, Context mContext, String type) {
@@ -141,7 +139,7 @@ public class PurFertilizerAdapter extends RecyclerView.Adapter<PurFertilizerAdap
      *
      * @param message {@link String} 消息文本
      */
-    protected void showLoadingDialog(String message) {
+    private void showLoadingDialog(String message) {
 
         if (loadingDialog == null) {
             loadingDialog = new ProgressDialog(mContext);
@@ -154,7 +152,7 @@ public class PurFertilizerAdapter extends RecyclerView.Adapter<PurFertilizerAdap
     /**
      * 取消进度对话框
      */
-    protected void dismissLoadingDialog() {
+    private void dismissLoadingDialog() {
         if (loadingDialog != null && loadingDialog.isShowing())
             loadingDialog.dismiss();
     }

@@ -110,7 +110,7 @@ public class CompanyActivity extends BaseActivity implements BaiduMap.OnMapTouch
     Button btnSave;
     @BindView(R.id.lettoolbar)
     LetToolBar toolBar;
-    public static final String TAG = "CompanyActivity";
+    private static final String TAG = "CompanyActivity";
     private String id;
     private String url = null;
     private double mGpsX;

@@ -17,7 +17,6 @@ package agricultural.nxt.agriculturalsupervision.Zxing.activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -238,21 +237,8 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(getString(R.string.app_name));
         builder.setMessage("Camera error");
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                finish();
-            }
-
-        });
-        builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
-
-            @Override
-            public void onCancel(DialogInterface dialog) {
-                finish();
-            }
-        });
+        builder.setPositiveButton("OK", (dialog, which) -> finish());
+        builder.setOnCancelListener(dialog -> finish());
         builder.show();
     }
 

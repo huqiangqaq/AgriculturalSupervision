@@ -254,7 +254,8 @@
             <com.baidu.mapapi.map.MapView
                 android:id="@+id/mapview"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"></com.baidu.mapapi.map.MapView>
+                android:layout_height="200dp">
+            </com.baidu.mapapi.map.MapView>
         </LinearLayout>
 
         <LinearLayout

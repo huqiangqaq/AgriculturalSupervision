@@ -19,6 +19,7 @@ import java.util.Map;
 
 import agricultural.nxt.agriculturalsupervision.Constants;
 import agricultural.nxt.agriculturalsupervision.R;
+import agricultural.nxt.agriculturalsupervision.Util.CircularAnimUtil;
 import agricultural.nxt.agriculturalsupervision.Util.OkhttpHelper;
 import agricultural.nxt.agriculturalsupervision.Widget.LetToolBar;
 import agricultural.nxt.agriculturalsupervision.adapter.SupplierAdapter;
@@ -71,8 +72,14 @@ public class supplierActivity extends BaseActivity {
         xRecyclerView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
         xRecyclerView.setHasFixedSize(true);
         xRecyclerView.setLoadingMoreEnabled(true);
-        fab.setOnClickListener(v -> startActivity(new Intent(this,SupplierAddUpdateActivity.class).putExtra("type","Add")));
+        fab.setOnClickListener(v -> fabAction());
         initData();
+    }
+    private void fabAction() {
+        Intent intent = new Intent(this, SupplierAddUpdateActivity.class);
+        intent.putExtra("type", "add");
+        CircularAnimUtil.startActivity(this, intent, fab,
+                R.color.common_color);
     }
     private void initData() {
         refresh();

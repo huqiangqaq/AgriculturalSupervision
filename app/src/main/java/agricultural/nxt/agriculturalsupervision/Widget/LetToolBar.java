@@ -90,11 +90,11 @@ public class LetToolBar extends Toolbar {
 
 
     //设置标题文字大小
-    public void setTitleSzie(float szie){
+    private void setTitleSzie(float szie){
         mTextTitle.setTextSize(szie);
     }
     //设置标题文字颜色
-    public void setmTittleColor(int resID){
+    private void setmTittleColor(int resID){
         if (mTextTitle!=null){
             mTextTitle.setTextColor(resID);
         }
@@ -107,7 +107,7 @@ public class LetToolBar extends Toolbar {
         mRightButton.setVisibility(GONE);
     }
     //显示标题
-    public void showTitleView() {
+    private void showTitleView() {
         if (mTextTitle != null)
             mTextTitle.setVisibility(VISIBLE);
     }

@@ -31,7 +31,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 public class PurPesticideAdapter extends RecyclerView.Adapter<PurPesticideAdapter.ViewHolder>{
     private List<PurPesticide.ListBean> list;
     private Context mContext;
-    protected ProgressDialog loadingDialog;
+    private ProgressDialog loadingDialog;
     private String type;
 
     public PurPesticideAdapter(List<PurPesticide.ListBean> list, Context mContext, String type) {
@@ -141,7 +141,7 @@ public class PurPesticideAdapter extends RecyclerView.Adapter<PurPesticideAdapte
      *
      * @param message {@link String} 消息文本
      */
-    protected void showLoadingDialog(String message) {
+    private void showLoadingDialog(String message) {
 
         if (loadingDialog == null) {
             loadingDialog = new ProgressDialog(mContext);
@@ -154,7 +154,7 @@ public class PurPesticideAdapter extends RecyclerView.Adapter<PurPesticideAdapte
     /**
      * 取消进度对话框
      */
-    protected void dismissLoadingDialog() {
+    private void dismissLoadingDialog() {
         if (loadingDialog != null && loadingDialog.isShowing())
             loadingDialog.dismiss();
     }

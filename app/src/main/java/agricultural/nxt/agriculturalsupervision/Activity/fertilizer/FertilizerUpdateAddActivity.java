@@ -88,7 +88,7 @@ public class FertilizerUpdateAddActivity extends BaseActivity {
     protected int getLayoutResId() {
         return R.layout.activity_fertilizer_update_add;
     }
-    void updataAdd() {
+    private void updataAdd() {
         if (TextUtils.isEmpty(vcgrantno.getText().toString().trim())) {
             ZToastUtils.showShort(FertilizerUpdateAddActivity.this, "登记证号不能为空!");
             return;

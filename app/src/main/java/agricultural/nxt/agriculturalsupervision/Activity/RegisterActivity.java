@@ -1,12 +1,10 @@
 package agricultural.nxt.agriculturalsupervision.Activity;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -84,22 +82,22 @@ public class RegisterActivity extends BaseActivity {
         map.put("province", province);
         map.put("city", city);
         map.put("district", district);
-        et_company.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus) {
-                    OkGo.post(Constants.CheckCompanyName)
-                            .params(map)
-                            .execute(new StringCallback() {
-                                @Override
-                                public void onSuccess(String s, Call call, Response response) {
-                                    if ("true".equals(s)) {
-                                        ZToastUtils.showShort(RegisterActivity.this, "该公司名不可用,请重新填写!");
-                                        return;
-                                    }
+        et_company.setOnFocusChangeListener((v, hasFocus) -> {
+            if (!hasFocus) {
+                map.put("companyName",et_company.getText().toString());
+                OkGo.post(Constants.CheckCompanyName)
+                        .params(map)
+                        .execute(new StringCallback() {
+                            @Override
+                            public void onSuccess(String s, Call call, Response response) {
+                                if ("false".equals(s)) {
+                                    ZToastUtils.showShort(RegisterActivity.this, "该公司名已被注册,请重新填写!");
+                                    btn_register.setEnabled(false);
+                                }else {
+                                    btn_register.setEnabled(true);
                                 }
-                            });
-                }
+                            }
+                        });
             }
         });
     }
@@ -201,7 +199,6 @@ public class RegisterActivity extends BaseActivity {
 
     @OnClick(R.id.tv_login)
     void gotoLogin() {
-        startActivity(new Intent(this, LoginActivity.class));
         finish();
     }
 

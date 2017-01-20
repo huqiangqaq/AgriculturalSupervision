@@ -124,7 +124,7 @@
                 android:layout_marginLeft="15dp"
                 android:layout_weight="1"
                 android:id="@+id/dtpodate"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="辽宁三征化学有限公司"/>
         </LinearLayout>

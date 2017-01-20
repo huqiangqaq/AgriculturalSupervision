@@ -7,11 +7,17 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/common_color</item>
         <item name="colorAccent">@color/common_color</item>
+        <item name="android:windowSoftInputMode">stateHidden|stateAlwaysHidden</item>
+        <item name="android:screenOrientation">portrait</item>
     </style>
     
     <style name="Splash" parent="AppTheme">
         <item name="windowNoTitle">true</item>
         <item name="android:windowBackground">@mipmap/bg_01</item>
+    </style>
+    <style name="MyActivity" parent="AppTheme">
+        <item name="android:windowSoftInputMode">stateHidden|stateAlwaysHidden</item>
+        <item name="android:screenOrientation">portrait</item>
     </style>
     <style name="login_text">
         <item name="android:textColor">@color/white</item>
