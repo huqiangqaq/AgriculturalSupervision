@@ -117,6 +117,11 @@ public class MainActivity extends BaseActivity implements OkhttpHelper.GetCallBa
             "电子处方", "销售员管理"};
     private SparseArray<String> asa = new SparseArray<>();
 
+    /**
+     * 测试
+     * @param savedInstanceState
+     */
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         //setcontentview之前使用，告诉Window页面切换需要动画
