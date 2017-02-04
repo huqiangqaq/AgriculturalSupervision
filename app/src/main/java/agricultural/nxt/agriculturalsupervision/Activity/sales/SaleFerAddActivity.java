@@ -229,6 +229,9 @@ public class SaleFerAddActivity extends BaseActivity {
         Map<String, String> map = new HashMap<>();
         if (isUpdate) {
             map.put("id", purchase.getId());
+            map.put("tFertilizerbatchId", purchase.getTfertilizerbatchId());
+        }else {
+            map.put("id","");
         }
         map.put("tMycustomerId", supplierId.get(tMysupplierId.getSelectedIndex()));
         map.put("dtsodate", dtpodate.getText().toString().trim());
@@ -239,7 +242,7 @@ public class SaleFerAddActivity extends BaseActivity {
         map.put("fprice", fprice.getText().toString().trim());
         map.put("vcunit", dataSet[vcunit.getSelectedIndex()]);
         map.put("remarks", remarks.getText().toString().trim());
-        map.put("tFertilizerbatchId", purchase.getTfertilizerbatchId());
+
         showLoadingDialog(R.string.loading);
         OkhttpHelper.Post(Constants.SALE_FER_SAVE, map, new OkhttpHelper.PostCallBack() {
             @Override

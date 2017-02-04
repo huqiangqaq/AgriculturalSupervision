@@ -236,6 +236,9 @@ public class SalePesticideAddActivity extends BaseActivity {
         Map<String, String> map = new HashMap<>();
         if (isUpdate) {
             map.put("id", purchase.getId());
+            map.put("tPesticidebatchId", purchase.getTpesticidebatchId());
+        }else {
+            map.put("id","");
         }
         map.put("tMycustomerId", supplierId.get(tMysupplierId.getSelectedIndex()));
         map.put("dtsodate", dtpodate.getText().toString().trim());
@@ -246,7 +249,6 @@ public class SalePesticideAddActivity extends BaseActivity {
         map.put("fprice", fprice.getText().toString().trim());
         map.put("vcunit", dataSet[vcunit.getSelectedIndex()]);
         map.put("remarks2", remarks.getText().toString().trim());
-        map.put("tPesticidebatchId", purchase.getTpesticidebatchId());
         map.put("vcRegName", vcRegName.getText().toString().trim());
         map.put("vcRegIDCode", vcRegIDCode.getText().toString().trim());
         showLoadingDialog(R.string.loading);

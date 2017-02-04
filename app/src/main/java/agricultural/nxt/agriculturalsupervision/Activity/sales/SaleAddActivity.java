@@ -218,6 +218,9 @@ public class SaleAddActivity extends BaseActivity {
         Map<String, String> map = new HashMap<>();
         if (isUpdate) {
             map.put("id", sale.getId());
+            map.put("tSeedbatchId", sale.getSoh().getId());
+        }else {
+            map.put("id","");
         }
         map.put("tMycustomerId", supplierId.get(tMysupplierId.getSelectedIndex()));
         map.put("dtsodate", dtpodate.getText().toString().trim());
@@ -228,7 +231,7 @@ public class SaleAddActivity extends BaseActivity {
         map.put("fprice", fprice.getText().toString().trim());
         map.put("vcunit", dataSet[vcunit.getSelectedIndex()]);
         map.put("remarks", remarks.getText().toString().trim());
-        map.put("tSeedbatchId", sale.getSoh().getId());
+
         showLoadingDialog(R.string.loading);
         OkhttpHelper.Post(Constants.SALE_SAVE, map, new OkhttpHelper.PostCallBack() {
             @Override

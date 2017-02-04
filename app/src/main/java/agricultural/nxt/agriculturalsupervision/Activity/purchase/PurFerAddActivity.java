@@ -222,6 +222,9 @@ public class PurFerAddActivity extends BaseActivity {
         Map<String, String> map = new HashMap<>();
         if (isUpdate) {
             map.put("id", purchase.getId());
+            map.put("tPohId",purchase.getTpohId());
+        }else {
+            map.put("id","");
         }
         map.put("tMysupplierId",supplierId.get(tMysupplierId.getSelectedIndex()));
         map.put("dtpodate",dtpodate.getText().toString().trim());
@@ -232,7 +235,7 @@ public class PurFerAddActivity extends BaseActivity {
         map.put("fprice",fprice.getText().toString().trim());
         map.put("vcunit",dataSet[vcunit.getSelectedIndex()]);
         map.put("remarks",remarks.getText().toString().trim());
-        map.put("tPohId",purchase.getTpohId());
+
         showLoadingDialog(R.string.loading);
         OkhttpHelper.Post(Constants.PUR_FERT_SAVE, map, new OkhttpHelper.PostCallBack() {
             @Override

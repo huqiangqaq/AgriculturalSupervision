@@ -226,6 +226,9 @@ public class PurPestAddActivity extends BaseActivity {
         Map<String, String> map = new HashMap<>();
         if (isUpdate) {
             map.put("id", purchase.getId());
+            map.put("tPohId",purchase.getTpohId());
+        }else {
+            map.put("id","");
         }
         map.put("tMysupplierId",supplierId.get(tMysupplierId.getSelectedIndex()));
         map.put("dtpodate",dtpodate.getText().toString().trim());
@@ -236,7 +239,6 @@ public class PurPestAddActivity extends BaseActivity {
         map.put("fprice",fprice.getText().toString().trim());
         map.put("vcunit",dataSet[vcunit.getSelectedIndex()]);
         map.put("remarks",remarks.getText().toString().trim());
-        map.put("tPohId",purchase.getTpohId());
         showLoadingDialog(R.string.loading);
         OkhttpHelper.Post(Constants.PUR_PESTICIDE_SAVE, map, new OkhttpHelper.PostCallBack() {
             @Override

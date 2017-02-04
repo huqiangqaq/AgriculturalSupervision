@@ -158,5 +158,5 @@ public interface Constants {
     String SALE_FER_DEL = URL+"/market/appSofertilizerd/delete?id=";
     String SALE_FER_GETPEST = URL+"/market/appSofertilizerd/selectFertilizerdList";
     String SALE_FER_SAVE = URL+"/market/appSofertilizerd/save";
-    String SALE_FER_DETAIL = URL+"/market/appSofertilizerd/form?id=";
+    String SALE_FER_DETAIL = URL+"/market/appSopesticided/form?id=";
 }
