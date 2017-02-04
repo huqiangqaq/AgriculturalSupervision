@@ -139,4 +139,24 @@ public interface Constants {
     String SALE = URL+"/market/appSoseedd/list?pageSize=20&pageNo=";
     String SALE_VIEW = URL+"/market/appSoseedd/selectList?pageSize=20&pageNo=";
     String SALE_DEL = URL+"/market/appSoseedd/delete?id=";
+    String SALE_GETSUPPLIER = URL+"/market/appSoseedd/selectCustomerList";
+    String SALE_GETSEED = URL+"/market/appSoseedd/selectSeedbatchList";
+    String SALE_DETAIL = URL+"/market/appSoseedd/form?id=";
+    String SALE_SAVE = URL+"/market/appSoseedd/save";
+
+    //农药
+    String SALE_PESTICIDE = URL+"/market/appSopesticided/list?pageSize=20&pageNo=";
+    String SALE_PESTICIDE_VIEW = URL+"/market/appSopesticided/selectList?pageSize=20&pageNo=";
+    String SALE_PESTICIDE_DEL = URL+"/market/appSopesticided/delete?id=";
+    String SALE_PESTICIDE_GETPEST = URL+"/market/appSopesticided/selectPesticidedbatchList";
+    String SALE_PESTICIDE_SAVE = URL+"/market/appSopesticided/save";
+    String SALE_PESTICIDE_DETAIL = URL+"/market/appSopesticided/form?id=";
+
+    //化肥
+    String SALE_FER = URL+"/market/appSofertilizerd/list?pageSize=20&pageNo=";
+    String SALE_FER_VIEW = URL+"/market/appSofertilizerd/selectList?pageSize=20&pageNo=";
+    String SALE_FER_DEL = URL+"/market/appSofertilizerd/delete?id=";
+    String SALE_FER_GETPEST = URL+"/market/appSofertilizerd/selectFertilizerdList";
+    String SALE_FER_SAVE = URL+"/market/appSofertilizerd/save";
+    String SALE_FER_DETAIL = URL+"/market/appSofertilizerd/form?id=";
 }

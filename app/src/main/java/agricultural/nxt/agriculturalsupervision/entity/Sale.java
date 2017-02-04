@@ -1,5 +1,8 @@
 package agricultural.nxt.agriculturalsupervision.entity;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
 /**
@@ -89,7 +92,8 @@ public class Sale {
         this.list = list;
     }
 
-    public static class ListBean {
+    public static class ListBean implements Parcelable {
+
         /**
          * id : 25086ab2e3654aa8a7b5a3b0fbc1f8d4
          * isNewRecord : false
@@ -234,7 +238,8 @@ public class Sale {
             this.tseedbatchId = tseedbatchId;
         }
 
-        public static class CreateByBean {
+        public static class CreateByBean implements Parcelable {
+
             /**
              * id : 刘建设
              * isNewRecord : false
@@ -288,9 +293,47 @@ public class Sale {
             public void setAdmin(boolean admin) {
                 this.admin = admin;
             }
+
+            @Override
+            public int describeContents() {
+                return 0;
+            }
+
+            @Override
+            public void writeToParcel(Parcel dest, int flags) {
+                dest.writeString(this.id);
+                dest.writeByte(this.isNewRecord ? (byte) 1 : (byte) 0);
+                dest.writeString(this.loginFlag);
+                dest.writeString(this.roleNames);
+                dest.writeByte(this.admin ? (byte) 1 : (byte) 0);
+            }
+
+            public CreateByBean() {
+            }
+
+            protected CreateByBean(Parcel in) {
+                this.id = in.readString();
+                this.isNewRecord = in.readByte() != 0;
+                this.loginFlag = in.readString();
+                this.roleNames = in.readString();
+                this.admin = in.readByte() != 0;
+            }
+
+            public static final Creator<CreateByBean> CREATOR = new Creator<CreateByBean>() {
+                @Override
+                public CreateByBean createFromParcel(Parcel source) {
+                    return new CreateByBean(source);
+                }
+
+                @Override
+                public CreateByBean[] newArray(int size) {
+                    return new CreateByBean[size];
+                }
+            };
         }
 
-        public static class UpdateByBean {
+        public static class UpdateByBean implements Parcelable {
+
             /**
              * id : 刘建设
              * isNewRecord : false
@@ -344,9 +387,47 @@ public class Sale {
             public void setAdmin(boolean admin) {
                 this.admin = admin;
             }
+
+            @Override
+            public int describeContents() {
+                return 0;
+            }
+
+            @Override
+            public void writeToParcel(Parcel dest, int flags) {
+                dest.writeString(this.id);
+                dest.writeByte(this.isNewRecord ? (byte) 1 : (byte) 0);
+                dest.writeString(this.loginFlag);
+                dest.writeString(this.roleNames);
+                dest.writeByte(this.admin ? (byte) 1 : (byte) 0);
+            }
+
+            public UpdateByBean() {
+            }
+
+            protected UpdateByBean(Parcel in) {
+                this.id = in.readString();
+                this.isNewRecord = in.readByte() != 0;
+                this.loginFlag = in.readString();
+                this.roleNames = in.readString();
+                this.admin = in.readByte() != 0;
+            }
+
+            public static final Creator<UpdateByBean> CREATOR = new Creator<UpdateByBean>() {
+                @Override
+                public UpdateByBean createFromParcel(Parcel source) {
+                    return new UpdateByBean(source);
+                }
+
+                @Override
+                public UpdateByBean[] newArray(int size) {
+                    return new UpdateByBean[size];
+                }
+            };
         }
 
-        public static class SohBean {
+        public static class SohBean implements Parcelable {
+
             /**
              * id : 201611181036
              * isNewRecord : false
@@ -381,7 +462,8 @@ public class Sale {
                 this.myCustomer = myCustomer;
             }
 
-            public static class MyCustomerBean {
+            public static class MyCustomerBean implements Parcelable {
+
                 /**
                  * isNewRecord : true
                  * vcmycustomername : 王力宏
@@ -405,10 +487,75 @@ public class Sale {
                 public void setVcmycustomername(String vcmycustomername) {
                     this.vcmycustomername = vcmycustomername;
                 }
+
+                @Override
+                public int describeContents() {
+                    return 0;
+                }
+
+                @Override
+                public void writeToParcel(Parcel dest, int flags) {
+                    dest.writeByte(this.isNewRecord ? (byte) 1 : (byte) 0);
+                    dest.writeString(this.vcmycustomername);
+                }
+
+                public MyCustomerBean() {
+                }
+
+                protected MyCustomerBean(Parcel in) {
+                    this.isNewRecord = in.readByte() != 0;
+                    this.vcmycustomername = in.readString();
+                }
+
+                public static final Creator<MyCustomerBean> CREATOR = new Creator<MyCustomerBean>() {
+                    @Override
+                    public MyCustomerBean createFromParcel(Parcel source) {
+                        return new MyCustomerBean(source);
+                    }
+
+                    @Override
+                    public MyCustomerBean[] newArray(int size) {
+                        return new MyCustomerBean[size];
+                    }
+                };
             }
+
+            @Override
+            public int describeContents() {
+                return 0;
+            }
+
+            @Override
+            public void writeToParcel(Parcel dest, int flags) {
+                dest.writeString(this.id);
+                dest.writeByte(this.isNewRecord ? (byte) 1 : (byte) 0);
+                dest.writeParcelable(this.myCustomer, flags);
+            }
+
+            public SohBean() {
+            }
+
+            protected SohBean(Parcel in) {
+                this.id = in.readString();
+                this.isNewRecord = in.readByte() != 0;
+                this.myCustomer = in.readParcelable(MyCustomerBean.class.getClassLoader());
+            }
+
+            public static final Creator<SohBean> CREATOR = new Creator<SohBean>() {
+                @Override
+                public SohBean createFromParcel(Parcel source) {
+                    return new SohBean(source);
+                }
+
+                @Override
+                public SohBean[] newArray(int size) {
+                    return new SohBean[size];
+                }
+            };
         }
 
-        public static class SeedbatchBean {
+        public static class SeedbatchBean implements Parcelable {
+
             /**
              * isNewRecord : true
              * vcbatchno : 2017011993912395
@@ -443,7 +590,8 @@ public class Sale {
                 this.seed = seed;
             }
 
-            public static class SeedBean {
+            public static class SeedBean implements Parcelable {
+
                 /**
                  * isNewRecord : true
                  * vcvarietyname : 二季水稻
@@ -467,10 +615,75 @@ public class Sale {
                 public void setVcvarietyname(String vcvarietyname) {
                     this.vcvarietyname = vcvarietyname;
                 }
+
+                @Override
+                public int describeContents() {
+                    return 0;
+                }
+
+                @Override
+                public void writeToParcel(Parcel dest, int flags) {
+                    dest.writeByte(this.isNewRecord ? (byte) 1 : (byte) 0);
+                    dest.writeString(this.vcvarietyname);
+                }
+
+                public SeedBean() {
+                }
+
+                protected SeedBean(Parcel in) {
+                    this.isNewRecord = in.readByte() != 0;
+                    this.vcvarietyname = in.readString();
+                }
+
+                public static final Creator<SeedBean> CREATOR = new Creator<SeedBean>() {
+                    @Override
+                    public SeedBean createFromParcel(Parcel source) {
+                        return new SeedBean(source);
+                    }
+
+                    @Override
+                    public SeedBean[] newArray(int size) {
+                        return new SeedBean[size];
+                    }
+                };
             }
+
+            @Override
+            public int describeContents() {
+                return 0;
+            }
+
+            @Override
+            public void writeToParcel(Parcel dest, int flags) {
+                dest.writeByte(this.isNewRecord ? (byte) 1 : (byte) 0);
+                dest.writeString(this.vcbatchno);
+                dest.writeParcelable(this.seed, flags);
+            }
+
+            public SeedbatchBean() {
+            }
+
+            protected SeedbatchBean(Parcel in) {
+                this.isNewRecord = in.readByte() != 0;
+                this.vcbatchno = in.readString();
+                this.seed = in.readParcelable(SeedBean.class.getClassLoader());
+            }
+
+            public static final Creator<SeedbatchBean> CREATOR = new Creator<SeedbatchBean>() {
+                @Override
+                public SeedbatchBean createFromParcel(Parcel source) {
+                    return new SeedbatchBean(source);
+                }
+
+                @Override
+                public SeedbatchBean[] newArray(int size) {
+                    return new SeedbatchBean[size];
+                }
+            };
         }
 
-        public static class OwnerBean {
+        public static class OwnerBean implements Parcelable {
+
             /**
              * isNewRecord : true
              * vcorgname : 省建设公司
@@ -514,6 +727,96 @@ public class Sale {
             public void setOwnerscopeTypes(List<String> ownerscopeTypes) {
                 this.ownerscopeTypes = ownerscopeTypes;
             }
+
+            @Override
+            public int describeContents() {
+                return 0;
+            }
+
+            @Override
+            public void writeToParcel(Parcel dest, int flags) {
+                dest.writeByte(this.isNewRecord ? (byte) 1 : (byte) 0);
+                dest.writeString(this.vcorgname);
+                dest.writeString(this.ownerscopes);
+                dest.writeStringList(this.ownerscopeTypes);
+            }
+
+            public OwnerBean() {
+            }
+
+            protected OwnerBean(Parcel in) {
+                this.isNewRecord = in.readByte() != 0;
+                this.vcorgname = in.readString();
+                this.ownerscopes = in.readString();
+                this.ownerscopeTypes = in.createStringArrayList();
+            }
+
+            public static final Creator<OwnerBean> CREATOR = new Creator<OwnerBean>() {
+                @Override
+                public OwnerBean createFromParcel(Parcel source) {
+                    return new OwnerBean(source);
+                }
+
+                @Override
+                public OwnerBean[] newArray(int size) {
+                    return new OwnerBean[size];
+                }
+            };
         }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeString(this.id);
+            dest.writeByte(this.isNewRecord ? (byte) 1 : (byte) 0);
+            dest.writeParcelable(this.createBy, flags);
+            dest.writeString(this.createDate);
+            dest.writeParcelable(this.updateBy, flags);
+            dest.writeString(this.updateDate);
+            dest.writeString(this.fprice);
+            dest.writeString(this.fnumber);
+            dest.writeString(this.vcunit);
+            dest.writeString(this.dtsodate);
+            dest.writeParcelable(this.soh, flags);
+            dest.writeParcelable(this.seedbatch, flags);
+            dest.writeParcelable(this.owner, flags);
+            dest.writeString(this.tseedbatchId);
+        }
+
+        public ListBean() {
+        }
+
+        protected ListBean(Parcel in) {
+            this.id = in.readString();
+            this.isNewRecord = in.readByte() != 0;
+            this.createBy = in.readParcelable(CreateByBean.class.getClassLoader());
+            this.createDate = in.readString();
+            this.updateBy = in.readParcelable(UpdateByBean.class.getClassLoader());
+            this.updateDate = in.readString();
+            this.fprice = in.readString();
+            this.fnumber = in.readString();
+            this.vcunit = in.readString();
+            this.dtsodate = in.readString();
+            this.soh = in.readParcelable(SohBean.class.getClassLoader());
+            this.seedbatch = in.readParcelable(SeedbatchBean.class.getClassLoader());
+            this.owner = in.readParcelable(OwnerBean.class.getClassLoader());
+            this.tseedbatchId = in.readString();
+        }
+
+        public static final Parcelable.Creator<ListBean> CREATOR = new Parcelable.Creator<ListBean>() {
+            @Override
+            public ListBean createFromParcel(Parcel source) {
+                return new ListBean(source);
+            }
+
+            @Override
+            public ListBean[] newArray(int size) {
+                return new ListBean[size];
+            }
+        };
     }
 }

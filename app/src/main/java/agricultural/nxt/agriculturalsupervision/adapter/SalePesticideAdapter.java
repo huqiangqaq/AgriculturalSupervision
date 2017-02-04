@@ -16,67 +16,72 @@ import com.mcxtzhang.swipemenulib.SwipeMenuLayout;
 
 import java.util.List;
 
-import agricultural.nxt.agriculturalsupervision.Activity.sales.SaleAddActivity;
+import agricultural.nxt.agriculturalsupervision.Activity.sales.SalePesticideAddActivity;
 import agricultural.nxt.agriculturalsupervision.Constants;
 import agricultural.nxt.agriculturalsupervision.R;
 import agricultural.nxt.agriculturalsupervision.Util.JsonUtil;
 import agricultural.nxt.agriculturalsupervision.Util.OkhttpHelper;
-import agricultural.nxt.agriculturalsupervision.entity.Sale;
+import agricultural.nxt.agriculturalsupervision.entity.SalePesticide;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 /**
- * Created by huqiang on 2017/1/19 9:42.
+ * Created by huqiang on 2017/2/4 10:12.
  */
 
-public class SaleAdapter extends RecyclerView.Adapter<SaleAdapter.ViewHolder> {
-    private List<Sale.ListBean> list;
+public class SalePesticideAdapter extends RecyclerView.Adapter<SalePesticideAdapter.ViewHolder> {
+    private List<SalePesticide.ListBean> list;
     private Context mContext;
     private ProgressDialog loadingDialog;
+    private String type;
 
-    public SaleAdapter(List<Sale.ListBean> list, Context mContext) {
+    public SalePesticideAdapter(List<SalePesticide.ListBean> list, Context mContext, String type) {
         this.list = list;
         this.mContext = mContext;
+        this.type = type;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.item_sale,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_sale_pest,parent,false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Sale.ListBean sale = list.get(position);
+        SalePesticide.ListBean sale  = list.get(position);
         holder.id.setText(sale.getSoh().getId());
-        holder.vcmycustomername.setText(sale.getSoh().getMyCustomer().getVcmycustomername());
-        holder.vcvarietyname.setText(sale.getSeedbatch().getSeed().getVcvarietyname());
         holder.vcorgname.setText(sale.getOwner().getVcorgname());
+        holder.vcvarietyname.setText(sale.getPesticidebatch().getPesticide().getVcpesticidename());
+        holder.tMysupplierName.setText(sale.getSoh().getMyCustomer().getVcmycustomername());
         holder.fponumber.setText(sale.getFnumber());
         holder.fprice.setText(sale.getFprice());
         holder.vcunit.setText(sale.getVcunit());
+        holder.type.setText(type);
+//        Date date = new Date(purchase.getDtpodate());
+//        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+//        String sb = format.format(date);
         holder.dtpodate.setText(sale.getDtsodate());
         holder.btnDel.setOnClickListener(v -> delete(holder,position));
         holder.btnUpdate.setOnClickListener(v -> update(holder,position));
     }
 
     private void update(ViewHolder holder, int position) {
-        Intent intent = new Intent(mContext, SaleAddActivity.class);
-        Sale.ListBean listBean = list.get(position);
-        intent.putExtra("sale",listBean);
+        Intent intent = new Intent(mContext, SalePesticideAddActivity.class);
+        SalePesticide.ListBean listBean = list.get(position);
+        intent.putExtra("salepesticide",listBean);
         intent.putExtra("type","update");
         ((SwipeMenuLayout) holder.itemView).quickClose();
         mContext.startActivity(intent);
     }
 
     private void delete(ViewHolder holder, int position) {
-
         new AlertDialog.Builder(mContext)
                 .setTitle("提示")
                 .setMessage("确定删除此条记录吗?")
                 .setPositiveButton("确定", (dialog, which) -> {
                     String id = list.get(position).getId();
                     showLoadingDialog("删除中...");
-                    OkhttpHelper.Get(Constants.SALE_DEL + id, new OkhttpHelper.GetCallBack() {
+                    OkhttpHelper.Get(Constants.SALE_PESTICIDE_DEL + id, new OkhttpHelper.GetCallBack() {
                         @Override
                         public void onSuccess(String response, int tag) {
                             dismissLoadingDialog();
@@ -100,6 +105,7 @@ public class SaleAdapter extends RecyclerView.Adapter<SaleAdapter.ViewHolder> {
                         }
                     }, 1);
                 }).setNegativeButton("取消",(dialog, which) -> dialog.dismiss()).show();
+
     }
 
     @Override
@@ -110,24 +116,25 @@ public class SaleAdapter extends RecyclerView.Adapter<SaleAdapter.ViewHolder> {
     //自定义的ViewHolder，持有每个Item的的所有界面元素
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public SwipeMenuLayout swipe_content;
-        public TextView id, vcmycustomername, vcvarietyname, vcorgname, fponumber, fprice, vcunit, dtpodate;
-        public Button btnUpdate, btnDel;
-
-        public ViewHolder(View view) {
+        public TextView id,vcorgname,vcvarietyname,tMysupplierName,fponumber,fprice,vcunit,dtpodate,type;
+        public Button btnUpdate,btnDel;
+        public ViewHolder(View view){
             super(view);
             swipe_content = (SwipeMenuLayout) view.findViewById(R.id.swipe_content);
             id = (TextView) view.findViewById(R.id.id);
             vcorgname = (TextView) view.findViewById(R.id.vcorgname);
             vcvarietyname = (TextView) view.findViewById(R.id.vcvarietyname);
-            vcmycustomername = (TextView) view.findViewById(R.id.vcmycustomername);
+            tMysupplierName = (TextView) view.findViewById(R.id.tMysupplierName);
             fponumber = (TextView) view.findViewById(R.id.fponumber);
             fprice = (TextView) view.findViewById(R.id.fprice);
             vcunit = (TextView) view.findViewById(R.id.vcunit);
             dtpodate = (TextView) view.findViewById(R.id.dtpodate);
             btnUpdate = (Button) view.findViewById(R.id.btUpdate);
             btnDel = (Button) view.findViewById(R.id.btnDel);
+            type = (TextView) view.findViewById(R.id.type);
         }
     }
+
     /**
      * 显示进度对话框
      *

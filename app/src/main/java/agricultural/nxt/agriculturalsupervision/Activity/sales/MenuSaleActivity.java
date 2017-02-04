@@ -111,6 +111,7 @@ public class MenuSaleActivity extends BaseActivity {
      */
     @OnClick(R.id.rl_product_pesticide)
     void pesticide() {
+        SalePesticideActivity.actionStart(this);
     }
 
     /**
@@ -118,7 +119,7 @@ public class MenuSaleActivity extends BaseActivity {
      */
     @OnClick(R.id.rl_product_fertilizer)
     void fertilizer() {
-
+        SaleFerActivity.actionStart(this);
     }
 
     public static void actionStart(Context context){

@@ -2,7 +2,6 @@ package agricultural.nxt.agriculturalsupervision.Activity.sales;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DividerItemDecoration;
@@ -23,12 +22,12 @@ import agricultural.nxt.agriculturalsupervision.R;
 import agricultural.nxt.agriculturalsupervision.Util.CircularAnimUtil;
 import agricultural.nxt.agriculturalsupervision.Util.OkhttpHelper;
 import agricultural.nxt.agriculturalsupervision.Widget.LetToolBar;
-import agricultural.nxt.agriculturalsupervision.adapter.SaleAdapter;
+import agricultural.nxt.agriculturalsupervision.adapter.SalePesticideAdapter;
 import agricultural.nxt.agriculturalsupervision.base.BaseActivity;
-import agricultural.nxt.agriculturalsupervision.entity.Sale;
+import agricultural.nxt.agriculturalsupervision.entity.SalePesticide;
 import butterknife.BindView;
 
-public class SaleActivity extends BaseActivity {
+public class SalePesticideActivity extends BaseActivity {
     @BindView(R.id.lettoolbar)
     LetToolBar toolBar;
     /**
@@ -44,31 +43,25 @@ public class SaleActivity extends BaseActivity {
     /**
      * 已经获取到多少条数据了
      */
-    private int page=1;
+    private int page = 1;
     private static int mCurrentCounter = 0;
-    private List<Sale.ListBean> dataList;
-    private SaleAdapter adapter;
-    private Map<String,String> map = new HashMap<>();
+    private List<SalePesticide.ListBean> dataList;
+    private SalePesticideAdapter adapter;
+    private Map<String, String> map = new HashMap<>();
     private XRecyclerView xRecyclerView;
-    private static final int REQUESTCODE = 1;
     private String url = null;
     @BindView(R.id.fab)
     FloatingActionButton fab;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
     protected void initView() {
-        if (ZPreferenceUtils.getPrefBoolean("isCheck",false)){
-            url = Constants.SALE_VIEW;
-        }else {
-            url = Constants.SALE;
+        if (ZPreferenceUtils.getPrefBoolean("isCheck", false)) {
+            url = Constants.SALE_PESTICIDE_VIEW;
+        } else {
+            url = Constants.SALE_PESTICIDE;
         }
-        toolBar.setTitle("种子销售");
-        toolBar.setLeftButtonIcon(ContextCompat.getDrawable(this,R.mipmap.icon_arrow_02));
+        toolBar.setTitle("农药销售");
+        toolBar.setLeftButtonIcon(ContextCompat.getDrawable(this, R.mipmap.icon_arrow_02));
         toolBar.setLeftButtonOnClickLinster(v -> finish());
         xRecyclerView = (XRecyclerView) findViewById(R.id.xrecyclerview);
         LinearLayoutManager manager = new LinearLayoutManager(this);
@@ -76,19 +69,19 @@ public class SaleActivity extends BaseActivity {
 
         xRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
         xRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
-        xRecyclerView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
+        xRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         xRecyclerView.setHasFixedSize(true);
         xRecyclerView.setLoadingMoreEnabled(true);
         fab.setOnClickListener(v -> fabAction());
-//        xRecyclerView.setArrowImageView(R.drawable.iconfont_downgrey);
         initData();
     }
     private void fabAction() {
-        Intent intent = new Intent(this, SaleAddActivity.class);
+        Intent intent = new Intent(this, SalePesticideAddActivity.class);
         intent.putExtra("type", "add");
         CircularAnimUtil.startActivity(this, intent, fab,
                 R.color.common_color);
     }
+
     private void initData() {
         refresh();
         xRecyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {
@@ -98,8 +91,8 @@ public class SaleActivity extends BaseActivity {
                 OkhttpHelper.Post(url + page, map, new OkhttpHelper.PostCallBack() {
                     @Override
                     public void onSuccess(String response, int tag) {
-                        if (response!=null){
-                            Sale lib = new Gson().fromJson(response, Sale.class);
+                        if (response != null) {
+                            SalePesticide lib = new Gson().fromJson(response, SalePesticide.class);
                             dataList.clear();
                             dataList.addAll(lib.getList());
                             adapter.notifyDataSetChanged();
@@ -116,18 +109,18 @@ public class SaleActivity extends BaseActivity {
                     public void onProgress(long currentSize, long totalSize, float progress, long networkSpeed) {
 
                     }
-                },2);
+                }, 2);
             }
 
             @Override
             public void onLoadMore() {
                 page++;
-                if (mCurrentCounter+20<TOTAL_COUNTER){
+                if (mCurrentCounter + 20 < TOTAL_COUNTER) {
                     OkhttpHelper.Post(url + page, map, new OkhttpHelper.PostCallBack() {
                         @Override
                         public void onSuccess(String response, int tag) {
-                            if (response!=null){
-                                Sale lib = new Gson().fromJson(response, Sale.class);
+                            if (response != null) {
+                                SalePesticide lib = new Gson().fromJson(response, SalePesticide.class);
                                 dataList.addAll(lib.getList());
                                 adapter.notifyItemInserted(dataList.size());
                                 xRecyclerView.loadMoreComplete();
@@ -144,8 +137,8 @@ public class SaleActivity extends BaseActivity {
                         public void onProgress(long currentSize, long totalSize, float progress, long networkSpeed) {
 
                         }
-                    },3);
-                }else {
+                    }, 3);
+                } else {
                     xRecyclerView.loadMoreComplete();
                     xRecyclerView.setNoMore(true);
                 }
@@ -154,15 +147,15 @@ public class SaleActivity extends BaseActivity {
 
     }
     private void refresh() {
-        page=1;
+        page = 1;
         OkhttpHelper.Post(url + page, map, new OkhttpHelper.PostCallBack() {
             @Override
             public void onSuccess(String response, int tag) {
-                Sale sale = new Gson().fromJson(response, Sale.class);
+                SalePesticide salePesticide = new Gson().fromJson(response, SalePesticide.class);
                 dataList = new ArrayList<>();
-                dataList = sale.getList();
-                TOTAL_COUNTER = sale.getCount();
-                adapter = new SaleAdapter(dataList,SaleActivity.this);
+                dataList = salePesticide.getList();
+                TOTAL_COUNTER = salePesticide.getCount();
+                adapter = new SalePesticideAdapter(dataList, SalePesticideActivity.this, "农药销售");
                 xRecyclerView.setAdapter(adapter);
             }
 
@@ -178,12 +171,12 @@ public class SaleActivity extends BaseActivity {
         }, 1);
     }
     public static void actionStart(Context context) {
-        Intent intent = new Intent(context, SaleActivity.class);
+        Intent intent = new Intent(context, SalePesticideActivity.class);
         context.startActivity(intent);
     }
 
     @Override
     protected int getLayoutResId() {
-        return R.layout.activity_sale;
+        return R.layout.activity_sale_pesticide;
     }
 }
